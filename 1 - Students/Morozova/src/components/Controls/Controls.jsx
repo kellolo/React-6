@@ -1,6 +1,7 @@
 import './style.css';
 import React, { Component, Fragment } from 'react'; 
-import { EnhancedEncryptionTwoTone } from '@material-ui/icons';
+import Button from '../Button/Button.jsx';
+import Input from '../Input/Input.jsx';
 
 
 export default class Controls extends Component {
@@ -30,11 +31,8 @@ export default class Controls extends Component {
         return (
             <Fragment>
                 <div className="d-flex flex-row controls">
-                    <input type="text" onChange={ this.ChangeHandler } 
-                    onKeyUp={ this.ChangeHandler }
-                    value={ text } 
-                    className="inputMsg"/>
-                    <button onClick={ this.SendMessage } className="sendBtn">Send</button>
+                    <Input change = { this.ChangeHandler } text = { text } />
+                    <Button sendM = { this.SendMessage } />
                 </div>
                 
             </Fragment>

@@ -2,6 +2,7 @@
         import './style.css';
         import React, { Component, Fragment } from 'react';
         import Controls from '../Controls/Controls.jsx';
+        import MessageField from '../MessageField/MessageField.jsx';
 
         export default class Message extends Component {
             constructor(props) {
@@ -39,6 +40,7 @@
             }
         
             render() {
+                <MessageField send = { this.AddMessage }/>;
                 let msgArr = this.state.messages.map((msg, id) => 
                 <div className="d-flex flex-column message" 
                 style={ {alignSelf: msg.sender === 'John' ? 'flex-start' : 'flex-end', borderRadius: msg.sender === 'John' ? '0 25px 25px 25px' : '25px 0 25px 25px'} } 
