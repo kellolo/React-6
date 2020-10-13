@@ -1,12 +1,17 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const app = document.querySelector('#app');
 
-import Main from './components/main/main.jsx'
+
+import Messages from './components/Messages/Messages.jsx'
+
 
 ReactDom.render(
-    <Main />,
+    <div className="wrapper">
+        <Messages />
+    </div>,
     app
 )
