@@ -1,0 +1,30 @@
+.messageArchive {
+	width: 85%;
+	background-color: rgb(31, 28, 46);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.messageArchive__divSearchName {
+	width: 50%;
+}
+.messageArchive__divSearchNameInput {
+	width: 80%;
+	height: 30px;
+	border-radius: 20px;
+	padding-left: 2%;
+	border: none;
+	outline: none;
+}
+.messageArchive__divSearchNameButton {
+	width: 17%;
+	height: 30px;
+	border-radius: 10px;
+	border: none;
+	outline: none;
+}
+.msg-wrap {
+	height: 80%;
+	overflow-y: auto;
+	width: 50%;
+}
