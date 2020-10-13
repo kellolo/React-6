@@ -1,0 +1,30 @@
+h3 {
+    font-size: 22px;
+}
+
+.messagesHeader {
+    height: 80px;
+    padding: 25px;
+    border-bottom: 1px solid #cc6c6c7a;
+}
+
+.currAvatar {
+    height: 30px;
+    width: 30px;
+}
+
+#searchInput {
+    height: 30px;
+    border-radius: 5px;
+    border: 0.5px solid #cc6c6c7a;
+    outline: none;
+    padding: 5px 10px;
+}
+
+.seacrhIcon {
+    display: block;
+    height: 30px;
+    width: 20px;
+    line-height: 30px;
+    color: #d85757
+}
