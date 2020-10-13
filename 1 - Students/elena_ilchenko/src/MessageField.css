@@ -1,0 +1,8 @@
+.MessageField {
+    width: 600px;
+    margin: 40px auto;
+    border: 1px solid #A9A9A9;
+    border-radius: 5px;
+    background-color: #eee;
+    padding: 20px;
+}
