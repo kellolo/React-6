@@ -1,1 +1,5 @@
-.ChatsList {}
+.listItem{
+    margin: 5px;
+    border-bottom: 2px solid darkblue;
+}
+

@@ -87,7 +87,7 @@ export default function SimpleDialogDemo(props) {
     <div>
       {/* <Typography variant="subtitle1">Chat with: {selectedValue}</Typography>
       <br /> */}
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" style={ {color: '#00008B'} } onClick={handleClickOpen}>
         Open a new chat
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />

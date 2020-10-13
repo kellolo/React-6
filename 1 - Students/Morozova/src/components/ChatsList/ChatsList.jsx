@@ -34,13 +34,15 @@ export default class ChatsList extends Component {
 
         let linksArr = chats.map((ch, i) =>  
             // <Link to = {`/chat/${ch.id}/`} key = {ch.id}>
-                <Item name={ch.name} key= { i }/>
+            <div style={ {color: '#00008B'} } className="listItem">
+                <Item name={ch.name} key= { i } />
+            </div>
             // </Link>
         )
 
         return (
             <Fragment>
-                <div className="ChatList d-flex flex-column">
+                <div className="ChatList d-flex flex-column justify-content-between">
                     <List>
                         { linksArr }
                     </List>

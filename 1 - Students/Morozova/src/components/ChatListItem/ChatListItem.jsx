@@ -6,8 +6,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 export default props => {
     let { name } = props;
     return (
-        <ListItem button>
-            <ListItemText primary = { name } />
-        </ListItem>
+        <div className="chatListItem">
+            <ListItem button>
+                <ListItemText primary = { name } />
+            </ListItem>
+        </div>
     )
 }

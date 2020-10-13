@@ -9,7 +9,9 @@ const container = document.getElementById('app');
 ReactDOM.render(
     <Fragment>
         <div className="d-flex justify-content-around w-75 p-3">
+            
             <ChatsList />
+            
             <MessageField />
         </div>
         
