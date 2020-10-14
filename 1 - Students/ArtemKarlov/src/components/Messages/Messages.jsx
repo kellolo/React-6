@@ -17,11 +17,27 @@ export default class Messages extends React.Component {
         }
     }
 
-    addMessage = msg => {
+    addMessage = (message, sender = 'Me') => {
         let {messages} = this.state;
         this.setState({
-            messages: [...messages, {sender: 'Me', text: msg}],
+            messages: [...messages, {sender: sender, text: message}],
         });
+    }
+
+    componentDidMount() {
+        console.log('MOUNTED');        
+    }
+
+    componentDidUpdate() {
+        const botName = "Bot";
+        const botMessage = "I'm Bot";
+        const {messages} = this.state;
+        if (messages[messages.length-1].sender !== botName) {
+            setTimeout(() => {
+                this.addMessage(botMessage, botName);
+            }, 1000);
+        }        
+        console.log('UPDATED');
     }
 
     render() {
