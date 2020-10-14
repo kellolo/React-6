@@ -1,10 +1,11 @@
 .wrapper {
-    margin: 20px auto;
-    max-width: 1080px;
+    margin: 20px 10px;
     background-color: #192634;
     color: #16B5E8;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .button-round {
@@ -20,10 +21,4 @@
     border: rgba(0, 0, 0, .5) solid 5px;
 }
 
-.button-avatar {
-    float: right;
-}
 
-.button-chat {
-    float: left;
-}

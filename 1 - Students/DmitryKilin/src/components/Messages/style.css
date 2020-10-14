@@ -1,6 +1,6 @@
 .msg-wrap {
     height: 80vh;
     overflow-y: auto;
-    width: 50%;
+    min-width: 400px;
     margin: 10px 0;
 }
