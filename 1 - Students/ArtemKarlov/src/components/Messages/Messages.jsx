@@ -32,7 +32,8 @@ export default class Messages extends React.Component {
         const botName = "Bot";
         const botMessage = "I'm Bot";
         const {messages} = this.state;
-        if (messages[messages.length-1].sender !== botName) {
+        const lastMessage = messages[messages.length-1];
+        if (lastMessage.sender !== botName) {
             setTimeout(() => {
                 this.addMessage(botMessage, botName);
             }, 1000);
