@@ -1,0 +1,16 @@
+.messagesContainer {
+    background-color: #fbfbfb;
+    border-right: 1px solid #cc6c6c7a;
+}
+
+.messagesInnerContainer {
+    padding: 20px;
+    min-height: calc(100vh - 160px);
+}
+
+.chatInput {
+    width: 100%;
+    bottom: 20px;
+    border-top: 1px solid #cc6c6c7a;
+    padding-top: 20px;
+}

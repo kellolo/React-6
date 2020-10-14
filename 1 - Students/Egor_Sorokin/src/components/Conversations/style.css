@@ -1,0 +1,8 @@
+.conversationsContainer {
+    min-height: 100vh;
+    background-color:#fbfbfb;
+    border-right: 1px solid #cc6c6c7a;
+    border-left: 1px solid #cc6c6c7a;
+    padding-left: 0px;
+    padding-right: 0px;
+}
