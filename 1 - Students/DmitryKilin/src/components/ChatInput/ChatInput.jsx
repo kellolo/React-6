@@ -23,9 +23,9 @@ export default class ChatInput extends Component {
     render() {
         let { text } = this.state;
         return (
-            <div>
-                <input type="text" value = { text } onChange = { this.changeText }/>
-                <button onClick = { this.send }>Send</button>
+            <div className="msg-input-group">
+                <textarea className="input-message" type="text" value = { text } onChange = { this.changeText }/>
+                <button className="button-send" onClick = { this.send }>Send</button>
             </div>
         )
     }

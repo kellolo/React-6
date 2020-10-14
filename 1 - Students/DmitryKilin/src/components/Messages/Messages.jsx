@@ -32,14 +32,15 @@ class Messages extends Component {
 
     render() {
         let { messages } = this.state;
-        let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>);
+        let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>).reverse();
 
         return (
             <div className="d-flex flex-column align-items-center">
+                <ChatInput send = { this.sendMessage } />
                 <div className="msg-wrap">
                     { messagesArray }
                 </div>
-                <ChatInput send = { this.sendMessage } />
+
             </div>
         )
     }
