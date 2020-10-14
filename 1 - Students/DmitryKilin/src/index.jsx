@@ -14,8 +14,6 @@ import ChatsInfo from "./components/ChatInfo/ChatInfo.jsx";
 
 ReactDom.render(
     <div className="wrapper">
-        {/*<button className="button-round button-chat button-pushed"></button>*/}
-        {/*<button className="button-round button-avatar"></button>*/}
         <ChatsList />
         <Messages />
         <ChatsInfo />
