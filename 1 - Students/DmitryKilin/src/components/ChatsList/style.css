@@ -4,8 +4,7 @@
     /*min-width: 25%;*/
     min-height: 100%;
     padding: 10px;
-    flex-grow: 1;
-    flex-basis: 25%;
+    flex: 1 2 25%
 }
 
 .button-chat {

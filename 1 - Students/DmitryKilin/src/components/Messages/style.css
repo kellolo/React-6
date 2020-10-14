@@ -5,8 +5,7 @@
 }
 
 .messages-container {
-    flex-grow: 2;
-    flex-basis: 50%;
+    flex: 2 1 50%;
     margin: 10px 20px;
     max-width: 500px;
 }
