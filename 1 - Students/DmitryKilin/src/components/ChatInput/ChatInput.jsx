@@ -1,6 +1,6 @@
 import './style.css'
 import React, { Component } from 'react'
-import {CurrentUser} from '../User/User'
+import {CurrentUser} from '../../moduls/User/User'
 
 export default class ChatInput extends Component {
     constructor(props) {

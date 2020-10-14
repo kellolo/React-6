@@ -2,10 +2,10 @@ import './style.css'
 import React, { Component } from 'react'
 import Message from '../Message/Message.jsx'
 import ChatInput from '../ChatInput/ChatInput.jsx'
-import {CurrentUser} from '../User/User'
-import {chatBot} from "../Bot/Bot"
+import {CurrentUser} from '../../moduls/User/User'
+import {chatBot} from "../../moduls/Bot/Bot"
 
-export default class Messages extends Component {
+class Messages extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,3 +44,5 @@ export default class Messages extends Component {
         )
     }
 }
+
+export default Messages
