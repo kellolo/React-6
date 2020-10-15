@@ -1,0 +1,21 @@
+.message {
+    margin: 7px 0;
+    padding: 5px 15px;
+    color: darkblue;
+    min-width: 200px;
+    min-height: 60px;
+    max-width: 350px;
+    border: 1px solid darkblue;
+}
+
+.sender{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.message-text {
+    margin: 0;
+    padding: 0 3px;
+}
