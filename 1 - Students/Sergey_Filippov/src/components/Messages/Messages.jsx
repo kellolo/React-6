@@ -25,17 +25,15 @@ export default class Messages extends Component {
    
         
 
-    componentDidUpdate(prevState) {
+    componentDidUpdate() {
         let { messages } = this.state;
-        if(prevState.sender !== this.state.sender){
-        setTimeout( this.setState({
-            messages: [...messages, { sender: 'Bot', text: "Привет" }],
-        }),3000);
+        if (messages.length % 2 === 0) {  
+            setTimeout(() =>
+            this.setState(
+                { messages: [ ...messages, {sender: "bot" , text: 'Не приставай ко мне, я робот!'} ] }),
+            1000);
+            }
         }
-        
-    }
-
-
 
     render() {
         let { messages } = this.state;
