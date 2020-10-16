@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.MsgWrapper {
+  width: 70%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
