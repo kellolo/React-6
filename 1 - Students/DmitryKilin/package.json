@@ -6,10 +6,10 @@
   "repository": {
     "private": true
   },
-  "description": "",
   "scripts": {
     "dev": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cr-full": "node utils/superComponentCreator/ --n",
+    "cr-less": "node utils/superComponentCreator/ -s --n"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "css-loader": "^4.3.0",
     "html-webpack-plugin": "^4.5.0",
     "mini-css-extract-plugin": "^1.0.0",
+    "minimist": "^1.2.5",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
