@@ -16,10 +16,10 @@ class Messages extends React.Component {
         }
     }
 
-    sendMessage = (auth, txt) => {
+    sendMessage = (txt) => {
         let { messages } = this.state
         this.setState({
-            messages: [...messages, { sender: auth, text: txt }]
+            messages: [...messages, { sender: 'Me', text: txt }]
         })
     }
 
@@ -36,21 +36,15 @@ class Messages extends React.Component {
 
             console.log(this.state.messages[[this.state.messages.length - 1]].sender);
         }
-        else if (this.state.messages[[this.state.messages.length - 1]].sender === 'BOT' ) {
-            setTimeout(() =>
-                this.setState(
-                    { messages: [...this.state.messages, { sender: 'Bot', text: 'Привет мой железный брат' }] }),
-                1000);
-            console.log(this.state.messages[[this.state.messages.length - 1]].sender);
-        }
+       
     }
 
     render() {
-        let { messages, text } = this.state;
+        let { messages } = this.state;
         let messagesArray = messages.map((msg, i) => <Message sender={msg.sender} text={msg.text} key={i} />)
         return (
-            <div className="d-flex flex-column align-items-center">
-                <div className="w-50">
+            <div className="d-flex flex-column align-items-center mt-3">
+                <div className="messages w-50">
                     {messagesArray}
                 </div>
                 <ChatInput send={this.sendMessage} />
