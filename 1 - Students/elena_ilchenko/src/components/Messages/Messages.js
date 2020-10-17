@@ -6,8 +6,8 @@ import ChatInput from '../ChatInput/ChatInput'
 
 class Messages extends Component {
     state = {
-        messages: [{sender: 'me', message: 'some text'},
-                {sender: 'me', message: 'another text'}],
+        messages: [{sender: 'bot', message: 'привет'},
+                {sender: 'bot', message: 'я бот'}],
     }
 
     buttonHandler = (txt) => {
@@ -23,7 +23,7 @@ class Messages extends Component {
         if (lastMessage.sender === 'me') {
 
             setTimeout(() => this.setState({
-                messages: [...this.state.messages, {sender: 'bot', message: 'привет, я бот'}]
+                messages: [...this.state.messages, {sender: 'bot', message: 'и что дальше?'}]
             }), 1500)
         }
     }
