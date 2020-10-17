@@ -1,0 +1,14 @@
+.chat__list{
+    background-color: #d6fffe;
+    border: 1px solid #215c5a;
+    margin: 15px 0;
+    border-radius: 20px;
+    padding: 100px 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+ ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 30px;
+ }
