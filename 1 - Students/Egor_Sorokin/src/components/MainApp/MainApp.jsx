@@ -2,23 +2,22 @@ import './style.css'
 
 import React from 'react'
 
-import Conversations from '../Conversations/Conversations.jsx'
 import Messages from '../Messages/Messages.jsx'
+import ChatList from '../ChatList/ChatList.jsx'
 
 export default class MainApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             activeConv: {
-                id: '',
-                avatar: '',
-                name: '',
+                id: '0',
+                avatar: 'https://via.placeholder.com/70',
+                name: 'Bot',
             }
         }
     }
 
     getActiveConv = (id, avatar, name) => {
-        console.log (name);
         this.setState({activeConv: {
             id: id,
             avatar: avatar,
@@ -31,8 +30,8 @@ export default class MainApp extends React.Component {
         return(
             <main>
                 <div className="row">
-                    <Conversations getFunction = {this.getActiveConv} />
-                    <Messages author = 'Egor' currConversationName={this.state.activeConv.name} avatarAddress={this.state.activeConv.avatar} />
+                    <ChatList getFunction = {this.getActiveConv} />
+                    <Messages author = 'Egor' activeId={this.state.activeConv.id} currConversationName={this.state.activeConv.name} avatarAddress={this.state.activeConv.avatar} />
                 </div>
             </main>
     )}
