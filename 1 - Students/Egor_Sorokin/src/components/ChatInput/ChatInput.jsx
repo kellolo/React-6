@@ -25,10 +25,10 @@ export default class ChatInput extends React.Component {
     render() {
         let { text } = this.state;
         return(
-            <div className="chatInput d-flex">
-                <input type="text" className = "inputTextBox" value= { text } onChange = { this.changeInput } />
-                <div className="buttonsBlock">
-                    <button className="chatInputButton sendButton" onClick={ this.send }><FontAwesomeIcon icon={faEnvelope} /></button>
+            <div className="chat-input d-flex">
+                <input type="text" className = "input-text-box" value= { text } onChange = { this.changeInput } />
+                <div className="buttons-block">
+                    <button className="chat-input-button send-button" onClick={ this.send }><FontAwesomeIcon icon={faEnvelope} /></button>
                 </div>
             </div>
         )
