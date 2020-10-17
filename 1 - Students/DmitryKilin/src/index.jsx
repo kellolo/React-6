@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './layout/css/style.css'
+import { StylesProvider } from '@material-ui/core/styles'
 
 const app = document.querySelector('#app');
 
@@ -13,12 +14,12 @@ import ChatsInfo from "./components/ChatInfo/ChatInfo.jsx";
 
 
 ReactDom.render(
-    <div className="wrapper">
-        {/*<button className="button-round button-chat button-pushed"></button>*/}
-        {/*<button className="button-round button-avatar"></button>*/}
-        <ChatsList />
-        <Messages />
-        <ChatsInfo />
-    </div>,
+    <StylesProvider>
+        <div className="wrapper">
+            <ChatsList />
+            <Messages />
+            <ChatsInfo />
+        </div>
+    </StylesProvider>,
     app
 )
