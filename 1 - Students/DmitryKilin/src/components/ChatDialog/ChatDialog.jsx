@@ -90,6 +90,7 @@ export default function SimpleDialogDemo(props) {
         setSelectedValue(value);
     };
 
+    const {chats} = props;
 
     return (
         <div>
@@ -98,7 +99,7 @@ export default function SimpleDialogDemo(props) {
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                 Open simple dialog
             </Button>
-                <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} emails={emails}/>
+                <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} emails={emails} chats={chats}/>
         </div>
     );
 }
