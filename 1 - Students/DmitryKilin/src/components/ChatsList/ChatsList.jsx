@@ -9,20 +9,17 @@ class ChatsList extends Component {
         console.log(props)
     }
 
+    chatsEl= this.props.chats.map( chat =>
+        <li>
+            <a href="">{chat}</a>
+        </li>)
+
     render() {
         return (
             <div className="chat-list">
                 <button className="button-round button-chat button-pushed"></button>
                 <ul>
-                    <li>
-                        <a href="">Chat 1</a>
-                    </li>
-                    <li>
-                        <a href="">Chat 2</a>
-                    </li>
-                    <li>
-                        <a href="">Chat 3</a>
-                    </li>
+                    {this.chatsEl}
                 </ul>
                 <div>
                     <ChatDialog contacts={this.props.contacts} chats={this.props.chats}/>
