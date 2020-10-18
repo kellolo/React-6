@@ -1,0 +1,25 @@
+.conversationContainer {
+    height: 100px;
+    background-color:#ffebeb;
+    border-bottom: 1px solid #cc6c6c7a;
+}
+
+.convInfo {
+    margin-top: 12px;
+}
+
+.conversationActive {
+    background-color:#ffb3b3;
+}
+
+.conversationAvatar {
+    height: 70px;
+    border: 0.3px solid #00000040;
+}
+
+.conversationAvatar {
+    margin: 0 10px;
+}
+.conversationContainer:hover {
+    background-color: #ee9c9c7a;
+}

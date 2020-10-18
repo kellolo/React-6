@@ -3,10 +3,12 @@ body {
     font-family: sans-serif;
 }
 
-.container {
+.wrap {
     min-width: 500px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #ebfaff;
+    background-color: #d7f5ff;
     color: #36494f;
+    min-height: 100vh;
+    position: relative;
 }

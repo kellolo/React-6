@@ -2,12 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import MessageField from './MessageField';
+import Messages from './components/Messages/Messages';
+import ChatList from './components/ChatList/ChatList';
 
+import { StylesProvider } from '@material-ui/core/styles'
 
 
 ReactDOM.render(
-  <MessageField />,
+  <StylesProvider>
+    <div className="MsgWrapper">
+      <ChatList />
+      <Messages />
+    </div>
+  </StylesProvider>,
   document.getElementById('root')
 );
 

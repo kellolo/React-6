@@ -1,12 +1,14 @@
 import "./main.css";
 import React from "react";
 
-import Message from "../messages/Message.jsx"
+import Messages from "../messages/Messages.jsx";
+import ChatList from "../chatlist/ChatList.jsx";
 
 export default (props) => {
   return (
     <main>
-      <Message />
+      <Messages />
+      <ChatList />
     </main>
   );
 };
