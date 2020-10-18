@@ -13,6 +13,12 @@ export default class ChatInput extends Component {
     changeText = evt => {
         let val = evt.target.value;
         this.setState({ text: val });
+        // let val = evt.target.value;
+        // if (evt.keyCode != 13) {
+        //     this.setState({ text: val });
+        // } else {
+        //     this.send();
+        // }
     }
 
     send = () => {

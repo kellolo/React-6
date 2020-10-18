@@ -2,12 +2,11 @@ import './style.css'
 import React, { Component, Fragment } from 'react'
 import ChatDialog from '../ChatDialog/ChatDialog.jsx'
 
-import { contacts } from '../../moduls/Contacts/Contacts'
-
 
 class ChatsList extends Component {
     constructor(props) {
         super(props);
+        console.log(props)
     }
 
     render() {
@@ -26,7 +25,7 @@ class ChatsList extends Component {
                     </li>
                 </ul>
                 <div>
-                    <ChatDialog contacts={contacts.emails()}/>
+                    <ChatDialog contacts={this.props.contacts} chats={this.props.chats}/>
                 </div>
             </div>
         )
