@@ -6,6 +6,8 @@ import './layout/css/style.css'
 
 import Layout from "./components/Layout/Layout.jsx";
 import { StylesProvider } from '@material-ui/core/styles'
+import {BrowserRouter} from "react-router-dom";
+import Router from "./router.jsx";
 
 const app = document.querySelector('#app');
 
@@ -16,6 +18,8 @@ const app = document.querySelector('#app');
 
 
 ReactDom.render(
-    <Layout />,
+    <BrowserRouter>
+        <Router></Router>
+    </BrowserRouter>,
     app
 )
