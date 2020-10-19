@@ -8,7 +8,6 @@ export default props => {
     return (
         <div className="d-flex flex-column msg" style={ {backgroundColor: sender === chatBot.name ? 'PaleTurquoise' : 'lightblue'}}>
             <strong>{ sender }</strong>
-
             <p>{ text }</p>
         </div>
     )

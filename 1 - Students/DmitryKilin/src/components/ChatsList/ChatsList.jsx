@@ -24,7 +24,7 @@ class ChatsList extends Component {
 
                 <ul>
                     {this.props.chats.map( chat =>
-                        <li key = {chat._id} className={chat._id===this.state.activeChatId ? 'li-marked' : 'li-unmarked'}>
+                        <li key = {chat._id} className={chat._id===this.props.activeChatId ? 'li-marked' : 'li-unmarked'}>
                             <Link to={`/chat/${chat._id}`}>{chat.title}</Link>
                         </li>)}
                 </ul>
