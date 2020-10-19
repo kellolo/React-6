@@ -49,6 +49,10 @@ module.exports = {
     devServer: {
         port: 3300,
         hot: true,
-        open: false
-    }
+        open: false,
+        historyApiFallback: {
+            index: 'index.html'
+            },
+    },
+    devtool: 'cheap-inline-module-source-map',
 }

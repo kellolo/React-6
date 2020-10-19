@@ -9,7 +9,7 @@ class Messages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: []
+            messages: props.messages
         }
     }
 
@@ -24,14 +24,15 @@ class Messages extends Component {
         let messages = this.state.messages
         let lastMessage = messages[messages.length-1]
 
-        if (lastMessage.sender === CurrentUser.name) {
+        if (lastMessage && lastMessage.sender === CurrentUser.name) {
             let answer = chatBot.getAnswer(lastMessage)
             setTimeout(() => {this.sendMessage(answer)}, 300)
         }
     }
 
     render() {
-        let { messages } = this.state;
+
+        let {messages} = this.state;
         let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>).reverse();
 
         return (

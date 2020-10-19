@@ -19,9 +19,9 @@ class Router extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/" render ={ () => <Layout/> }  />
-                <Route exact path='/chat/:chatId'
-                       render = { obj => <Layout ChatId={ Number(obj.match.params.chatId)} />} />
+                <Route exact path="/" render ={ () => <Layout chatId=''/> }  />
+                <Route path='/chat/:chatId'
+                       component={Layout}/>
             </Switch>
         )
     }
