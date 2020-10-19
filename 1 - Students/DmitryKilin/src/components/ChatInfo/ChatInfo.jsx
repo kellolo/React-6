@@ -11,10 +11,6 @@ class ChatsInfo extends Component {
             <div className="chat-info">
                 <button className="button-round button-avatar"></button>
                 <p>
-                    f
-                    f
-                    f
-                    f
                 </p>
             </div>
         )

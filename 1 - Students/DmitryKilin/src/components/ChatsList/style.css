@@ -4,9 +4,21 @@
     /*min-width: 25%;*/
     min-height: 100%;
     padding: 10px;
-    flex: 1 2 25%;
+    flex: 1 2 40%;
+}
+
+.chat-list__header {
+    margin-top: 20px;
 }
 
 .button-chat {
 
+}
+
+.li-marked {
+    list-style-type: disc;
+}
+
+.li-unmarked {
+    list-style-type: none;
 }

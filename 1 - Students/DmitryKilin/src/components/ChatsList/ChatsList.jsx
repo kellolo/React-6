@@ -1,25 +1,32 @@
 import './style.css'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+import {Link} from 'react-router-dom';
 
 
 class ChatsList extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
+        this.state = {
+            chats: this.props.chats.slice(),
+            activeChatId: this.props.activeChatId,
+        }
     }
 
-    chatsEl= this.props.chats.map( chat =>
-        <li>
-            <a href="">{chat}</a>
-        </li>)
 
     render() {
         return (
             <div className="chat-list">
-                <button className="button-round button-chat button-pushed"></button>
+                <header>
+                    <button className="button-round button-chat button-pushed"></button>
+                    <h2 className={"chat-list__header"}>Welcome to chats:</h2>
+                </header>
+
                 <ul>
-                    {this.chatsEl}
+                    {this.props.chats.map( chat =>
+                        <li key = {chat._id} className={chat._id===this.state.activeChatId ? 'li-marked' : 'li-unmarked'}>
+                            <Link to={`/chat/${chat._id}`}>{chat.title}</Link>
+                        </li>)}
                 </ul>
                 <div>
                     <ChatDialog contacts={this.props.contacts} chats={this.props.chats}/>
