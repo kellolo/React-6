@@ -14,7 +14,12 @@ module.exports = {
         filename: path.join('js', 'bundle.js')
     },
     target: 'web',
+    
+    resolve: {
+        extensions: [".js", ".jsx"],
+    },
     module: {
+      
         rules: [
             {
                 test: /\.css$/i,
@@ -35,7 +40,7 @@ module.exports = {
                 }
             }
         ]
-    },
+         },
     plugins: [
         new MiniCssExtractPlugin({
             filename: path.join('style', '[name].css'),
