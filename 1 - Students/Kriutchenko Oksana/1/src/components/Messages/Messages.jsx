@@ -2,13 +2,12 @@ import './style.css'
 import React, { Component } from 'react'
 
 import Message from '../Message/Message.jsx'
-import ChatInput from '../ChatInput/ChatInput.jsx' 
+import ChatInput from '../ChatInput/ChatInput.jsx'
 
 export default class Messages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text:'',
             messages: [
                 {sender: 'Bot', text: '...'},
                 {sender: 'Me', text: 'Some text 1'},
@@ -17,9 +16,7 @@ export default class Messages extends Component {
             ]
         }
     }
-    /* handleChange = evt =>{
 
-    } */
     sendMessage = txt => {
         let { messages } = this.state;
         this.setState({
@@ -32,13 +29,11 @@ export default class Messages extends Component {
     }
 
     componentDidUpdate() {
-        console.log('updated')
-        //here bot adds message
         let { messages } = this.state;
         if (messages[messages.length - 1].sender != 'Bot') {
             setTimeout(() => {
                 this.setState({
-                    messages: [...messages, { sender: 'Bot', text: 'Я робот, отстань' }],
+                    messages: [...messages, { sender: 'Bot', text: 'Some text here...' }],
                 })
             }, 500);
         }
