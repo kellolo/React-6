@@ -1,0 +1,12 @@
+#responsive-navbar-nav{
+    width: 100%;
+}
+.chat-list{
+    width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.chat-list-group{
+    width: inherit;
+}
