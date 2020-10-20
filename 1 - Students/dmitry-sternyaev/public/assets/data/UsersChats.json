@@ -1,0 +1,14 @@
+{
+    "data": [
+        {
+            "userId": "1",
+            "chatId": "2",
+            "message": ""
+        },
+        {
+            "userId": "1",
+            "chatId": "5",
+            "message": ""
+        }
+    ]
+}

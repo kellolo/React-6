@@ -1,20 +1,34 @@
+import "./Chats.scss";
 import React from "react";
-import ListGroup from "react-bootstrap/ListGroup";
+import { withRouter } from 'react-router-dom';
+import { ListBox } from 'primereact/listbox';
 import ChatsItem from "./ChatsItem/ChatsItem.jsx";
 
-export default class Chats extends React.Component {
-    handleSelect = (href) => {
-        this.props.onChatSelect(href.substring(1));
+class Chats extends React.Component {
+
+    handleChatChange = (event) => {
+        if (event.value) {
+            this.props.history.push(`/chat/${event.value}`);
+        } else {
+            this.props.history.push("/chat/");
+        }
     }
+
     render() {
-        const chats = [];
-        this.props.chats.forEach(chat => {
-            chats.push(
-                <ChatsItem chat={chat} key={chat.userId} />
-            )
-        });
         return (
-            <ListGroup onSelect={this.handleSelect}>{chats}</ListGroup>
+            <ListBox
+                id="Chats"
+                value={this.props.match.params.chatId}
+                options={this.props.chats}
+                onChange={this.handleChatChange}
+                filter
+                filterPlaceholder="Search"
+                optionLabel="userName"
+                optionValue="userId"
+                itemTemplate={ChatsItem}
+            />
         );
     }
 }
+
+export default withRouter(Chats);

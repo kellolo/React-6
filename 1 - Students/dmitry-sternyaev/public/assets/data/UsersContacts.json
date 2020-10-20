@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "userId": "1",
+      "contId": "2"
+    },
+    {
+      "userId": "1",
+      "contId": "3"
+    },
+    {
+      "userId": "1",
+      "contId": "4"
+    },
+    {
+      "userId": "1",
+      "contId": "5"
+    },
+    {
+      "userId": "2",
+      "contId": "1"
+    },
+    {
+      "userId": "3",
+      "contId": "1"
+    },
+    {
+      "userId": "4",
+      "contId": "1"
+    }
+  ]
+}
