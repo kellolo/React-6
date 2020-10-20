@@ -1,0 +1,17 @@
+input{
+    background-color: rgb(238, 238, 128);
+    padding: 15px 15px;
+    border-radius: 5px;
+    border: yellow;
+    font-size: 18px;
+    margin: 5px;
+}
+button{
+    background-color: yellow;
+    padding: 15px 15px;
+    border-radius: 5px;
+    border: yellow;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
+}

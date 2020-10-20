@@ -8,7 +8,7 @@ class ChatsInfo extends Component {
 
     render() {
         return (
-            <div className="chat-list">
+            <div className="chat-info">
                 <button className="button-round button-avatar"></button>
                 <p>
                     f
