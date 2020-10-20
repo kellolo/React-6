@@ -1,12 +1,12 @@
 import './style.css'
 
-        import React, { Component, Fragment } from 'react'
-        import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+import React, { Component, Fragment } from 'react'
+import ChatDialog from '../ChatDialog/ChatDialog.jsx'
         
-        export default class ChatList extends Component {
-            constructor(props) {
-                super(props);
-                this.state = {
+ export default class ChatList extends Component {
+        constructor(props) {
+             super(props);
+             this.state = {
                     
                 }
             }
@@ -21,7 +21,7 @@ import './style.css'
         
             render() {
                 //let { some } = this.state;
-                let contactList = ['Ivan', 'Victor', 'Aleksey'];
+                let contactList = ['Ivanych', 'Stepan', 'Alekseyich'];
                 return (
                     <Fragment>
                         <div className="ChatList d-flex flex-column">
