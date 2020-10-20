@@ -6,4 +6,12 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+
+}
+.messageList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    
 }

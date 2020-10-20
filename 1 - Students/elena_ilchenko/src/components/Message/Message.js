@@ -8,10 +8,10 @@ const Message = (props) => {
         cls.push('selfMessage');
     } 
 
-return (<div className={`MessageComponent ${cls.join(' ')}`}>
-                                {props.sender}: {props.text}
-                        </div>)
-}
+    return (<div className={`MessageComponent ${cls.join(' ')}`}>
+                                    {props.sender}: {props.text}
+                            </div>)
+    }
 
 
 export default Message;
