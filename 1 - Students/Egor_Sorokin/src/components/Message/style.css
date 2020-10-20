@@ -1,0 +1,42 @@
+.myMessage {
+    float: right;
+    clear: both;
+}
+
+.othersMessage {
+    float: left;
+    clear: both;
+}
+
+.message strong {
+    display: block;
+    /* padding-left: 10px; */
+}
+
+.message p {
+    display: block;
+    padding: 5px 15px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #ffebeb;
+}
+
+.myMessage strong {
+    padding-right: 15px;
+    float: right;
+    clear: both;
+}
+
+.myMessage p {
+    background-color: #dad5d5;
+    float: right;
+    clear: both;
+}
+
+.othersMessage p {
+    background-color: #ffebeb;
+}
+
+.othersMessage strong {
+    padding-left: 15px;
+}

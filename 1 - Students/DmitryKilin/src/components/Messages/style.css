@@ -1,0 +1,11 @@
+.msg-wrap {
+    height: 80vh;
+    overflow-y: auto;
+    margin: 10px 0px;
+}
+
+.messages-container {
+    flex: 2 1 50%;
+    margin: 10px 20px;
+    max-width: 500px;
+}
