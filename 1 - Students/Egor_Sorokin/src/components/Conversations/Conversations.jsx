@@ -3,6 +3,7 @@ import './style.css'
 import React from 'react'
 
 import Conversation from '../Conversation/Conversation.jsx'
+import UserSelect from '../UserSelect/UserSelect.jsx'
 
 export default class Conversations extends React.Component {
     constructor(props) {
@@ -65,6 +66,7 @@ export default class Conversations extends React.Component {
         return(
             <div className="conversationsContainer col-sm-4">
                 { conversationsRendered }
+                <UserSelect />
             </div>
         )
     }

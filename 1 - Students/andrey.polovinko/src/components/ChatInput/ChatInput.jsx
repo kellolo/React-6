@@ -10,27 +10,20 @@ class ChatInput extends Component {
     }
 
     changeText = evt => {
-        let { text } = this.state;
+        
         let val = evt.target.value;
         this.setState({ text: val })
     }
 
-    changeAuthor = evt => {
-        let { sender } = this.state;
-        let val = evt.target.value;
-        this.setState({ sender: val })
-    }
-
     send = () => {
-        this.props.send(this.state.sender, this.state.text)
-        this.setState({ sender: '', text: '' })
+        this.props.send(this.state.text)
+        this.setState({ text: '' })
     }
 
     render() {
-        let { sender, text } = this.state;
+        let { text } = this.state;
         return (
-            <div className="input-group w-25">
-                <input type="text" className="form-control" value={sender} placeholder="Author" onChange={this.changeAuthor} />
+            <div className="input-group w-25 mt-3">
                 <input type="text" className="form-control" value={text} placeholder="Text" onChange={this.changeText} />
                 <div className="input-group-append">
                     <button onClick={this.send} className="btn btn-outline-success">Send</button>

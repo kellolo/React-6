@@ -1,0 +1,8 @@
+.chat-add-button {
+    width: 100%;
+    height: 60px;
+}
+
+.chat-add-button, .chat-add-button:focus, .chat-add-button:active {
+    outline: none;
+}

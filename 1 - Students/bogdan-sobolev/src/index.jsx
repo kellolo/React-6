@@ -1,9 +1,13 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import { BrowserRouter } from 'react-router-dom';
+
+import Layout from 'components/Layout/Layout'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDom.render(
-    <div>
-        React
-    </div>,
+    <BrowserRouter>
+        <Layout />
+    </BrowserRouter>,
     app
 )

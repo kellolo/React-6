@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import './ChatInput.css';
+import { FloatingActionButton } from '../../components/floatingActionButton/FloatingActionButton';
 
 class ChatInput extends Component {
     constructor(props) {
         super(props);
+        this.textInput = React.createRef();
         this.state = {
             text: '',
         }
     }
 
     send = () => {
-        if (this.state.text) this.props.onClickButton(this.state.text);
+        if (this.state.text) this.props.onClickButton(this.state.text, 'me');
         this.setState({
             text: ''
         })
@@ -28,22 +30,24 @@ class ChatInput extends Component {
         }
     }
 
+    componentDidMount() {
+        this.textInput.current.focus();
+    } 
+
     render() {
         return (
             <div className='ChatInput'>
                 <input 
+                    ref={ this.textInput }
                     className='Input' 
                     type="text" 
                     value={this.state.text} 
                     onChange={this.changeInput}
                     onKeyPress={this.onKeyPressHandler}
                     placeholder='Ваше сообщение'
-                    />
-                <button className='Button' onClick={this.send}>
-                    {this.props.buttonName}
-                </button>
+                />
+                <FloatingActionButton send={this.send} buttonName={this.props.buttonName} />
             </div>
-            
         )
     }
 }
