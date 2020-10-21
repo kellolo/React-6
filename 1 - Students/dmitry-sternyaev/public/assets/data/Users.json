@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "userId": "1",
+            "userName": "Ant User",
+            "userPhoto": "/assets/images/ant.png",
+            "bot": false
+        },
+        {
+            "userId": "2",
+            "userName": "Fish User",
+            "userPhoto": "/assets/images/fish.png",
+            "bot": false
+        },
+        {
+            "userId": "3",
+            "userName": "Lobster User",
+            "userPhoto": "/assets/images/lobster.png",
+            "bot": false
+        },
+        {
+            "userId": "4",
+            "userName": "Gorilla User",
+            "userPhoto": "/assets/images/gorilla.png",
+            "bot": false
+        },
+        {
+            "userId": "5",
+            "userName": "Parrot Bot",
+            "userPhoto": "/assets/images/parrot.png",
+            "bot": true
+        }
+    ]
+}

@@ -1,107 +1,110 @@
+import "./App.scss";
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Header from "./Header/Header.jsx";
-import Footer from "./Footer/Footer.jsx";
-import Content from "./Content/Content.jsx"
+import User from "../User/User.jsx";
+import Chats from "../Chats/Chats.jsx";
+import Chat from "../Chat/Chat.jsx";
+import UserService from "../../service/UserService.js";
 
 export default class App extends React.Component {
+
   state = {
-    user: {
-      id: "1",
-      photo: "https://placeimg.com/40/40/people",
-      name: "User1"
-    },
-    chats: [
-      {
-        userId: "2",
-        userPhoto: "https://placeimg.com/40/40/animal",
-        userName: "Bot1",
-        messages: [
-          {
-            id: "1",
-            userId: "1",
-            text: "Hello, Bot!"
-          }, {
-            id: "2",
-            userId: "2",
-            text: "Hello, User!"
-          }
-        ],
-        message: ""
-      }
-    ],
-    chat: {}
-  };
-  handleChatSelect = (userId) => {
+    user: {},
+    contacts: [],
+    chats: []
+  }
+
+  componentDidMount() {
+    let userService = new UserService();
     this.setState({
-      chat: this.state.chats.find((chat) => chat.userId === userId)
-    });
+      user: userService.getUser("1"),
+      contacts: userService.getUserContacts("1"),
+      chats: userService.getUserChats("1"),
+    })
   }
+
   handleMessageChange = (message) => {
-    this.setState(state => {
-      let chat = state.chat;
-      chat.message = message;
-      return {
-        chat: chat
-      };
+    let chats = this.state.chats;
+    const chat = chats.find((chat) => chat.userId == this.props.chatId);
+    if (!chat) {
+      return;
+    }
+    chat.message = message;
+    this.setState({
+      chats: chats
     });
   }
+
   handleMessageSend = () => {
-    this.setState(state => {
-      let chat = state.chat;
-      if (chat.message) {
-        chat.messages.push({
-          id: chat.messages ? +chat.messages[chat.messages.length - 1].id + 1 + "" : "1",
-          userId: state.user.id,
-          text: state.chat.message
-        });
-        chat.message = "";
-      }
-      return {
-        chat: chat
-      };
+    let chats = this.state.chats;
+    const chat = chats.find((chat) => chat.userId == this.props.chatId);
+    if (!chat || !chat.message) {
+      return;
+    }
+    chat.messages.push({
+      senderId: this.state.user.userId,
+      messageId: chat.messages.length ? +chat.messages[chat.messages.length - 1].messageId + 1 + "" : "1",
+      messageText: chat.message
+    });
+    chat.message = "";
+    this.setState({
+      chats: chats
     });
   }
+
   handleBotReply = () => {
-    console.log(1);
-    setTimeout(() => this.setState(state => {
-      let chat = state.chat;
-      if (chat.messages[chat.messages.length - 1].userId !== chat.userId) {
-        chat.messages.push({
-          id: +chat.messages[chat.messages.length - 1].id + 1 + "",
-          userId: state.chat.userId,
-          text: "Fine, thnx!"
-        });
-      }
-      return {
-        chat: chat
-      };      
-    }), 1000);
+    let chats = this.state.chats;
+    const chat = chats.find((chat) => chat.userId == this.props.chatId);
+    if (!chat || !chat.messages.length) {
+      return;
+    }
+    chat.messages.push({
+      senderId: chat.userId,
+      messageId: +chat.messages[chat.messages.length - 1].messageId + 1 + "",
+      messageText: chat.messages[chat.messages.length - 1].messageText
+    });
+    setTimeout(() => this.setState({
+      chats: chats
+    }), 300);
   }
+
+  handleContactSelect = (contact) => {
+    let chats = this.state.chats;
+    if (chats.find((chat) => chat.userId === contact.userId)) {
+      return;
+    }
+    chats.push({ ...contact, messages: [], message: "" });
+    this.setState({
+      chats: chats
+    });
+  }
+
   render() {
+
+    const chat = this.state.chats.find((chat) => chat.userId == this.props.chatId) || {};
+
     return (
-      <Container>
-        <Row className="fixed-top">
-          <Header chat={this.state.chat} />
-        </Row>
-        <Row className="my-5">
-          <Content
-            chats={this.state.chats}
-            chat={this.state.chat}
-            onChatSelect={this.handleChatSelect}
-            onBotReply={this.handleBotReply}
-          />
-        </Row>
-        <Row className="fixed-bottom">
-          <Footer
+      <div id="App" className="p-grid p-align-stretch">
+        <div id="AppLeft" className="p-col-3 p-p-0">
+            <User
+              user={this.state.user}
+            />
+            <Chats
+              chats={this.state.chats}
+            />
+        </div>
+        <div id="AppRight" className="p-col-9 p-p-0">
+          <Chat
             user={this.state.user}
-            chat={this.state.chat}
+            contacts={this.state.contacts}
+            chat={chat}
+            onContactSelect={this.handleContactSelect}
             onMessageChange={this.handleMessageChange}
             onMessageSend={this.handleMessageSend}
+            onBotReply={this.handleBotReply}
           />
-        </Row>
-      </Container>
+        </div>
+      </div>
     );
+
   }
 }

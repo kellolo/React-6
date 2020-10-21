@@ -1,0 +1,20 @@
+#ChatMessages {
+    height: calc(var(--window-height) - var(--header-height) - var(--footer-height));
+}
+
+#ChatInfo {
+    height: 100%;
+}
+
+.p-message-in {
+    background-color: var(--dark-color) !important;
+    color: var(--light-color) !important;
+}
+
+.p-message-out {
+}
+
+.p-message-info {
+    background-color: var(--dark-color) !important;
+    color: var(--light-color) !important;
+}
