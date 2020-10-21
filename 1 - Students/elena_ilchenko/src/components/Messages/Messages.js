@@ -5,9 +5,15 @@ import ChatInput from '../ChatInput/ChatInput'
 
 
 class Messages extends Component {
-    state = {
-        messages: [{sender: 'me', message: 'some text'},
-                {sender: 'me', message: 'another text'}],
+    constructor(props) {
+        super(props);
+        this.state = {
+            messages: [
+                {sender: 'bot', message: 'привет'},
+                {sender: 'bot', message: 'я бот'}
+            ],
+        }
+        this.msgListRef = React.createRef();
     }
 
     buttonHandler = (txt) => {
@@ -17,15 +23,18 @@ class Messages extends Component {
     }
 
     componentDidUpdate() {
-        let {messages} = this.state;
-        let lastMessage = messages[messages.length - 1]
         
-        if (lastMessage.sender === 'me') {
-
-            setTimeout(() => this.setState({
-                messages: [...this.state.messages, {sender: 'bot', message: 'привет, я бот'}]
-            }), 1500)
-        }
+        setTimeout(() => {
+            if (this.state.messages[this.state.messages.length - 1].sender === 'me') {
+                this.setState({
+                    messages: [...this.state.messages, {sender: 'bot', message: 'и что дальше?'}]
+                })
+            }
+        }, 1500);
+        
+ 
+        //scroll to the last messages
+        this.msgListRef.current.scrollTop = this.msgListRef.current.scrollHeight     
     }
 
 
@@ -33,12 +42,14 @@ class Messages extends Component {
         
         return (
             <div className='MessageField'>
-                {
-                    this.state.messages.map((msg, i) => <Message key={`${i+1}`} sender={msg.sender} text={msg.message}/>)
-                }
+                <div className="messageList" ref={this.msgListRef}>
+                    {
+                        this.state.messages.map((msg, i) => <Message key={`${i+1}`} sender={msg.sender} text={msg.message}/>)
+                    }
+                </div>
 
                 <ChatInput 
-                    buttonName='Ответить'
+                    buttonName='Send'
                     onClickButton={this.buttonHandler}
                     />
             </div>
