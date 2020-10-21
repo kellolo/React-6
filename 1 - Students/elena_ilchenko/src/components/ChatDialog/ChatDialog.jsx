@@ -78,7 +78,7 @@ export default function SimpleDialogDemo(props) {
     
     return (
         <div style={{textAlign: 'center'}}>
-            <Button style={{margin: '20px 0п', color: '#0c4a48', border: '1px solid #0c4a48'}} 
+            <Button style={{margin: '20px 0', color: '#0c4a48', border: '1px solid #0c4a48'}} 
                 variant="outlined" 
                 color="primary" 
                 onClick={handleClickOpen}

@@ -4,9 +4,21 @@
     background-color: #eee;
     border: 1px solid #A9A9A9;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 .Header h1 {
     margin: 0;
-    text-align: center;
     color: #0c4a48;
+}
+.profileIcon {
+    display: flex;
+    align-items: center;
+    
+}
+.profile-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    width: 20%;
 }
