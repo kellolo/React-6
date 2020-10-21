@@ -12,6 +12,12 @@ module.exports = {
         publicPath: '',
         filename: path.join('js', 'bundle.js')
     },
+    resolve: {
+        extensions: ['.js', '.jsx'],
+        alias: {
+            components: path.join(__dirname, 'src', 'components'),
+        },
+    },
     target: 'web',
     module: {
         rules: [
