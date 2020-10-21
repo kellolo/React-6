@@ -9,6 +9,9 @@ import { StylesProvider } from '@material-ui/core/styles'
 import {BrowserRouter} from "react-router-dom";
 import Router from "./router.jsx";
 
+import { Provider } from 'react-redux';
+import initStore from './store';
+
 const app = document.querySelector('#app');
 
 // import  ChatsList from './components/ChatsList/ChatsList.jsx'
@@ -18,8 +21,10 @@ const app = document.querySelector('#app');
 
 
 ReactDom.render(
-    <BrowserRouter>
-        <Router></Router>
-    </BrowserRouter>,
+    <Provider store = { initStore() }>
+        <BrowserRouter>
+            <Router></Router>
+        </BrowserRouter>
+    </Provider>,
     app
 )
