@@ -6,6 +6,9 @@ import './style.css'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
+import { BrowserRouter } from 'react-router-dom'
+import Router from './router.jsx'
+
 const theme = createMuiTheme({
     palette: {
       primary: {
@@ -60,7 +63,10 @@ import MainApp from './components/MainApp/MainApp.jsx'
 ReactDom.render(
     <ThemeProvider theme={theme}>
         <div className="container">
-            <MainApp author = 'Egor'/>
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+            {/* <MainApp author = 'Egor'/> */}
         </div>
     </ThemeProvider>,
     app
