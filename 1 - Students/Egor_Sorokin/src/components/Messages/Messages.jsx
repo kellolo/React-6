@@ -32,6 +32,7 @@ export default class Messages extends React.Component {
     }
 
     componentDidUpdate() {
+
         setTimeout(() => {
             let { conversations, activeId } = this.state;
             let { name, messages } = conversations[activeId];
@@ -39,43 +40,75 @@ export default class Messages extends React.Component {
 
             const lastSender = messages[messages.length - 1].sender
         
-            if (lastSender == this.props.author) {
+            if (lastSender == this.props.author.name) {
                 this.addMessage(name, 'Hello, ' + lastSender + '! Please, wait for respond...')
             }
         }, 1000);
         
-        if (this.state.activeId !== this.props.activeId) {
-            this.setState({activeId: this.props.activeId});
-        }
+        this.setState((state, props) => {
+            if (state.activeId !== props.activeId) {
+                return({activeId: this.props.activeId});
+            }
+        })
+
+        this.scrollDown();
         
     }
 
     addMessage = (senderName, text) => {
+        if (typeof this.state.conversations[this.state.activeId] == 'undefined') {
+            this.setState({conversations: [
+                ...this.state.conversations,
+                {
+                    id: this.state.activeId,
+                    name: this.props.currConversationName,
+                    messages: [],
+                }
+            ]});
+        }
+
         if (text !='') {
-            let newConversState = this.state.conversations;
-            newConversState[this.state.activeId] = {
-                id: newConversState[this.state.activeId].id,
-                name: newConversState[this.state.activeId].name,
-                messages: [...newConversState[this.state.activeId].messages, {sender: senderName, text: text}]
+            this.setState((state, props) => {
+                let newConversState = state.conversations;
+                newConversState[state.activeId] = {
+                id: newConversState[state.activeId].id,
+                name: newConversState[state.activeId].name,
+                messages: [...newConversState[state.activeId].messages, {sender: senderName, text: text}]
             }
-            this.setState({conversations: newConversState});
+
+            props.setLastMessage(newConversState[state.activeId].messages[newConversState[state.activeId].messages.length - 1]);
+            return(newConversState);
+            })
+            
+            
         } 
+    }
+
+    scrollDown = () => {
+        this.scrollPointer.scrollIntoView({behavior: 'smooth'})
     }
 
     render() {
         let { author } = this.props;
         let { conversations, activeId } = this.state;
-        let { messages } = conversations[activeId];
+        let messages;
+        if (typeof conversations[activeId] == 'undefined') {
+            messages = [];
+        } else {
+            messages = conversations[activeId].messages;
+        }
+        
 
-        let msgsRender = messages.map((msg, i) => <Message author={this.props.author} sender = { msg.sender } text = { msg.text } key = {i} />)
+        let msgsRender = messages.map((msg, i) => <Message author={this.props.author.name} sender = { msg.sender } text = { msg.text } key = {i} />)
     
         return(
-            <div className="messagesContainer col-sm-8">
-                <MessagesHeader currConversationName={this.props.currConversationName} avatarAddress={this.props.avatarAddress}/>
-                <div className="messagesInnerContainer">
+            <div className="messages-container col-sm-8">
+                <MessagesHeader currConversationName={this.props.currConversationName} avatarAddress={this.props.avatarAddress} myAvatar = { author.avatar }/>
+                <div className="messages-inner-container">
                     { msgsRender }
+                    <div className="scroll-pointer" ref={ item => this.scrollPointer = item }></div>
                 </div>
-                <ChatInput author = { author } sendFunction= { this.addMessage }/>
+                <ChatInput author = { author.name } sendFunction= { this.addMessage } />
             </div>
         )
     }

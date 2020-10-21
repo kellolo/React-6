@@ -1,0 +1,23 @@
+.profile {
+    margin: 30px;
+    padding: 20px;
+    min-height: calc(100vh - 60px);
+    background-color: #fbfbfb;
+    border: 1px solid #cc6c6c7a;
+    border-radius: 10px;
+}
+
+.profile-header .MuiAvatar-root {
+    height: 200px;
+    width: 200px;
+    margin: 30px auto;
+}
+
+.profile-inner-container {
+    padding: 20px;
+    height: calc(100vh - 160px);
+}
+
+.profile h2, .profile p {
+    text-align: center;
+}
