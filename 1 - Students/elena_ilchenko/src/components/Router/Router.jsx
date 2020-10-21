@@ -19,6 +19,7 @@ class Router extends Component {
                <Route exact path='/chat/1/' component={ Layout } />
                <Route exact path='/chat/2/' component={ Layout } />
                <Route exact path='/chat/3/' component={ Layout } />
+               <Route exact path='/profile' component={ Layout } />
            </Switch>
 
         )
