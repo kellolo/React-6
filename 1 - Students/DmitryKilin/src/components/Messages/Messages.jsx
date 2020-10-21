@@ -20,7 +20,7 @@ class Messages extends Component {
         })
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         let messages = this.state.messages
         let lastMessage = messages[messages.length-1]
 
