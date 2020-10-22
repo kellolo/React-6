@@ -9,9 +9,9 @@ export default props => {
     return (
         <Fragment>
             <div className="Header">
-                <h1>Чат {props.selected}</h1>
+                <h1>{props.chatName}</h1>
                 <Link className="profile-link" to={`/profile`}>
-                    <div class="profileIcon">
+                    <div className="profileIcon">
                         <div>User's profile</div>
                         <PersonIcon 
                             style={{ color: '#0f5e5b' }}

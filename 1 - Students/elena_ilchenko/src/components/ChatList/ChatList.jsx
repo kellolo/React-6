@@ -6,6 +6,8 @@
     import CommentIcon from '@material-ui/icons/Comment';
     import { Link } from 'react-router-dom';
     import { makeStyles } from '@material-ui/core/styles';
+    import { connect } from 'react-redux';
+    import { bindActionCreators } from 'redux';
 
     const useStyles = makeStyles((theme) => ({
         chatIcon: {
@@ -13,14 +15,14 @@
         },
       }));
 
-    export default props => {
+    const ChatList = props => {
         const classes = useStyles();
 
         return (
             <Fragment>
                 <div className='ChatList'>
                     <List className="chats_wrapper">
-                        { props.chats.map((chat, i) => 
+                        { props.chatsFromRedux.map((chat, i) => 
                             <Link className="link" key={i+1} to={`/chat/${chat.chatId}/`}>
                                 <div onClick={() => props.onSelect(chat.chatId)}>
                                     <ListItem button selected={props.selected === chat.chatId}>
@@ -46,6 +48,12 @@
         )
         
     }
+
+    const mapStateToProps = ({ chatsReducer }) => ({
+        chatsFromRedux: chatsReducer.chats
+    });
+    const mapDispatchToProps = dispatch => bindActionCreators({ /* create chat */ },);
+    export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
 
 
 
