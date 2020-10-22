@@ -1,10 +1,10 @@
 class Chats {
     // list = () => ['Chat1', "Chat2", "Chat3"]
     chatsList = () => [
-        {title: 'Chat1', _id: 'ch_1', messageList: ['mes_1', 'mes_2','mes_3', 'mes_4']},
-        {title: 'Chat2', _id: 'ch_2', messageList: ['mes_5', 'mes_6']},
-        {title: 'Chat3', _id: 'ch_3', messageList: ['mes_7']},
-        {title: 'Chat4', _id: 'ch_4', messageList: []},
+        {title: 'Винсент и Джулс', id: 'ch_1', messageList: ['mes_1', 'mes_2','mes_3', 'mes_4', 'mes_5']},
+        {title: 'Золотые часы', id: 'ch_2', messageList: ['mes_6', 'mes_7', 'mes_8', 'mes_9']},
+        {title: 'Винсент Вега и жена Марселласа Уоллеса', id: 'ch_3', messageList: ['mes_10', 'mes_11', 'mes_12', 'mes_13']},
+        {title: 'empty chat', id: 'ch_4', messageList: []},
     ]
 
     messagesList = () =>
