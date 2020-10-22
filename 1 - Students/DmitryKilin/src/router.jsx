@@ -4,12 +4,16 @@ import {Switch, Route} from "react-router-dom";
 import Layout from "./components/Layout/Layout.jsx";
 import {chats} from "./moduls/Chats/Chats";
 
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from "redux";
+
 class Router extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            chats: chats.getChats()
-        }
+        // this.state = {
+        //     chats: chats.getChats()
+        // }
     }
 
     // getChats = (chats) => {
@@ -28,4 +32,9 @@ class Router extends Component {
 
 }
 
-export default Router;
+const mapStateToProps = ({chatsReducer}) => ({
+    chatsFromRedux: chatsReducer.chats
+});
+const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Router)

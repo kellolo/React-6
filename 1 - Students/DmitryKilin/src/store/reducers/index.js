@@ -1,3 +1,4 @@
 import { combineReducers} from "redux";
+import chatsReducer from './chats.reducer.js'
 
-export default combineReducers({})
+export default combineReducers({ chatsReducer })

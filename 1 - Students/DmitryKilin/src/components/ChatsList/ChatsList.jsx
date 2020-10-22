@@ -3,14 +3,16 @@ import React, { Component } from 'react'
 import ChatDialog from '../ChatDialog/ChatDialog.jsx'
 import {Link} from 'react-router-dom';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from "redux";
 
 class ChatsList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            chats: this.props.chats.slice(),
-            activeChatId: this.props.activeChatId,
-        }
+        // this.state = {
+        //     chats: this.props.chats.slice(),
+        //     activeChatId: this.props.activeChatId,
+        // }
     }
 
 
@@ -23,9 +25,9 @@ class ChatsList extends Component {
                 </header>
 
                 <ul>
-                    {this.props.chats.map( chat =>
-                        <li key = {chat._id} className={chat._id===this.props.activeChatId ? 'li-marked' : 'li-unmarked'}>
-                            <Link to={`/chat/${chat._id}`}>{chat.title}</Link>
+                    {this.props.chatsFromRedux.map( chat =>
+                        <li key = {chat.id} className={chat.id===this.props.activeChatId ? 'li-marked' : 'li-unmarked'}>
+                            <Link to={`/chat/${chat.id}`}>{chat.title}</Link>
                         </li>)}
                 </ul>
                 <div>
@@ -36,4 +38,10 @@ class ChatsList extends Component {
     }
 }
 
-export default ChatsList
+
+const mapStateToProps = ({chatsReducer}) => ({
+    chatsFromRedux: chatsReducer.chats
+});
+const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatsList)

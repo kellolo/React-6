@@ -5,7 +5,7 @@
         import ChatsList from "../ChatsList/ChatsList.jsx";
         import Messages from "../Messages/Messages.jsx";
         // import ChatsInfo from "../ChatInfo/ChatInfo.jsx";
-        import {chats} from "../../moduls/Chats/Chats";
+        // import {chats} from "../../moduls/Chats/Chats";
         import { contacts } from '../../moduls/Contacts/Contacts'
 
         export default class Layout extends Component {
@@ -17,11 +17,12 @@
             }
 
             render() {
+                let activeChatId = this.props.match ? this.props.match.params.chatId : ''
                 return (
                     <StylesProvider>
                         <div className="wrapper">
-                            <ChatsList contacts={contacts.emails()} chats={chats.getChats()} activeChatId={this.props.chatId}/>
-                            <Messages messages={chats.getMessages(this.props.chatId)} loadChat='true'/>
+                            <ChatsList contacts={contacts.emails()} activeChatId={activeChatId}/>
+                            <Messages />
                         </div>
                     </StylesProvider>
                 )
