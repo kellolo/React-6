@@ -5,10 +5,13 @@ export default props => {
     let { sender, text } = props;
 
     return (
-        <div className="d-flex flex-column msg">
+       
+      <div className="msg" style={ { alignSelf: props === 'Me' ?  'flex-start' : 'flex-end' } }>
             <strong>{ sender }</strong>
 
             <p>{ text }</p>
-        </div>
+       
+        </div> 
+   
     )
 }

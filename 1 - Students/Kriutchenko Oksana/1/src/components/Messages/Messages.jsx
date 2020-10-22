@@ -33,10 +33,11 @@ export default class Messages extends Component {
         if (messages[messages.length - 1].sender != 'Bot') {
             setTimeout(() => {
                 this.setState({
-                    messages: [...messages, { sender: 'Bot', text: 'Some text here...' }],
+                    messages: [...messages, { sender: 'Bot', text: 'Я робот, отстань' }],
                 })
             }, 500);
         }
+        
     }
 
     render() {
@@ -44,11 +45,11 @@ export default class Messages extends Component {
         let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>);
 
         return (
-            <div className="d-flex flex-column align-items-center">
-                <div className="msg-wrap">
+            <div className="msg-main">
+                <div className="msg-wrap" >
                     { messagesArray }
                 </div>
-                <ChatInput send = { this.sendMessage } />
+                 <ChatInput send = { this.sendMessage } />
             </div>
         )
     }

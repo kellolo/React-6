@@ -1,17 +1,20 @@
-input{
-    background-color: rgb(238, 238, 128);
-    padding: 15px 15px;
-    border-radius: 5px;
-    border: yellow;
-    font-size: 18px;
-    margin: 5px;
+.ChatInput{
+    width: 100%;
 }
-button{
-    background-color: yellow;
+.input{
+    width: 80%;
+    min-height: 50px;
+    background-color: rgb(250, 195, 243);
     padding: 15px 15px;
-    border-radius: 5px;
-    border: yellow;
+    border: rgb(250, 110, 231);
+    font-size: 18px;
+    margin: 0;
+}
+.button{
+    width: 20%;
+    background-color: rgb(250, 110, 231);
+    padding: 15px 15px;
+    border:rgb(250, 110, 231);
     font-size: 18px;
     font-weight: bold;
-    margin: 5px;
 }
