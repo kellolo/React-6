@@ -10,14 +10,12 @@ export default class ChatList extends React.Component {
         }
     }
 
-
     componentDidMount() {
-        console.log('MOUNTED');        
+      
     }
 
     componentDidUpdate() {
       
-        console.log('UPDATED');
     }
 
     render() {

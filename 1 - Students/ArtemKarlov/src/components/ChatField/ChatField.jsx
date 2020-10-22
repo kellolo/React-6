@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 
 import ChatInfo from '../ChatInfo/ChatInfo.jsx';
 import Messages from '../Messages/Messages.jsx';
-import ChatInput from '../ChatInput/ChatInput.jsx';
 
 export default (props) => {
     const {chatName} = props;
