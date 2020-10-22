@@ -44,7 +44,7 @@ function SimpleDialog(props) {
                     {emails.map((email) => (
                     <ListItem button onClick={() => handleListItemClick(email)} key={email}>
                         <ListItemAvatar>
-                        <Avatar alt="X" src="./avatar.jpg">
+                        <Avatar alt="X" src="./src/img/tarantino.png">
                             {/*<PersonIcon />*/}
                         </Avatar>
                         </ListItemAvatar>

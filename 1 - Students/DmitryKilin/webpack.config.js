@@ -40,7 +40,7 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: './src/img/*.jpg' },
+                { from: './src/img/*.*' },
             ],
         }),
         new MiniCssExtractPlugin({
