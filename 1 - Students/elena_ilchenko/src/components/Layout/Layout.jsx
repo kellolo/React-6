@@ -10,28 +10,16 @@ export default class Layout extends Component {
         super(props);
         this.state = {
             contactList: ['Alexandra', 'Michael', 'Ivan'],
-            chatList: [ 
-                {
-                    chatName: 'Chat 1',
-                    chatId: 1,
-                },
-                {
-                    chatName: 'Chat 2',
-                    chatId: 2,
-                },
-                {
-                    chatName: 'Chat 3',
-                    chatId: 3,
-                },
-            ],
             selectedChat: 1,
         }
     }
 
     selectHandler = (v) => {
-        this.setState({
-            selectedChat: v
-        })
+        this.setState({ selectedChat: v });
+    }
+
+    componentDidUpdate () {
+        console.log('update');
     }
 
     addChat = (chat) => {
@@ -49,11 +37,10 @@ export default class Layout extends Component {
         return (
             <Fragment>
             <div className="Layout">
-                <Header chats={this.state.chatList} selected={this.state.selectedChat}/>
+                <Header chatName={this.props.chatName} selected={this.state.selectedChat}/>
                 <div className="msgWrapper">
                     <ChatList 
-                        contacts={this.state.contactList} 
-                        chats={this.state.chatList} 
+                        contacts={this.state.contactList}
                         onSelect={this.selectHandler}
                         selected={this.state.selectedChat}
                         addChat={this.addChat}
