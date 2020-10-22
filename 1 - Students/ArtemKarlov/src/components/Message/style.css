@@ -1,7 +1,17 @@
-.message {
-    background-color: lightblue;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 18px;
-    margin: 5px;
+.chat-dialog__message {
+    max-width: 70%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.chat-dialog__message_from_opponent {
+    align-self: flex-start;
+    background-color: #2F2F2F;
+    border-radius: 8px 8px 8px 0px;
+}
+
+.chat-dialog__message_from_me {
+    align-self: flex-end;
+    background-color: #258C60;
+    border-radius: 8px 8px 0px 8px;
 }
