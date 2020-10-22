@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
 
@@ -37,6 +38,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: './src/img/*.jpg' },
+            ],
+        }),
         new MiniCssExtractPlugin({
             filename: path.join('style', '[name].css'),
             chunkFilename: '[id].css'
@@ -44,6 +50,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, 'public', 'index.html'),
+            favicon: "./src/favicon.png",
         })
     ],
     devServer: {

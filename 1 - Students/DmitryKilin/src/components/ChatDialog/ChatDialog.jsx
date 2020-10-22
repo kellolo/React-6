@@ -44,8 +44,8 @@ function SimpleDialog(props) {
                     {emails.map((email) => (
                     <ListItem button onClick={() => handleListItemClick(email)} key={email}>
                         <ListItemAvatar>
-                        <Avatar>
-                            <PersonIcon />
+                        <Avatar alt="X" src="./avatar.jpg">
+                            {/*<PersonIcon />*/}
                         </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={email} className = { classes['test-class'] } />
@@ -97,7 +97,7 @@ export default function SimpleDialogDemo(props) {
             <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
                 <br />
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open simple dialog
+                new chat
             </Button>
                 <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} emails={emails} chats={chats}/>
         </div>
