@@ -1,7 +1,11 @@
 .msg {
-    background-color: rgb(236, 250, 154);
+    background-color: rgb(250, 129, 234);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 18px;
     margin: 5px;
+     display: flex;
+    justify-content: flex-start;
+    flex-direction: column; 
+    width: 30%;
 }

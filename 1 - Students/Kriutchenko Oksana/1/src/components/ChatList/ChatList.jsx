@@ -24,8 +24,8 @@ import ChatDialog from '../ChatDialog/ChatDialog.jsx'
                 let contactList = ['Ivanych', 'Stepan', 'Alekseyich'];
                 return (
                     <Fragment>
-                        <div className="ChatList d-flex flex-column">
-                            <ul>
+                        <div className="ChatList">
+                        {/*     <ul>
                                 <li>
                                     <a href="">Chat 1</a>
                                 </li>
@@ -35,7 +35,7 @@ import ChatDialog from '../ChatDialog/ChatDialog.jsx'
                                 <li>
                                     <a href="">Chat 3</a>
                                 </li>
-                            </ul>
+                            </ul> */}
                             <div>
                                 <ChatDialog contacts={contactList}/>
                             </div>
