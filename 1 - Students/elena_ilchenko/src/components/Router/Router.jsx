@@ -15,16 +15,18 @@ class Router extends Component {
     }
 
     render() {
+        
         return (
             <Switch>
-               <Route exact path='/' component={ Layout } />
-               
+               <Route exact path='/' component={ Layout } />               
                <Route exact path='/profile' component={ Layout } />
 
-               { this.props.chatsFromRedux.map((chat, i) => 
-                    <Route exact key={chat.chatId} path={`/chat/${chat.chatId}/`} render={ () => (
-                        <Layout chatId={chat.chatId} chatName={chat.chatName}/>)
-                     } />
+               { this.props.chatsFromRedux.map((chat, i) => <Route 
+                        exact path={`/chat/${chat.chatId}/`}
+                        render={() => <Layout chatId={chat.chatId} chatName={chat.chatName} />}
+                        // key={chat.chatId}
+                        // width 'key' doesnt work setState in selectHandler
+                    />
                     )
                 }
            </Switch>
@@ -37,7 +39,5 @@ class Router extends Component {
 const mapStateToProps = ({ chatsReducer }) => ({
     chatsFromRedux: chatsReducer.chats
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ /* create chat */ }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({  }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Router)
-
-

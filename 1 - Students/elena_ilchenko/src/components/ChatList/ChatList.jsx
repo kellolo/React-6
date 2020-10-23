@@ -8,6 +8,7 @@
     import { makeStyles } from '@material-ui/core/styles';
     import { connect } from 'react-redux';
     import { bindActionCreators } from 'redux';
+    import { addChat } from '../../store/actions/chats.action';
 
     const useStyles = makeStyles((theme) => ({
         chatIcon: {
@@ -52,11 +53,6 @@
     const mapStateToProps = ({ chatsReducer }) => ({
         chatsFromRedux: chatsReducer.chats
     });
-    const mapDispatchToProps = dispatch => bindActionCreators({ /* create chat */ },);
+    const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
     export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
-
-
-
-
-    
     

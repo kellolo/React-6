@@ -14,23 +14,16 @@ export default class Layout extends Component {
         }
     }
 
-    selectHandler = (v) => {
-        this.setState({ selectedChat: v });
+    selectHandler = (newSelectedElement) => {
+        console.log('selectHandler');
+
+        this.setState({
+            selectedChat: newSelectedElement 
+        });
     }
 
     componentDidUpdate () {
         console.log('update');
-    }
-
-    addChat = (chat) => {
-        let chatId = +this.state.chatList.length+1
-        
-        this.setState({
-            chatList: [...this.state.chatList, {
-                chatName: chat,
-                chatId: chatId,
-            }]
-        })
     }
     
     render() {
@@ -43,7 +36,7 @@ export default class Layout extends Component {
                         contacts={this.state.contactList}
                         onSelect={this.selectHandler}
                         selected={this.state.selectedChat}
-                        addChat={this.addChat}
+                        // addChat={this.addChat}
                         />
                     <Messages 
                         />

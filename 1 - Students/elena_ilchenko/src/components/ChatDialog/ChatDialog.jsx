@@ -69,7 +69,7 @@ export default function SimpleDialogDemo(props) {
         setOpen(true);
     };
     
-    const handleClose = (value) => {
+    const handleClose = (value) => { 
         setOpen(false);
         setSelectedValue(value);
         props.addChat(value);
