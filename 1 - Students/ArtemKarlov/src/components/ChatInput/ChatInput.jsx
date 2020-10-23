@@ -36,7 +36,7 @@ export default class ChatInput extends React.Component {
         return (
             <div className="chat__input chat-input">
                 <input type="text" value = { text } onChange = { this.handleChangeText } onKeyUp = {this.handleKeyUp} className="chat-input__input" placeholder="Write here..."/>
-                <button onClick = { this.handleClick } className="chat-input__button button-shell"><img src="./images/Vector.png" alt="" className="button-shell__img"/></button>
+                <button onClick = { this.handleClick } className="chat-input__button button-shell"><img src="../src/layout/images/Vector.png" alt="" className="button-shell__img"/></button>
             </div>
         );
     }

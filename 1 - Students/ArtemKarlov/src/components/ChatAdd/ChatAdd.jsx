@@ -18,9 +18,22 @@ import { blue } from '@material-ui/core/colors';
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
   avatar: {
-    // backgroundColor: blue[100],
-    // color: blue[600],
+    backgroundColor: blue[100],
+    color: blue[600],
   },
+  // button: {
+  //   width: '40px',
+  //   height: '40px',
+  //   backgroundColor: '#258C60',
+  //   border: 'none',
+  //   borderRadius: '4px',
+  //   '&:hover': {
+  //     backgroundColor: '#23ad71',
+  //   },
+  //   '&:active': {
+  //     backgroundColor: '#258c60',
+  //   },
+  // },
 });
 
 function SimpleDialog(props) {
@@ -70,6 +83,7 @@ SimpleDialog.propTypes = {
 };
 
 export default function SimpleDialogDemo(props) {
+  const classes = useStyles();
   const { contacts, getContactName } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(null);
@@ -91,7 +105,8 @@ export default function SimpleDialogDemo(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>Add chat</Button>
+      <button onClick={handleClickOpen} className="chats__add-button button-shell"><img src="../src/layout/images/plus.png" alt="" className="button-shell__img"/></button>
+      {/* <Button className={classes.button} variant="contained" onClick={handleClickOpen}></Button> */}
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} contacts={contacts}/>
     </div>
   );

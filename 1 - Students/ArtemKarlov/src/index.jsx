@@ -10,16 +10,39 @@ import ChatField from './components/ChatField/ChatField.jsx';
 
 const app = document.querySelector('#app');
 
-const user = {
+
+
+const account = {
     name: "Ivan",
     avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+    contacts: [
+        {
+            id: 'ccontact_1',
+            name: 'John',
+            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+            citation: 'Hi our deadlines are...',
+        },
+        {
+            id: 'contact_2',
+            name: 'Smith',
+            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+            citation: 'You hear that, Mr. Anderson?',
+        },
+        {
+            id: 'contact_3',
+            name: 'Morpheus',
+            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+            citation: 'Everything begins with choice.',
+        },
+        
+    ],
 }
 
 ReactDom.render(
     <StylesProvider>
         <div className="layout">
             <Controls />
-            <AccountChats accountName = {user.name} accauntAvatarUrl={user.avatarUrl}/>
+            <AccountChats accountName = {account.name} accauntAvatarUrl={account.avatarUrl}/>
             <ChatField chatName={'Vasya'} />
         </div>
         </StylesProvider>,
