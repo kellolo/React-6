@@ -1,8 +1,11 @@
-import "./App.scss";
 import React from "react";
-import User from "../User/User.jsx";
+import { Sidebar } from "primereact/sidebar";
 import Chats from "../Chats/Chats.jsx";
 import Chat from "../Chat/Chat.jsx";
+import ContactList from "../ContactsList/ContactsList.jsx";
+import UserProfile from "../UserProfile/UserProfile.jsx";
+import ChatProfile from "../ChatProfile/ChatProfile.jsx";
+import InitialContent from "../InitialContent/InitialContent.jsx";
 import UserService from "../../service/UserService.js";
 
 export default class App extends React.Component {
@@ -10,7 +13,10 @@ export default class App extends React.Component {
   state = {
     user: {},
     contacts: [],
-    chats: []
+    chats: [],
+    visibleUserProfile: false,
+    visibleContactList: false,
+    visibleChatProfile: false,
   }
 
   componentDidMount() {
@@ -67,41 +73,88 @@ export default class App extends React.Component {
     }), 300);
   }
 
-  handleContactSelect = (contact) => {
+  handleContactSelect = (contactId) => {
     let chats = this.state.chats;
-    if (chats.find((chat) => chat.userId === contact.userId)) {
-      return;
+    if (!chats.find((chat) => chat.userId === contactId)) {
+      chats.push({
+        ...this.state.contacts.find((contact) => contact.userId === contactId),
+        messages: [],
+        message: ""
+      });
     }
-    chats.push({ ...contact, messages: [], message: "" });
     this.setState({
-      chats: chats
+      chats: chats,
+      visibleContactList: false
     });
   }
 
   render() {
 
-    const chat = this.state.chats.find((chat) => chat.userId == this.props.chatId) || {};
-
-    return (
-      <div id="App" className="p-grid p-align-stretch">
-        <div id="AppLeft" className="p-col-3 p-p-0">
-            <User
-              user={this.state.user}
-            />
-            <Chats
-              chats={this.state.chats}
-            />
-        </div>
-        <div id="AppRight" className="p-col-9 p-p-0">
-          <Chat
+    let leftContents =
+      <React.Fragment>
+        <Sidebar
+          baseZIndex={1000000}
+          visible={this.state.visibleUserProfile}
+          onHide={() => this.setState({ visibleUserProfile: false })}
+          className="p-p-0 p-border-0"
+        >
+          <UserProfile
             user={this.state.user}
+          />
+        </Sidebar>
+        <Sidebar
+          baseZIndex={1000000}
+          visible={this.state.visibleContactList}
+          onHide={() => this.setState({ visibleContactList: false })}
+          className="p-p-0 p-border-0"
+        >
+          <ContactList
             contacts={this.state.contacts}
-            chat={chat}
             onContactSelect={this.handleContactSelect}
+          />
+        </Sidebar>
+        <Chats
+          user={this.state.user}
+          chats={this.state.chats}
+          onShowUserProfile={() => this.setState({ visibleUserProfile: true })}
+          onShowContactList={() => this.setState({ visibleContactList: true })}
+        />
+      </React.Fragment>;
+
+    let rightContents = InitialContent();
+
+    const chat = this.state.chats.find((chat) => chat.userId == this.props.chatId);
+    if (chat) {
+      rightContents =
+        <React.Fragment>
+          <Chat
+            chat={chat}
+            onShowChatProfile={() => this.setState({ visibleChatProfile: true })}
             onMessageChange={this.handleMessageChange}
             onMessageSend={this.handleMessageSend}
             onBotReply={this.handleBotReply}
           />
+          <Sidebar
+            baseZIndex={1000000}
+            position="right"
+            visible={this.state.visibleChatProfile}
+            onHide={() => this.setState({ visibleChatProfile: false })}
+            className="p-p-0 p-border-0"
+          >
+            <ChatProfile
+              chat={chat}
+            />
+          </Sidebar>
+        </React.Fragment>
+    }
+
+    return (
+      <div className="p-grid p-m-0 p-align-stretch p-vh-100" >
+        <div className="p-col-3 p-p-0 p-h-100">
+          {leftContents}
+        </div>
+        <div className="p-col-9 p-p-0 p-h-100">
+          {rightContents}
         </div>
       </div>
     );

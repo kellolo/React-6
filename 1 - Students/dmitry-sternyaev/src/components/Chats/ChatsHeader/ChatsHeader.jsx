@@ -4,66 +4,62 @@ import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import UserToolbarItem from "../../User/UserToolbarItem/UserToolbarItem.jsx";
 
-export default class ChatHeader extends React.Component {
+export default class ChatsHeader extends React.Component {
 
-    menuContactItems = [
+    menuUserItems = [
         {
-            label: 'Contact info',
+            label: 'Profile',
             icon: 'pi pi-fw pi-id-card',
-            command: this.props.onShowChatProfile
+            command: this.props.onShowUserProfile
         },
         {
-            label: 'Clear messages',
-            icon: 'pi pi-fw pi-times',
+            label: 'Settings',
+            icon: 'pi pi-fw pi-cog',
             disabled: true,
         },
         {
             separator: true
         },
         {
-            label: 'Delete chat',
-            icon: 'pi pi-fw pi-trash',
+            label: 'Log out',
+            icon: 'pi pi-fw pi-power-off',
             disabled: true,
         }
     ]
 
     render() {
-
-        let leftContents = (
+        const leftContents = (
             <React.Fragment>
-                {UserToolbarItem(this.props.chat, this.props.onShowChatProfile)}
+                {UserToolbarItem(this.props.user, this.props.onShowUserProfile)}
             </React.Fragment>
         );
-
-        let rightContents = (
+        const rightContents = (
             <React.Fragment>
                 <Button
-                    icon="pi pi-search"
-                    tooltip="Search"
-                    disabled={true}
+                    icon="pi pi-comment"
+                    tooltip="New chat"
+                    onClick={this.props.onShowContactList}
                     className="p-button-rounded p-button-text"
                 />
                 <Button
                     icon="pi pi-ellipsis-v"
                     tooltip="Menu"
-                    onClick={(e) => this.menuContact.toggle(e)}
+                    onClick={(e) => this.menuUser.toggle(e)}
                     className="p-button-rounded p-button-text"
                 />
                 <Menu
-                    model={this.menuContactItems}
-                    ref={el => this.menuContact = el}
+                    model={this.menuUserItems}
+                    ref={el => this.menuUser = el}
                     popup
                 />
             </React.Fragment>
         );
-
         return (
             <Toolbar
                 left={leftContents}
                 right={rightContents}
-                className="p-h-header p-rounded-0 p-border-left-0"
+                className="p-h-header p-rounded-0"
             />
         );
-
     }
 }
