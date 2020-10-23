@@ -6,6 +6,7 @@ import ChatList from '../ChatList/ChatList.jsx';
 
 
 // ===========================================================================
+// временные контанты (наверное нужно будет передавать в props) 
 const contacts = [
     {
         id: 'ccontact_1',
@@ -30,6 +31,7 @@ const contacts = [
 
 const contactList = contacts.map((contact) => contact.name);
 // ==============================================================================
+
 
 
 export default class Chats extends React.Component {
@@ -97,7 +99,6 @@ export default class Chats extends React.Component {
                 <section className="layout__chats chats">
                     <div className="chats__header">
                         <h2 className="chats__title">Chats</h2>
-                        {/* <button className="chats__add-button button-shell"><img src="/images/plus.png" alt="" class="button-shell__img"/></button> */}
                         <ChatAdd contacts={contactList} getContactName={ this.addChat }/>
                     </div>
                     <ChatList chats={chats} />
