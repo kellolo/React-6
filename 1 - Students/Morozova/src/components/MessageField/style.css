@@ -1,10 +1,8 @@
-.msg-field {
-    margin: 0;
-    padding: 20px;
+/* .messageField {
+    overflow-y: scroll;
+} */
+
+.content-wrp {
+    padding: 0 40px;
     box-sizing: border-box;
-    width: 600px;
-    min-height: 400px;
-    position: relative;
-    border: 2px solid darkblue;
-    border-radius: 25px;
 }
