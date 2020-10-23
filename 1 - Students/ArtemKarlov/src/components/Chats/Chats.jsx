@@ -8,23 +8,24 @@ import ChatList from '../ChatList/ChatList.jsx';
 // ===========================================================================
 const contacts = [
     {
-        id: 'contact_1',
+        id: 'ccontact_1',
+        name: 'John',
+        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+        citation: 'Hi our deadlines are...',
+    },
+    {
+        id: 'contact_2',
         name: 'Smith',
         avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
         citation: 'You hear that, Mr. Anderson?',
     },
     {
-        id: 'contact_2',
+        id: 'contact_3',
         name: 'Morpheus',
         avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
         citation: 'Everything begins with choice.',
     },
-    {
-        id: 'ccontact_3',
-        name: 'Trinity',
-        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-        citation: 'The truth is that there is no spoon.',
-    }
+    
 ];
 
 const contactList = contacts.map((contact) => contact.name);
