@@ -6,31 +6,3 @@
     padding-right: 30px;
     overflow-y: auto;
 }
-
-.chats-list__item {
-    margin-bottom: 15px;
-}
-
-.chats-list-item {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.chats-list-item__img {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px; 
-}
-
-.chats-list-item__name {
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.chats-list-item__label {
-    font-size: 10px;
-    opacity: 0.3;
-}

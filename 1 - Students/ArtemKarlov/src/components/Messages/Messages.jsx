@@ -9,10 +9,7 @@ export default class Messages extends React.Component {
         super(props);
         this.state = {
             messages: [
-                {sender: 'Bot', text: '...'},
-                {sender: 'Me', text: 'text'},
-                {sender: 'Bot', text: '...'},
-                {sender: 'Me', text: 'text 2'},
+                {sender: 'Bot', text: 'Wake up, Neo…'},
             ],
         }
     }
@@ -30,7 +27,7 @@ export default class Messages extends React.Component {
 
     componentDidUpdate() {
         const botName = "Bot";
-        const botMessage = "I'm Bot";
+        const botMessage = "The Matrix has you…";
         const {messages} = this.state;
         const lastMessage = messages[messages.length-1];
         if (lastMessage.sender !== botName) {

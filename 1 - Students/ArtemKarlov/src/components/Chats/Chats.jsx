@@ -1,21 +1,107 @@
 import './style.css';
 import React, { Fragment } from 'react';
 
-import ChatList from '../ChatList/ChatList.jsx';
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
+import ChatList from '../ChatList/ChatList.jsx';
 
-export default () => {
 
-    return (
-        <Fragment>
-            <section className="layout__chats chats">
+// ===========================================================================
+const contacts = [
+    {
+        id: 'contact_1',
+        name: 'Smith',
+        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+        citation: 'You hear that, Mr. Anderson?',
+    },
+    {
+        id: 'contact_2',
+        name: 'Morpheus',
+        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+        citation: 'Everything begins with choice.',
+    },
+    {
+        id: 'ccontact_3',
+        name: 'Trinity',
+        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+        citation: 'The truth is that there is no spoon.',
+    }
+];
+
+const contactList = contacts.map((contact) => contact.name);
+// ==============================================================================
+
+
+export default class Chats extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+           chats: [
+            {
+                id: "ch_0",
+                title: "Ivanov",
+                avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+                status: "Hi our deadlines are...",
+            },
+            {
+                id: "ch_1",
+                title: "Petrov",
+                avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+                status: "Hi our deadlines are...",
+            },
+            {
+                id: "ch_2",
+                title: "Sidorov",
+                avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+                status: "my life my rules",
+            },
+           ]
+        }
+    }
+
+    addChat = (contactName) => {
+        const {chats} = this.state;        
+
+        if (contactName !== null) {         
+
+            const chatContact = contacts.find(contact => contact.name === contactName);
+    
+            const chat = {};
+            chat.id = `ch_${chats.length}`;
+            chat.title = chatContact.name;
+            chat.avatarUrl = chatContact.avatarUrl;
+            chat.status = chatContact.citation;
+    
+            this.setState({
+                chats: [...chats, chat]
+            });
+        }
+    }
+
+    componentDidMount() {
+      
+    }
+
+    componentDidUpdate() {
+      
+    }
+
+    render() {
+         
+        const { chats } = this.state;
+        
+        
+        
+        return (
+            <Fragment>
+                <section className="layout__chats chats">
                     <div className="chats__header">
                         <h2 className="chats__title">Chats</h2>
                         {/* <button className="chats__add-button button-shell"><img src="/images/plus.png" alt="" class="button-shell__img"/></button> */}
-                        <ChatAdd />
+                        <ChatAdd contacts={contactList} getContactName={ this.addChat }/>
                     </div>
-                    <ChatList />
-                </section>
-        </Fragment>
-    );
-} 
+                    <ChatList chats={chats} />
+                </section>                
+            </Fragment>           
+        );
+    }
+}

@@ -25,10 +25,10 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, open, contacts } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose(null);
   };
 
   const handleListItemClick = (value) => {
@@ -37,27 +37,27 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Add chat with...</DialogTitle>
       <List>
-        {emails.map((email) => (
-          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
+        {contacts.map((contact) => (
+          <ListItem button onClick={() => handleListItemClick(contact)} key={contact}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={email} />
+            <ListItemText primary={contact} />
           </ListItem>
         ))}
 
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+        {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
+          <ListItemText primary="Add contact" />
+        </ListItem> */}
       </List>
     </Dialog>
   );
@@ -69,12 +69,13 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props) {
+  const { contacts, getContactName } = props;
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState(null);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpen(true);    
   };
 
   const handleClose = (value) => {
@@ -82,10 +83,16 @@ export default function SimpleDialogDemo() {
     setSelectedValue(value);
   };
 
+  React.useEffect(() => { 
+    getContactName(selectedValue);
+    setSelectedValue(null);
+  });
+ 
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>Add chat</Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} contacts={contacts}/>
     </div>
   );
 }
