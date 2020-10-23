@@ -2,9 +2,11 @@ import './style.css'
 import React, { Component } from 'react'
 import ChatDialog from '../ChatDialog/ChatDialog.jsx'
 import {Link} from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
+
 
 class ChatsList extends Component {
     constructor(props) {
@@ -20,18 +22,18 @@ class ChatsList extends Component {
         return (
             <div className="chat-list">
                 <header>
-                    <button className="button-round button-chat button-pushed"></button>
-                    <h2 className={"chat-list__header"}>Welcome to chats:</h2>
+                        <Avatar alt="X" src="./src/img/tarantino.jpg"></Avatar>
+                    <h2 className={"chat-list__header"}>Lets chat:</h2>
                 </header>
 
                 <ul>
                     {this.props.chatsFromRedux.map( chat =>
                         <li key = {chat.id} className={chat.id===this.props.activeChatId ? 'li-marked' : 'li-unmarked'}>
-                            <Link to={`/chat/${chat.id}`}>{chat.title}</Link>
+                            <Link to={`/chat/${chat.id}`} style={{color: '#16B5E8'}}>{chat.title}</Link>
                         </li>)}
                 </ul>
                 <div>
-                    <ChatDialog contacts={this.props.contacts} chats={this.props.chats}/>
+                    <ChatDialog/>
                 </div>
             </div>
         )

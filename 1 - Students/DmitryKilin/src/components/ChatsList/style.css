@@ -1,7 +1,6 @@
 .chat-list {
     border-radius: 20px;
     border: lightblue solid 2px;
-    /*min-width: 25%;*/
     min-height: 100%;
     padding: 10px;
     flex: 1 2 40%;
@@ -21,4 +20,5 @@
 
 .li-unmarked {
     list-style-type: none;
+    color: #16B5E8;
 }

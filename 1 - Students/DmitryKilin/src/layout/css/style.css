@@ -1,7 +1,8 @@
 .wrapper {
     margin: 20px auto;
     background-color: #192634;
-    color: #16B5E8;
+    color: lightblue;
+    /*color: #16B5E8;*/
     padding: 10px 20px;
     border-radius: 20px;
     display: flex;

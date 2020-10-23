@@ -11,9 +11,6 @@ import {bindActionCreators} from "redux";
 class Messages extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     messages: props.messages
-        // }
     }
 
     sendMessage = (message) => {
@@ -37,7 +34,6 @@ class Messages extends Component {
 
         let messages = this.props.messagesFromRedux;
         let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>).reverse();
-// console.log(this.props.messagesFromRedux)
         return (
             <div className="messages-container">
 
