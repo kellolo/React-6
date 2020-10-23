@@ -37,9 +37,9 @@ export default class Layout extends Component {
         
         return (
                 <StylesProvider>
-                    <div className="w-50 d-flex flex-column align-items-center m-auto">
-                        <h1> { chatName } </h1>
-                        <div className="wrapper w-100 d-flex  flex-column align-items-center">
+                    <div className=" d-flex flex-column align-items-center m-auto wrap">
+                    <h1 className="title"> { this.props.chatName ? this.props.chatName : 'Welcome' } </h1>
+                        <div className="wrapper w-100 d-flex ">
                             <ChatList contacts = { this.state.contacts } chats = { this.state.chats }/>
                             <Messages />
                         </div>

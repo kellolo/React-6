@@ -5,7 +5,10 @@ import ChatDialog from '../ChatDialog/ChatDialog.jsx'
 
 import { Link } from 'react-router-dom'
 
-export default class ChatList extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+class ChatList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,15 +25,15 @@ export default class ChatList extends Component {
     }
 
     render() {
-        let { chats } = this.props;
-        let chatsArr = chats.map(ch => <li key = { ch._id }>
-                                            <Link to = { `/chat/${ch._id}` }>{ch.title}</Link>
-                                        </li>)
+        let { chatsFromRedux } = this.props;
+                let chatsArr = chatsFromRedux.map(ch => <li key = { ch.id } className="chatName">
+                                                    <Link to = { `/chat/${ch.id}` }>{ch.title}</Link>
+                                                </li>)
         return (
             <Fragment>
-                <div className="ChatList d-flex w-100 flex-column align-items-center">
+                <div className="ChatList d-flex  flex-column align-items-center">
                     
-                    <ul>
+                    <ul className="list">
                         { chatsArr }
                     </ul>
                     <div>
@@ -41,3 +44,9 @@ export default class ChatList extends Component {
         )
     }
 }
+
+const mapStateToProps = ({ chatsReducer }) => ({
+    chatsFromRedux: chatsReducer.chats
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
