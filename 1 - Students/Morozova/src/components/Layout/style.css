@@ -1,0 +1,27 @@
+.messages-wrp {
+    max-height: 400px;
+    /* max-width: 700px;
+    padding: 0 20px 0 0; */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* overflow-anchor: unset; */
+}
+
+.messages-wrp:hover {
+    overflow-y: auto;
+	overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -moz-overflow-scrolling: touch;
+    -ms-overflow-scrolling: touch;
+    -o-overflow-scrolling: touch;
+}
+
+.messages-wrp::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 4px;
+}
+.messages-wrp::-webkit-scrollbar-thumb {
+	border-radius: 2px;
+	background-color: rgba(5,5,5,0.5);
+}
+

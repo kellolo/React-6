@@ -1,24 +1,27 @@
 import './style.css';
-import React, { Component, Fragment } from 'react';
-import Message from '../Message/Message.jsx';
-// import ChatsList from '../ChatsList/ChatsList.jsx';
-import Controls from '../Controls/Controls.jsx';
 
+import React, { Component } from 'react';
+
+import Message from '../Message/Message.jsx';
 
 export default class MessageField extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            
-        }
     }
 
     render() {
+        let { messages } = this.props;
+        let contentArray = messages.map((msg, index) => {
+            let { sender, text } = msg;
+            return <Message text = { text } sender = { sender } key = { index }/>
+        });
+
         return (
-            <div className="d-flex flex-column msg-field" >
-                <Message />
-                
-            </div>    
+            <div className="messageField">
+                <div className="d-flex flex-column content-wrp">
+                    { contentArray }
+                </div>
+            </div>
         )
     }
 }
