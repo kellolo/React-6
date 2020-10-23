@@ -1,10 +1,14 @@
-import "./ChatMessages.scss";
 import React from "react";
-import ChatMessage from "./ChatMessage/ChatMessage.jsx";
 import { ScrollPanel } from "primereact/scrollpanel";
-import { Message } from "primereact/message";
+import MessageItem from "../../MessageItem/MessageItem.jsx";
 
 export default class ChatMessages extends React.Component {
+    scrollToBottom = () => {
+        this.lastMessage && this.lastMessage.scrollIntoView({ behavior: "smooth" });
+    }
+    componentDidMount() {
+        this.scrollToBottom();
+    }
     componentDidUpdate(props) {
         const chat = props.chat;
         if (
@@ -16,49 +20,35 @@ export default class ChatMessages extends React.Component {
         ) {
             props.onBotReply()
         }
+        this.scrollToBottom();
     }
     render() {
         const messages = [];
-        if (this.props.chat.userId) {
+        if (this.props.chat.messages.length) {
             this.props.chat.messages.forEach(message => {
+                let justify = "end";
+                let severity = "info";
                 if (message.senderId === this.props.chat.userId) {
-                    messages.push(
-                        <div className="p-px-3 p-py-2 p-d-flex p-jc-start" key={message.messageId}>
-                            <Message
-                                sticky={true}
-                                content={ChatMessage(message.messageText)}
-                                className="p-message-in"
-                            />
-                        </div>
-                    )
-                } else {
-                    messages.push(
-                        <div className="p-px-3 p-py-2 p-d-flex p-jc-end" key={message.messageId}>
-                            <Message
-                                sticky={true}
-                                content={ChatMessage(message.messageText)}
-                                severity="info"
-                                className="p-message-out"
-                            />
-                        </div>
-                    )
+                    justify = "start";
+                    severity = "dark";
                 }
+                messages.push(
+                    <div
+                        key={message.messageId}
+                        ref={(el) => this.lastMessage = el}>
+                        <MessageItem
+                            message={message}
+                            justify={justify}
+                            severity={severity}
+                        />
+                    </div >
+                );
             });
-        } else {
-            messages.push(
-                <div id="ChatInfo" className="p-d-flex p-ai-center p-jc-center" key={0}>
-                    <Message
-                        sticky={true}
-                        content={ChatMessage("Please select a chat to start messaging")}
-                        className="p-message-info"
-                    />
-                </div>
-            );
         }
         return (
-            <ScrollPanel id="ChatMessages">
+            <ScrollPanel className="p-h-content-s">
                 {messages}
             </ScrollPanel>
         );
     }
-}    
+}   

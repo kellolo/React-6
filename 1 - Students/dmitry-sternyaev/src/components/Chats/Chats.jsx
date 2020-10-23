@@ -1,34 +1,20 @@
-import "./Chats.scss";
 import React from "react";
-import { withRouter } from 'react-router-dom';
-import { ListBox } from 'primereact/listbox';
-import ChatsItem from "./ChatsItem/ChatsItem.jsx";
+import ChatsHeader from "./ChatsHeader/ChatsHeader.jsx";
+import ChatsList from "./ChatsList/ChatsList.jsx";
 
-class Chats extends React.Component {
-
-    handleChatChange = (event) => {
-        if (event.value) {
-            this.props.history.push(`/chat/${event.value}`);
-        } else {
-            this.props.history.push("/chat/");
-        }
-    }
-
+export default class Chats extends React.Component {
     render() {
         return (
-            <ListBox
-                id="Chats"
-                value={this.props.match.params.chatId}
-                options={this.props.chats}
-                onChange={this.handleChatChange}
-                filter
-                filterPlaceholder="Search"
-                optionLabel="userName"
-                optionValue="userId"
-                itemTemplate={ChatsItem}
-            />
+            <React.Fragment>
+                <ChatsHeader
+                    user={this.props.user}
+                    onShowUserProfile={this.props.onShowUserProfile}
+                    onShowContactList={this.props.onShowContactList}
+                />
+                <ChatsList
+                    chats={this.props.chats}
+                />
+            </React.Fragment>
         );
     }
-}
-
-export default withRouter(Chats);
+} 

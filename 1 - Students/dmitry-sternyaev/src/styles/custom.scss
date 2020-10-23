@@ -16,6 +16,9 @@
 @import "primeflex/src/_spacing.scss";
 @import "primeflex/src/_elevation.scss";
 
+// Utilities
+@import "utilities";
+
 // Body
 body {
     margin: 0;
@@ -25,7 +28,32 @@ body {
     text-align: left;
 }
 
-// Grid
-.p-grid {
-    margin: 0;
+// Sidebar
+.p-sidebar-icons {
+    height: var(--header-height);
+    padding: 1.1875rem;
+    border: 1px solid var(--border-color);
+}
+
+// Listbox
+.p-listbox-list {
+    height: calc(100% - 3.8125rem);
+    padding: 0;
+}
+
+//Scroolpanel
+.p-scrollpanel-content {
+    height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+//Toolbar
+.p-toolbar-group-left {
+    flex-grow: 1;
+}
+
+//Card
+.p-card {
+    box-shadow: none;
 }

@@ -8,10 +8,8 @@ export default class Chat extends React.Component {
         return (
             <React.Fragment>
                 <ChatHeader
-                    user={this.props.user}
-                    contacts={this.props.contacts}
                     chat={this.props.chat}
-                    onContactSelect={(cont) => this.props.onContactSelect(cont)}
+                    onShowChatProfile={this.props.onShowChatProfile}
                 />
                 <ChatMessages
                     chat={this.props.chat}
