@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
-
+import {makeStyles} from "@material-ui/core/styles";
 
 class ChatsList extends Component {
     constructor(props) {
@@ -19,6 +19,12 @@ class ChatsList extends Component {
 
 
     render() {
+        const classes = makeStyles({
+            'link': {
+                color: '#16B5E8'
+            }
+        })
+
         return (
             <div className="chat-list">
                 <header>
@@ -29,7 +35,7 @@ class ChatsList extends Component {
                 <ul>
                     {this.props.chatsFromRedux.map( chat =>
                         <li key = {chat.id} className={chat.id===this.props.activeChatId ? 'li-marked' : 'li-unmarked'}>
-                            <Link to={`/chat/${chat.id}`} style={{color: '#16B5E8'}}>{chat.title}</Link>
+                            <Link to={`/chat/${chat.id}`} className={classes.link}>{chat.title}</Link>
                         </li>)}
                 </ul>
                 <div>

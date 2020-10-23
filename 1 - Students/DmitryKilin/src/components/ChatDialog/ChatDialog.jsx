@@ -24,7 +24,17 @@ const useStyles = makeStyles({
     'test-class': {
         fontSize: '2em',
         fontWeight: 'bold'
-    }
+    },
+    'list': {
+        border: 'lightblue solid 2px',
+        backgroundColor: '#192634',
+        color: '#16B5E8'
+    },
+    'dialogTitle': {
+        border: 'lightblue solid 2px',
+        backgroundColor: '#192634',
+        color: 'lightblue'
+    },
 })
 
 function SimpleDialog(props) {
@@ -43,9 +53,10 @@ function SimpleDialog(props) {
     console.log(props)
     return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                <DialogTitle id="simple-dialog-title"
-                             style={{border: 'lightblue solid 2px', backgroundColor: '#192634', color: 'lightblue'}}>Select to chat with</DialogTitle>
-                <List style={{border: 'lightblue solid 2px', backgroundColor: '#192634', color: '#16B5E8'}}>
+                <DialogTitle id="simple-dialog-title" className={classes.dialogTitle}>
+                    Select to chat with
+                </DialogTitle>
+                <List className={classes.list}>
                     {contacts.map((contact) => (
                     <ListItem button onClick={() => handleListItemClick(contact.email)} key={contact.email}>
                         <ListItemAvatar>
