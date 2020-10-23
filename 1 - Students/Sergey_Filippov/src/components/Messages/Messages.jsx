@@ -40,7 +40,7 @@ export default class Messages extends Component {
         let messagesArray = messages.map((msg, i) => <Message  sender = { msg.sender } text = { msg.text }  key = { i }/>);
 
         return (
-            <div className="d-flex flex-column align-items-center w-100">
+            <div className="d-flex flex-column align-items-center msgs">
                 <div className="msg-wrap d-flex flex-column">
                     { messagesArray }
                 </div>

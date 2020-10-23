@@ -73,10 +73,10 @@ export default function SimpleDialogDemo(props) {
    
     return (
         <div>
-            <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+            <Typography variant="subtitle1">Выбран чат: {selectedValue}</Typography>
                 <br />
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open simple dialog
+            <Button variant="contained" color="primary"  onClick={handleClickOpen}>
+                Выберите чат
             </Button>
                 <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}  contacts = { contacts } />
         </div>

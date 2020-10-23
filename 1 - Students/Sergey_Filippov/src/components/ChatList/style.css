@@ -1,0 +1,27 @@
+.ChatList{
+    width: 30%;
+    background-color:  #ace4fc;
+}
+
+.chatName{
+    font-family: 'Courier New', Courier, monospace ;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: #e5fcff;
+    margin: 5px;
+}
+.chatName:hover{
+    background-color: #7FFFD4;
+    transition:1300ms;
+}
+a:active, 
+a:hover,  
+a{
+  text-decoration: none;
+  color: #000;
+}
+.list{
+    width: 50%;
+    list-style-type: none;
+    padding: 0;
+}
