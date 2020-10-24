@@ -1,0 +1,11 @@
+.chatList {
+    padding: 20px;
+}
+
+.chatLink {
+    text-decoration: none;
+}
+
+.chatLink:hover {
+    text-decoration: none;
+}

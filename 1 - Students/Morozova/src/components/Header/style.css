@@ -1,0 +1,9 @@
+.header {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 0;
+    font-family: 'Harmattan', sans-serif;
+    font-size: 34px;
+    line-height: 34px;
+    color: #bdc1ff;
+}

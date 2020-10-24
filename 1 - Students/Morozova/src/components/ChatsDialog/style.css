@@ -1,7 +1,4 @@
-.MuiButton-outlinedPrimary {
-    color: darkblue;
-}
-
-.MuiButton-root{
-    color: rgb(0, 0, 139);
+.makeStyles-openBtn-6:hover {
+    color: #bdc1ff;
+    border: 1px solid #bdc1ff;
 }

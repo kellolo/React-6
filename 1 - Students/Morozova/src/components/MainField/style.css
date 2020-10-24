@@ -1,0 +1,34 @@
+.inputText,
+.inputName {
+    margin: 5px 0;
+    padding: 0 10px;
+    min-height: 40px;
+    background-color: #C7D2F4;
+    outline: none;
+    border-radius: 10px 10px 0 10px;
+    border: 2px solid #B197B2;
+}
+
+.sendBtn {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-family: 'Harmattan', sans-serif;
+    font-size: 26px;
+    text-transform: lowercase;
+    color: #B197B2;
+}
+
+.sendBtn:focus {
+    outline: none;
+    border: none;
+}
+
+.sendBtn:active {
+    color: #9AA0B3;
+}
+
+.content-wrp {
+    width: 700px;
+}
