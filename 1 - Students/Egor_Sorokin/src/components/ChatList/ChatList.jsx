@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
 import List from '@material-ui/core/List';
@@ -10,9 +10,14 @@ import ImageIcon from '@material-ui/icons/Image';
 
 import UserSelect from '../UserSelect/UserSelect.jsx'
 import './style.css'
-import { CollectionsOutlined } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { addChat } from '../../store/actions/chat.actions.js'
+import { messagesInit } from '../../store/actions/messages.actions.js'
+
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -24,35 +29,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatList(props) {
+function ChatList(props) {
 
     const classes = useStyles();
 
-    let {activeIndex, conversationsArray} = props;
+    let {activeIndex, chats, users, author } = props;
+
+    let lastMessages = Object.keys(props.conversations).map(item => {
+        let msgs = props.conversations[item].messages;
+        if (msgs.length != 0) {
+            return({ id: item, lastMessage: msgs[msgs.length-1].text})
+        } else {
+            return({ id: item, lastMessage: 'No messages yet'})
+        }
+        
+    })
   
     let isActive;
 
     let addNewConversation = (name) => {
-        let idToAdd = props.contacts.find(item => item.name == name).id;
-        props.addChatScript(idToAdd);
+        let idToAdd = users.find(item => item.name == name).id;
+        let newChatId = Number(chats.reduce((res, item) => {
+            return (Math.max(res, item.id));
+        }, 0)) + 1;
+        props.addChat(newChatId, idToAdd, users[idToAdd].name, users[idToAdd].avatar);
+        props.messagesInit(idToAdd);
     }
     
     let userList = []
 
-    props.contacts.forEach (item => {
-        if (typeof props.conversationsArray.find(el => el.userId == item.id) == 'undefined') {
+    users.forEach (item => {
+        if ((typeof chats.find(el => el.userId == item.id) == 'undefined') && (item.id != author)) {
             userList.push(item);
         }
     })
 
-    console.log(userList)
-
-    let conversationsRender = conversationsArray.map((conversationElement) => {
+    let conversationsRender = chats.map((conversationElement) => {
         if (activeIndex == conversationElement.id) {
             isActive = true;
         } else {
             isActive = false;
         }
+
+        let lastMessage = lastMessages.find(item => item.id == conversationElement.id).lastMessage;
+
         return(
             <Link to={'/chat/' + conversationElement.id + '/' } key={conversationElement.id}>
                 <ListItem button selected={isActive}>
@@ -61,10 +81,9 @@ export default function ChatList(props) {
                             <ImageIcon />
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary={ conversationElement.name } secondary= { conversationElement.lastMessage } />
+                    <ListItemText primary={ conversationElement.name } secondary= { lastMessage } />
                 </ListItem>
             </Link>
-            // <Conversation isActive={isActive} conversationAvatar={conversationElement.avatar} conversationHeader={conversationElement.name} lastMessage={conversationElement.lastMessage} key = {conversationElement.id}/>
         )
     })
   
@@ -75,3 +94,13 @@ export default function ChatList(props) {
     </List>
     );
 }
+
+const mapStateToProps = ({ chatsReducer, usersReducer, messagesReducer }) => ({
+    conversations: messagesReducer.conversations,
+    chats: chatsReducer.chats,
+    users: usersReducer.users,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat, messagesInit }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

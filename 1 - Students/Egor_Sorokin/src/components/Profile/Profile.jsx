@@ -3,10 +3,12 @@ import { Avatar, Button } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Link } from 'react-router-dom'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import './style.css'
 
-export default class Profile extends Component {
+class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,16 +16,10 @@ export default class Profile extends Component {
         }
     }
 
-    componentDidMount() {
-
-    }
-
-    componentDidUpdate() {
-
-    }
-
     render() {
-        let { me } = this.props;
+        let { myId, users } = this.props;
+
+        let me = users.find(item => myId == item.id);
 
         return(
             <Fragment>
@@ -44,4 +40,11 @@ export default class Profile extends Component {
         )
     }
 }
-    
+
+const mapStateToProps = ({ usersReducer }) => ({
+    users: usersReducer.users,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({  }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);    

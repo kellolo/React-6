@@ -3,23 +3,29 @@ import { Switch, Route } from 'react-router-dom'
 import MainApp from './components/MainApp/MainApp.jsx'
 import Profile from './components/Profile/Profile.jsx'
 
-export default class Router extends Component {
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+class Router extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            me: {
-                name: 'Egor',
-                avatar: 'https://cdn.pixabay.com/photo/2018/03/09/15/36/wildlife-3211742_960_720.jpg',
-                email: 'john.appleseed@icloud.com'
-            },
+            me: 5,
         }
     }
 
     render() {
+        let { conversationsArray, users } = this.props;
+        let { me } = this.state;
+
+        let authorAvatar = users.find(item => item.id == me).avatar;
+
+        let chatSwitches = conversationsArray.map(ch => <Route key = { ch.id } exact path = { `/chat/${ ch.id }` } render = { () => <MainApp chatId = { Number(ch.id) } me = { this.state.me } /> } /> )
+
         return(
             <Switch>
-                <Route exact path="/" render = { () => <MainApp chatId = {-1} me = { this.state.me } /> } />
-                <Route
+                <Route exact path="/" render = { () => <MainApp myAvatar = { authorAvatar } chatId = {-1} me = { this.state.me } /> } />
+                {/* <Route
                    exact
                    path='/chat/:chatId/'
                    render={ obj => <MainApp
@@ -27,9 +33,19 @@ export default class Router extends Component {
                        me = { this.state.me }
                    />
                    }
-               />
-               <Route exact path="/profile/" render = { () => <Profile me = { this.state.me } /> } />
+               /> */}
+               { chatSwitches }
+               <Route exact path="/profile/" render = { () => <Profile myId = { me } /> } />
             </Switch>
         );
     }
 } 
+
+const mapStateToProps = ({ chatsReducer, usersReducer }) => ({
+    conversationsArray: chatsReducer.chats,
+    users: usersReducer.users,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Router);
