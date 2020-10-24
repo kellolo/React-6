@@ -1,0 +1,63 @@
+.account {
+    width: 100%;
+    height: 200px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #1C1C1C;    
+}
+
+.account::after {
+    content: '';
+    display: block;
+    width: 70%;
+    position: absolute;
+    bottom: 0px;
+
+    opacity: 0.1;
+    border-bottom: 1px solid #FFFFFF; 
+}
+
+.account__img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;    
+}
+
+.account__name {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+}
+
+.account__label {
+    font-size: 12px;
+    color: #FFFFFF;
+    opacity: 0.3;
+}
+
+
+/* create new component!!!!!!!!!!! */
+.img-container {
+    background-color: #848484;
+    /* background-image: url("/images/user.png"); */
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container__img {
+    width: 100%;
+    display: block;
+}

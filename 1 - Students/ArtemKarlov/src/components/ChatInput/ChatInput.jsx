@@ -7,26 +7,36 @@ export default class ChatInput extends React.Component {
         this.state = {
             text: '',
         }
-    }
-    
+    }    
 
-    changeText = evt => {
-        let val = evt.target.value;
-        this.setState({text: val});
+    handleChangeText = (event) => {
+        let inputText = event.target.value;
+        this.setState({text: inputText});
+    }
+
+    handleKeyUp = (event) => {
+        if (event.keyCode === 13) {
+            this.send();
+        }
+    }
+
+    handleClick = () => {
+        this.send();
     }
 
     send = () => {
         let {text} = this.state;
         this.props.sendMessage(text);
         this.setState({text: ''});
-    }
+    }   
+    
 
     render() {
         let {text} = this.state;
         return (
-            <div className="control">
-                <input type="text" value = { text } onChange = { this.changeText }/>
-                <button onClick = { this.send }>send</button>
+            <div className="chat__input chat-input">
+                <input type="text" value = { text } onChange = { this.handleChangeText } onKeyUp = {this.handleKeyUp} className="chat-input__input" placeholder="Write here..."/>
+                <button onClick = { this.handleClick } className="chat-input__button button-shell"><img src="../src/layout/images/Vector.png" alt="" className="button-shell__img"/></button>
             </div>
         );
     }
