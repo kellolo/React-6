@@ -1,12 +1,16 @@
 import './style.css'
 
-        import React, { Component, Fragment } from 'react'
-        import ChatDialog from '../ChatDialog/ChatDialog.jsx'
-        
-        export default class ChatList extends Component {
-            constructor(props) {
-                super(props);
-                this.state = {
+import React, { Component, Fragment } from 'react'
+import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+
+import { Link } from 'react-router-dom'  
+/* import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem'; */
+
+ export default class ChatList extends Component {
+        constructor(props) {
+             super(props);
+             this.state = {
                     
                 }
             }
@@ -20,27 +24,24 @@ import './style.css'
             }
         
             render() {
-                //let { some } = this.state;
-                let contactList = ['Ivan', 'Victor', 'Aleksey'];
+                let { chats } = this.props;
+                let chatsArr = chats.map(ch => <li key = { ch._id }>
+                                                    <Link to = { `/chat/${ch._id}` }>{ch.title}</Link>
+                                                </li>) 
                 return (
                     <Fragment>
                         <div className="ChatList d-flex flex-column">
+                           {/*   <Link to = "/test/">
+                                <a href="#">Test</a>
+                            </Link> */} 
                             <ul>
-                                <li>
-                                    <a href="">Chat 1</a>
-                                </li>
-                                <li>
-                                    <a href="">Chat 2</a>
-                                </li>
-                                <li>
-                                    <a href="">Chat 3</a>
-                                </li>
+                                { chatsArr }
                             </ul>
                             <div>
-                                <ChatDialog contacts={contactList}/>
+                                <ChatDialog contacts = { this.props.contacts }/>
                             </div>
                         </div>
-                    </Fragment>
+                    </Fragment> 
                 )
-            }
-        }
+    }
+}

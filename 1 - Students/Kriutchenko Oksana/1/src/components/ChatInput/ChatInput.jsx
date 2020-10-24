@@ -18,14 +18,25 @@ export default class ChatInput extends Component {
         this.props.send(this.state.text); //работает метод из родителя
         this.setState({ text: '' });
     }
+    handleKeyUp = (evt) => {
+        if (evt.keyCode === 13) { // Enter
+            this.props.send(this.state.text);
+            this.setState({ text: "" });
+          }
+     };   
 
     render() {
         let { text } = this.state;
         return (
-            <div>
-                <input type="text" value = { text } onChange = { this.changeText }/>
-                <button onClick = { this.send }>Send</button>
-            </div>
-        )
+            <div className="ChatInput">
+                <input className="input" type="text" value = { text } 
+                onChange = { this.changeText } 
+                onKeyUp={ (evt) => this.handleKeyUp(evt, this.state.input) }/>
+
+                <button className="button" onClick = { this.send }>Send</button>
+                </div>
+             )
+                  
+ 
     }
 }
