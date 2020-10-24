@@ -1,7 +1,6 @@
 import './style.css'
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
@@ -15,8 +14,6 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
-
-// let {emails} = props.contacts;
 
 const useStyles = makeStyles({
     'test-class': {
@@ -50,15 +47,6 @@ function SimpleDialog(props) {
                         <ListItemText primary={contact} className = { classes['test-class'] } />
                     </ListItem>
                     ))}
-
-                    {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <AddIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary="Add account" />
-                    </ListItem> */}
                 </List>
             </Dialog>
     )
@@ -91,9 +79,9 @@ export default function SimpleDialogDemo(props) {
 
     return (
         <div>
-            <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+            <Typography align={"center"} color={"secondary"} variant="subtitle1">Selected: {selectedValue}</Typography>
                 <br />
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color={"secondary"} onClick={handleClickOpen}>
                 Open simple dialog
             </Button>
                 <SimpleDialog contacts={contacts} selectedValue={selectedValue} open={open} onClose={handleClose} />

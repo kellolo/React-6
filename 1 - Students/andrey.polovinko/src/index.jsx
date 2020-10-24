@@ -1,20 +1,16 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Messages from './components/Messages/Messages.jsx'
-import ChatList from './components/ChatList/ChatList.jsx'
 import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
-
+import { BrowserRouter } from 'react-router-dom'
+import Router from './router.jsx'
 
 const app = document.querySelector('#app')
 
 ReactDom.render(
-    <StylesProvider>
-    <div >
-       <ChatList />
-       <Messages />
-    </div>
-    </StylesProvider>,
+    <BrowserRouter>
+        <Router />
+    </BrowserRouter>,
     app
 )
 
