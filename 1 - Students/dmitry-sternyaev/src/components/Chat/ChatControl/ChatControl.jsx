@@ -1,4 +1,4 @@
-import "./ChatControl.scss"
+
 import React from "react";
 import { Toolbar } from "primereact/toolbar";
 import { InputText } from "primereact/inputtext";
@@ -18,30 +18,26 @@ export default class ChatControl extends React.Component {
         }
         let leftContents =
             <React.Fragment>
-                <InputText
-                    ref={(input) => { this.inputMessage = input; }}
-                    id="ChatControlInputText"
-                    value={message}
-                    placeholder={chat.userId ? 'Write a message...' : ''}
-                    disabled={chat.userId ? false : true}
-                    onChange={(e) => this.props.onMessageChange(e.target.value)}
-                    onKeyPress={(e) => { if (e.key === 'Enter') this.props.onMessageSend() }}
-                />
-            </React.Fragment>;
-        let rightContents =
-            <React.Fragment>
-                <Button
-                    id="ChatControlButtonSend"
-                    icon="pi pi-reply"
-                    onClick={(e) => this.props.onMessageSend()}
-                    disabled={chat.message ? false : true}
-                />
+                <div className="p-inputgroup">
+                    <InputText
+                        ref={(input) => { this.inputMessage = input; }}
+                        value={message}
+                        placeholder={chat.userId ? 'Write a message...' : ''}
+                        disabled={chat.userId ? false : true}
+                        onChange={(e) => this.props.onMessageChange(e.target.value)}
+                        onKeyPress={(e) => { if (e.key === 'Enter') this.props.onMessageSend() }}
+                    />
+                    <Button
+                        icon="pi pi-reply"
+                        onClick={(e) => this.props.onMessageSend()}
+                        disabled={chat.message ? false : true}
+                    />
+                </div>
             </React.Fragment>;
         return (
             <Toolbar
-                id="ChatControl"
                 left={leftContents}
-                right={rightContents}
+                className="p-h-footer p-rounded-0 p-border-left-0"
             />
         );
     }

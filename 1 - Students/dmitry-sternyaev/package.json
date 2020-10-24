@@ -4,8 +4,7 @@
   "description": "React Chat",
   "main": "index.jsx",
   "scripts": {
-    "start": "webpack --mode development",
-    "server": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "build": "webpack --mode production"
   },
   "author": "Dmitry Sternyaev <dimastv@yandex.com>",
