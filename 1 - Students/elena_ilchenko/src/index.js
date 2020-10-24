@@ -5,15 +5,20 @@ import * as serviceWorker from './serviceWorker';
 import Router from './components/Router/Router';
 import { BrowserRouter } from 'react-router-dom';
 
-import { StylesProvider } from '@material-ui/core/styles'
+import { StylesProvider } from '@material-ui/core/styles';
+
+import { Provider } from 'react-redux';
+import initStore from './store';
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <StylesProvider>
-        <Router />
-    </StylesProvider>
-  </BrowserRouter>,
+  <Provider store={ initStore() }>
+    <BrowserRouter>
+      <StylesProvider>
+          <Router />
+      </StylesProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
