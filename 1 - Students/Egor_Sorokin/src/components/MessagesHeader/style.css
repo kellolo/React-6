@@ -1,19 +1,21 @@
 h3 {
     font-size: 22px;
+    line-height: 30px;
+    text-align: center;
 }
 
-.messagesHeader {
+.messages-header {
     height: 80px;
     padding: 25px;
     border-bottom: 1px solid #cc6c6c7a;
 }
 
-.currAvatar {
+.curr-avatar {
     height: 30px;
     width: 30px;
 }
 
-#searchInput {
+#search-input {
     height: 30px;
     border-radius: 5px;
     border: 0.5px solid #cc6c6c7a;
@@ -21,10 +23,19 @@ h3 {
     padding: 5px 10px;
 }
 
-.seacrhIcon {
+.seacrh-icon {
     display: block;
     height: 30px;
     width: 20px;
     line-height: 30px;
     color: #d85757
+}
+
+.profile-link {
+    font-size: 30px;
+    line-height: 30px;
+    color: lightcoral;
+    margin-top: -5px;
+    border-left: 0.5px solid #cc6c6c7a;
+    padding-left: 10px;
 }

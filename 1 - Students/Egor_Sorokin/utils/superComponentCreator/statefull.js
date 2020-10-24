@@ -3,38 +3,38 @@ const path = require('path');
 
 module.exports = componentName => {
     const content = `
-        import './style.css'
+import './style.css'
 
-        import React, { Component, Fragment } from 'react'
-                
-        export default class ${componentName} extends Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-
-                }
-            }
-
-            componentDidMount() {
-
-            }
+import React, { Component, Fragment } from 'react'
         
-            componentDidUpdate() {
+export default class ${componentName} extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
 
-            }
-        
-            render() {
-                let { some } = this.props;
-
-                return(
-                    <Fragment>
-                        <div className="${componentName}">
-
-                        </div>
-                    </Fragment>
-                )
-            }
         }
+    }
+
+    componentDidMount() {
+
+    }
+
+    componentDidUpdate() {
+
+    }
+
+    render() {
+        let { some } = this.props;
+
+        return(
+            <Fragment>
+                <div className="${componentName}">
+
+                </div>
+            </Fragment>
+        )
+    }
+}
     `;
 
     fs.writeFileSync (

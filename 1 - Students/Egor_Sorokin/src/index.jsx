@@ -6,6 +6,12 @@ import './style.css'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
+import { BrowserRouter } from 'react-router-dom'
+import Router from './router.jsx'
+
+import { Provider } from 'react-redux'
+import initStore from './store'
+
 const theme = createMuiTheme({
     palette: {
       primary: {
@@ -55,13 +61,15 @@ const theme = createMuiTheme({
 
 const app = document.querySelector('#app');
 
-import MainApp from './components/MainApp/MainApp.jsx'
-
 ReactDom.render(
-    <ThemeProvider theme={theme}>
-        <div className="container">
-            <MainApp author = 'Egor'/>
-        </div>
-    </ThemeProvider>,
+    <Provider store = { initStore() }>
+      <ThemeProvider theme={theme}>
+          <div className="container">
+              <BrowserRouter>
+                <Router />
+              </BrowserRouter>
+          </div>
+      </ThemeProvider>
+    </Provider>,
     app
 )
