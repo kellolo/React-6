@@ -1,0 +1,9 @@
+h1 {
+    margin: 0;
+    padding: 20px;
+}
+.header {
+    margin-right: 500px;
+    border-top: 35px solid #215c5a;
+    color: #215c5a;
+}

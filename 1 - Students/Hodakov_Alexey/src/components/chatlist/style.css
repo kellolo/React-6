@@ -1,0 +1,27 @@
+.chat__list{
+    background-color: #215c5a;
+    margin: 15px 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 20px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+ ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 30px;
+ }
+
+ a {
+     text-decoration: none;
+     color: #fff;
+     transition: transform 0.3s;
+ }
+ a:hover {
+     text-decoration: none;
+     opacity: 0.8;
+     color: #fff;
+     transform: scale(1.2);
+    transition: transform 0.3s;
+ }
