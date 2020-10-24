@@ -1,8 +1,9 @@
-import './header.css'
+import './style.css'
 import React from 'react'
 
-export default ()=>{
-    return <header>
-        <h1>Домашнее задание №1</h1>
-    </header>
+export default (props) => {
+    let { chatName } = props;
+    return <div className="header">
+        <h1> { props.chatName ? props.chatName : 'Welcome' } </h1>
+    </div>
 }

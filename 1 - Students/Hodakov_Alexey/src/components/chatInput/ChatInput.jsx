@@ -1,4 +1,4 @@
-import "./chatInput.css";
+import "./style.css";
 import React from "react";
 
 export default class ChatInput extends React.Component {
@@ -19,6 +19,7 @@ export default class ChatInput extends React.Component {
     this.props.send(this.state.text);
     this.setState({ text: "" });
   };
+  
   sendKey = (event) => {
     if (event.keyCode === 13) {
       this.props.send(this.state.text);
