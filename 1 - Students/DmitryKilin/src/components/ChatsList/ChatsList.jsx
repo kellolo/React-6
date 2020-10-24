@@ -28,7 +28,7 @@ class ChatsList extends Component {
         return (
             <div className="chat-list">
                 <header>
-                        <Avatar alt="X" src="./src/img/tarantino.jpg"></Avatar>
+                        <Avatar alt="X" src="./src/img/tarantino.jpg"/>
                     <h2 className={"chat-list__header"}>Lets chat:</h2>
                 </header>
 
