@@ -51,15 +51,6 @@ function SimpleDialog(props) {
               <ListItemText primary={user.name} />
             </ListItem>
           ))}
-  
-          {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItem> */}
         </List>
       </Dialog>
     );
