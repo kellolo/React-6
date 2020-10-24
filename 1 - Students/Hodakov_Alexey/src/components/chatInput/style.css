@@ -1,0 +1,42 @@
+.message__input {
+    border-top: 1px solid #215c5a;
+    padding: 15px 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #215c5a;
+    margin-bottom: 15px;
+    border-bottom-right-radius: 20px;
+  }
+  .message__input__field {
+    width: 50%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+    outline: none;
+    border: 1px;
+    color: #2f8481;
+  }
+  .message__input__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2f8481;
+    color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    outline: none;
+    border: 1px;
+    padding: 0 10px;
+    transition: background-color 0.3s ;
+  }
+  .message__input__btn:hover {
+      background-color: #2b6d6b;
+      transition: background-color 0.3s ;
+  }
+  .message__input__btn:active {
+      background-color: #2f8481;
+  }
+  .message__input__btn:focus {
+      outline: none;
+  }

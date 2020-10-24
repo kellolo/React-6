@@ -1,11 +1,12 @@
 {
-  "name": "react-hodakov",
+  "name": "1",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "built": "webpack --mode development"
+    "cr-full": "node utils/superComponentCreator/ --n",
+    "cr-less": "node utils/superComponentCreator/ -s --n"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +17,12 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.2.1",
     "css-loader": "^4.3.0",
+    "file-loader": "^6.1.1",
     "html-webpack-plugin": "^4.5.0",
-    "mini-css-extract-plugin": "^1.0.0",
+    "mini-css-extract-plugin": "^0.12.0",
+    "minimist": "^1.2.5",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
@@ -31,6 +35,10 @@
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-addons-update": "^15.6.2",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5"
   }
 }
