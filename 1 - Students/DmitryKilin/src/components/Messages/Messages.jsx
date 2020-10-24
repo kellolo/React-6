@@ -5,35 +5,35 @@ import ChatInput from '../ChatInput/ChatInput.jsx'
 import {CurrentUser} from '../../moduls/User/User'
 import {chatBot} from "../../moduls/Bot/Bot"
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from "redux";
+
 class Messages extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            messages: []
-        }
     }
 
     sendMessage = (message) => {
-        let { messages } = this.state;
-        this.setState({
-            messages: [...messages, message],
-        })
+        // let { messages } = this.state;
+        // this.setState({
+        //     messages: [...messages, message],
+        // })
     }
 
-    componentDidUpdate() {
-        let messages = this.state.messages
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let messages = this.props.messagesFromRedux
         let lastMessage = messages[messages.length-1]
 
-        if (lastMessage.sender === CurrentUser.name) {
+        if (lastMessage && lastMessage.sender === CurrentUser.name) {
             let answer = chatBot.getAnswer(lastMessage)
             setTimeout(() => {this.sendMessage(answer)}, 300)
         }
     }
 
     render() {
-        let { messages } = this.state;
-        let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>).reverse();
 
+        let messages = this.props.messagesFromRedux;
+        let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>).reverse();
         return (
             <div className="messages-container">
 
@@ -47,4 +47,9 @@ class Messages extends Component {
     }
 }
 
-export default Messages
+const mapStateToProps = ({messagesReducer}) => ({
+    messagesFromRedux: messagesReducer.messages
+});
+const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages)
