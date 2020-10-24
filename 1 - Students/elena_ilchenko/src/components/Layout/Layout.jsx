@@ -10,7 +10,7 @@ export default class Layout extends Component {
         super(props);
         this.state = {
             contactList: ['Alexandra', 'Michael', 'Ivan'],
-            selectedChat: 1,
+            // selectedChat: 1,
         }
     }
 
@@ -34,8 +34,8 @@ export default class Layout extends Component {
                 <div className="msgWrapper">
                     <ChatList 
                         contacts={this.state.contactList}
-                        onSelect={this.selectHandler}
-                        selected={this.state.selectedChat}
+                        // onSelect={this.selectHandler}
+                        // selected={this.state.selectedChat}
                         // addChat={this.addChat}
                         />
                     <Messages 

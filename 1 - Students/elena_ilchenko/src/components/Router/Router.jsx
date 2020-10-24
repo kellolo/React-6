@@ -24,7 +24,7 @@ class Router extends Component {
                { this.props.chatsFromRedux.map((chat, i) => <Route 
                         exact path={`/chat/${chat.chatId}/`}
                         render={() => <Layout chatId={chat.chatId} chatName={chat.chatName} />}
-                        // key={chat.chatId}
+                        key={chat.chatId}
                         // width 'key' doesnt work setState in selectHandler
                     />
                     )
