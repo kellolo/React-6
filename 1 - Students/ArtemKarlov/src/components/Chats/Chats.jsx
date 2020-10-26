@@ -5,35 +5,6 @@ import ChatAdd from '../ChatAdd/ChatAdd.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
 
 
-// ===========================================================================
-// // временные контанты (наверное нужно будет передавать в props) 
-// const contacts = [
-//     {
-//         id: 'ccontact_1',
-//         name: 'John',
-//         avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-//         citation: 'Hi our deadlines are...',
-//     },
-//     {
-//         id: 'contact_2',
-//         name: 'Smith',
-//         avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-//         citation: 'You hear that, Mr. Anderson?',
-//     },
-//     {
-//         id: 'contact_3',
-//         name: 'Morpheus',
-//         avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-//         citation: 'Everything begins with choice.',
-//     },
-    
-// ];
-
-// const contactList = contacts.map((contact) => contact.name);
-// ==============================================================================
-
-
-
 export default class Chats extends React.Component {
     constructor(props) {
         super(props);
