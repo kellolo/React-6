@@ -1,8 +1,8 @@
-import './style.css'
-import React, { Component } from 'react'
+import './style.css';
+import React, { Component } from 'react';
 
-import Message from '../Message/Message.jsx'
-import ChatInput from '../ChatInput/ChatInput.jsx'
+import Message from '../Message/Message.jsx';
+import ChatInput from '../ChatInput/ChatInput.jsx';
 
 export default class Messages extends Component {
     constructor(props) {

@@ -1,13 +1,14 @@
-import './style.css'
+import './style.css';
 
-import React, { Component, Fragment } from 'react'
-import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+import React, { Component, Fragment } from 'react';
+import ChatDialog from '../ChatDialog/ChatDialog.jsx';
 
-import { Link } from 'react-router-dom'  
-/* import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem'; */
+import { Link } from 'react-router-dom'; 
 
- export default class ChatList extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+ class ChatList extends Component {
         constructor(props) {
              super(props);
              this.state = {
@@ -24,9 +25,9 @@ import ListItem from '@material-ui/core/ListItem'; */
             }
         
             render() {
-                let { chats } = this.props;
-                let chatsArr = chats.map(ch => <li key = { ch._id }>
-                                                    <Link to = { `/chat/${ch._id}` }>{ch.title}</Link>
+                let { chatsFromRedux } = this.props;
+                let chatsArr = chatsFromRedux.map(ch => <li key = { ch.id }>
+                                                    <Link to = { `/chat/${ch.id}` }>{ch.title}</Link>
                                                 </li>) 
                 return (
                     <Fragment>
@@ -45,3 +46,10 @@ import ListItem from '@material-ui/core/ListItem'; */
                 )
     }
 }
+const mapStateToProps = ({ chatsReducer }) => ({
+    chatsFromRedux: chatsReducer.chats
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

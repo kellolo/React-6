@@ -1,5 +1,5 @@
-import './style.css'
-import React, { Component, Fragment } from 'react'
+import './style.css';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';

@@ -8,12 +8,17 @@ import './style.css'
 import { BrowserRouter } from 'react-router-dom'
 import Router from './router.jsx'
 
+import { Provider } from 'react-redux';
+import initStore from './store';
+
 const app = document.querySelector('#app');
 
 ReactDom.render(
-    <BrowserRouter>
-        <Router />
-    </BrowserRouter>
+    <Provider store = { initStore() }>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
+    </Provider>        
     ,
     app
 )
