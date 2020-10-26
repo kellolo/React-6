@@ -6,14 +6,12 @@ import Chats from '../Chats/Chats.jsx';
 
 
 export default (props) => {
-    const {accountName, accauntAvatarUrl} = props;
-    const contactList = ["Ivanov", "Petrov", "Sidorov"];
+    const {account} = props;
     return (
         <Fragment>
             <div className="layout__account-chatlist">
-                <Account userName={accountName} avatarUrl={accauntAvatarUrl} />
-                <Chats />
-                
+                <Account userName={account.name} avatarUrl={account.avatarUrl} />
+                <Chats contacts={account.contacts} />                
             </div>
         </Fragment>
     );

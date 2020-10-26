@@ -1,26 +1,64 @@
 import './style.css';
 import React, { Fragment } from 'react';
 
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+
+const useStyles = makeStyles(() => ({
+    listItemText: {
+        maxHeight: '60px',
+        overflow: 'hidden',
+    },
+}));
+
+const SelectedListItem = withStyles({
+    '@global': {
+        '.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+            backgroundColor: 'rgba(37, 140, 96, 0.4)',
+        },
+        '.MuiListItem-root.Mui-selected:hover .MuiTypography-colorTextSecondary': {
+            color: '#808080',
+        },
+        '.MuiListItem-button:hover': {
+            backgroundColor: '#258C60',
+        },
+        '.MuiListItem-button:hover .MuiTypography-colorTextSecondary': {
+            color: '#1C1C1C',
+        }
+    },
+
+})(() => null);
+
+
 
 export default (props) => {
-    const {chat} = props;
-    // const chat = {
-    //     id: ch_1,
-    //     title: "Ivanov",
-    //     avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-    //      status: "Hi our deadlines are...",
-    // }
+    const {index, selectedIndex, chat, onClick} = props;
+    const classes = useStyles();
+    
+    const handleListItemClick = (event, index) => {
+        onClick(event, index);
+      };
+
     return (
         <Fragment>
-            <li className="chats-list__item chats-list-item" key={chat.id}>
-                <div className="chats-list-item__img img-container ">
-                    <img src={chat.avatarUrl} alt={chat.title} className="img-container__img"/>
-                </div>
-                <div className="chats-list-item__details">
-                    <h2 className="chats-list-item__name">{chat.title}</h2>
-                    <p className="chats-list-item__label">{chat.status}</p>
-                </div>
-            </li> 
+            <SelectedListItem/>
+            <ListItem  
+                button 
+                alignItems="flex-start"
+                selected={selectedIndex === index}
+                onClick={(event) => handleListItemClick(event, index)}
+            >
+                <ListItemAvatar>
+                    <Avatar alt={chat.title} src={chat.avatarUrl} />
+                </ListItemAvatar>
+                <ListItemText className={classes.listItemText}
+                    primary={chat.title}
+                    secondary={chat.status}
+                />
+            </ListItem>
         </Fragment>
     );
 }

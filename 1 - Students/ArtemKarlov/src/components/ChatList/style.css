@@ -3,6 +3,6 @@
 
 } 
 .chats-list {
-    padding-right: 30px;
+    /* padding-right: 30px; */
     overflow-y: auto;
 }

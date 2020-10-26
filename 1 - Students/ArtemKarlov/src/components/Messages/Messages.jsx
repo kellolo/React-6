@@ -34,7 +34,11 @@ export default class Messages extends React.Component {
             setTimeout(() => {
                 this.addMessage(botMessage, botName);
             }, 1000);
-        }        
+        } 
+        
+        const MessageElements = document.querySelectorAll(".chat-dialog__message");
+        const lastMessageElement = MessageElements[MessageElements.length-1];
+        lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     }
 
     render() {
@@ -43,7 +47,7 @@ export default class Messages extends React.Component {
 
         return (
             <Fragment>
-                <div class="chat__dialog chat-dialog">
+                <div className="chat__dialog chat-dialog">
                     { messagesArray }                    
                 </div> 
                 <ChatInput sendMessage = { this.addMessage } /> 
