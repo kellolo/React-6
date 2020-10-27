@@ -19,6 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import paths from "path";
+// import logo from "../../img/tarantino.jpg"
 
 
 const useStyles = makeStyles({
@@ -90,7 +91,8 @@ function SimpleDialogDemo(props) {
         setOpen(false);
         // setSelectedValue(value);
     };
-    let avatarPath = paths.join('src','img', props.user.avatar);
+
+    let avatarPath = paths.join( 'src','img', props.user.avatar);
 
     return (
         <div>
