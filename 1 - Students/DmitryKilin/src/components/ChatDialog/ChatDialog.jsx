@@ -58,12 +58,12 @@ function SimpleDialog(props) {
                 </DialogTitle>
                 <List className={classes.list}>
                     {contacts.map((contact) => (
-                    <ListItem button onClick={() => handleListItemClick(contact.email)} key={contact.email}>
+                    <ListItem button onClick={() => handleListItemClick(contact.name)} key={contact.email}>
                         <ListItemAvatar>
                         <Avatar alt="X" src={paths.join('','src','img', contact.avatar)}>
                         </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary={contact.email} className = { classes['test-class'] } />
+                        <ListItemText primary={contact.name} className = { classes['test-class'] } />
                     </ListItem>
                     ))}
 
