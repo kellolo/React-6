@@ -6,11 +6,12 @@ import './style.css'
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-import { BrowserRouter } from 'react-router-dom'
+// import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
 import Router from './router.jsx'
 
 import { Provider } from 'react-redux'
-import initStore from './store'
+import { initStore, history } from './store'
 
 const theme = createMuiTheme({
     palette: {
@@ -65,9 +66,9 @@ ReactDom.render(
     <Provider store = { initStore() }>
       <ThemeProvider theme={theme}>
           <div className="container">
-              <BrowserRouter>
+              <ConnectedRouter history = { history }>
                 <Router />
-              </BrowserRouter>
+              </ConnectedRouter>
           </div>
       </ThemeProvider>
     </Provider>,

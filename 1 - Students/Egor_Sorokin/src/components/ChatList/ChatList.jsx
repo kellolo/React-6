@@ -1,4 +1,5 @@
 import React from 'react';
+import { push } from 'connected-react-router'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
 import List from '@material-ui/core/List';
@@ -7,6 +8,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import UserSelect from '../UserSelect/UserSelect.jsx'
 import './style.css'
@@ -15,7 +18,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { addChat } from '../../store/actions/chat.actions.js'
+import { deleteChat } from '../../store/actions/chat.actions.js'
 import { messagesInit } from '../../store/actions/messages.actions.js'
+import { messagesClear } from '../../store/actions/messages.actions.js'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -30,6 +35,17 @@ const useStyles = makeStyles(() => ({
 }));
 
 function ChatList(props) {
+
+    let callDeleteChat = (e) => {
+        e.stopPropagation();
+        e.preventDefault()
+        let chatIdToDelete = e.nativeEvent.path.find(item => item.className == "delete-chat-button").dataset.chatItemId
+        props.deleteChat(chatIdToDelete);
+        props.messagesClear(chatIdToDelete)
+        if (props.activeIndex == chatIdToDelete) {
+            props.push('/')
+        }
+    }
 
     const classes = useStyles();
 
@@ -82,11 +98,12 @@ function ChatList(props) {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={ conversationElement.name } secondary= { lastMessage } />
+                    <div className = "delete-chat-button" data-chat-item-id = { conversationElement.id } onClick = { callDeleteChat } ><IconButton aria-label="delete"><DeleteIcon /></IconButton></div>
                 </ListItem>
             </Link>
         )
     })
-  
+
     return (
     <List className={classes.root}> 
         { conversationsRender }
@@ -101,6 +118,6 @@ const mapStateToProps = ({ chatsReducer, usersReducer, messagesReducer }) => ({
     users: usersReducer.users,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addChat, messagesInit }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ push, addChat, deleteChat, messagesInit, messagesClear }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

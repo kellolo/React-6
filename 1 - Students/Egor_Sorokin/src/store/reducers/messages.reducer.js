@@ -1,6 +1,7 @@
 import update from 'react-addons-update'
 import { SEND_MESSAGE } from "../actions/messages.actions.js";
 import { MESSAGES_INIT } from "../actions/messages.actions.js";
+import { MESSAGES_CLEAR } from "../actions/messages.actions.js";
 
 const storeMessages = {
     conversations: {
@@ -10,11 +11,11 @@ const storeMessages = {
         },
         1: {
             userId: 1,
-            messages: [{sender: 1, text: 'Hello! I am Bot2'}]
+            messages: [{sender: 1, text: 'Hello!'}]
         },
         2: {
             userId: 2,
-            messages: [{sender: 2, text: 'Hello! I am Bot3'}]
+            messages: [{sender: 2, text: 'Hello!'}]
         },
     },
 }
@@ -48,6 +49,11 @@ export default (store = storeMessages, action) => {
                     messages: [],
                 } }}
             });;
+        }
+        case MESSAGES_CLEAR: {
+            store.conversations[action.id] = undefined;
+            store.conversations = JSON.parse(JSON.stringify(store.conversations));
+            return store;
         }
         default:
             return store;

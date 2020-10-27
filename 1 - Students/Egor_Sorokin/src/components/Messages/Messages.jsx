@@ -21,22 +21,7 @@ class Messages extends React.Component {
     }
 
     componentDidUpdate() {
-
-        setTimeout(() => {
-            let { conversations, author, users, activeId } = this.props;
-            let { userId, messages } = conversations[activeId];
-
-            const lastSender = messages[messages.length - 1].sender
-            let lastSenderName;
-        
-            if (lastSender == author) {
-                lastSenderName = users.find(item => item.id == lastSender).name;
-                this.addMessage(userId, 'Hello, ' + lastSenderName + '! Please, wait for respond...')
-            }
-        }, 1000);
-
         this.scrollDown();
-        
     }
 
     addMessage = (senderId, text) => {
