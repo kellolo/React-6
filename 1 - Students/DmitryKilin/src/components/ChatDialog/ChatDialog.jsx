@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
+import paths from "path";
 
 
 const useStyles = makeStyles({
@@ -59,7 +60,7 @@ function SimpleDialog(props) {
                     {contacts.map((contact) => (
                     <ListItem button onClick={() => handleListItemClick(contact.email)} key={contact.email}>
                         <ListItemAvatar>
-                        <Avatar alt="X" src={'/src/img/'+contact.avatar}>
+                        <Avatar alt="X" src={paths.join('','src','img', contact.avatar)}>
                         </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={contact.email} className = { classes['test-class'] } />

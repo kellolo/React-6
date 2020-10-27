@@ -21,6 +21,12 @@ export default class ChatInput extends Component {
         // }
     }
 
+    onKeyPressHandler = (e) => {
+        if (e.charCode === 13) {
+            this.send()
+        }
+    }
+
     send = () => {
         this.props.send({sender: CurrentUser.name, text: this.state.text}); //работает метод из родителя
         this.setState({ text: '' });
@@ -30,7 +36,7 @@ export default class ChatInput extends Component {
         let { text } = this.state;
         return (
             <div className="msg-input-group">
-                <textarea className="input-message" type="text" value = { text } onChange = { this.changeText }/>
+                <input className="input-message" type="text" value = { text } onChange = { this.changeText } onKeyPress={this.onKeyPressHandler}/>
                 <button className="button-send" onClick = { this.send }>Send</button>
             </div>
         )

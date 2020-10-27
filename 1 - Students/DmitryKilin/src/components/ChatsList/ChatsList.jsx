@@ -2,6 +2,7 @@ import './style.css'
 import paths from 'path'
 import React, { Component } from 'react'
 import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+import UserInfo from "../UserInfo/UserInfo.jsx";
 import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -28,7 +29,8 @@ class ChatsList extends Component {
         return (
             <div className="chat-list">
                 <header>
-                    <Avatar alt="X" src={avatarPath}/>
+                    {/*<Avatar alt="X" src={avatarPath}/>*/}
+                    <UserInfo/>
                     <h2 className={"chat-list__header"}>Lets chat:</h2>
                 </header>
 
