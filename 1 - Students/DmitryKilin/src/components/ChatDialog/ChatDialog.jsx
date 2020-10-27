@@ -19,7 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import paths from "path";
-
+import { newChat } from '../../store/actions/chats.actions.js'
 
 const useStyles = makeStyles({
     'test-class': {
@@ -92,7 +92,7 @@ function SimpleDialogDemo(props) {
 
     const contacts = [...props.contactsFromRedux]
 
-    const [selectedValue, setSelectedValue] = React.useState(contacts[1].email);
+    const [selectedValue, setSelectedValue] = React.useState(contacts[1].name);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -101,12 +101,11 @@ function SimpleDialogDemo(props) {
     const handleClose = (value) => {
         setOpen(false);
         setSelectedValue(value);
+        props.newChat(value)
     };
 
     return (
         <div>
-            <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-                <br />
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                 new chat
             </Button>
@@ -118,6 +117,6 @@ function SimpleDialogDemo(props) {
 const mapStateToProps = ({contactsReducer}) => ({
     contactsFromRedux: contactsReducer.contacts
 });
-const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+const mapDispatchToProps = dipatch => bindActionCreators({newChat}, dipatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleDialogDemo)
