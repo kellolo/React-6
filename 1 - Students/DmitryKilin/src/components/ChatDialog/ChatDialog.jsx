@@ -50,7 +50,6 @@ function SimpleDialog(props) {
     const handleListItemClick = (value) => {
         onClose(value);
     };
-    console.log(props)
     return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
                 <DialogTitle id="simple-dialog-title" className={classes.dialogTitle}>

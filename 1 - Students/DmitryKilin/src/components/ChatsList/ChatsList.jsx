@@ -1,4 +1,5 @@
 import './style.css'
+import paths from 'path'
 import React, { Component } from 'react'
 import ChatDialog from '../ChatDialog/ChatDialog.jsx'
 import {Link} from 'react-router-dom';
@@ -7,14 +8,11 @@ import Avatar from '@material-ui/core/Avatar';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import {makeStyles} from "@material-ui/core/styles";
+import userReducer from "../../store/reducers/user.reduser";
 
 class ChatsList extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     chats: this.props.chats.slice(),
-        //     activeChatId: this.props.activeChatId,
-        // }
     }
 
 
@@ -25,10 +23,12 @@ class ChatsList extends Component {
             }
         })
 
+        let avatarPath = paths.join('','src','img', this.props.user.avatar);
+
         return (
             <div className="chat-list">
                 <header>
-                        <Avatar alt="X" src="./src/img/tarantino.jpg"/>
+                    <Avatar alt="X" src={avatarPath}/>
                     <h2 className={"chat-list__header"}>Lets chat:</h2>
                 </header>
 
@@ -47,8 +47,8 @@ class ChatsList extends Component {
 }
 
 
-const mapStateToProps = ({chatsReducer}) => ({
-    chatsFromRedux: chatsReducer.chats
+const mapStateToProps = ({chatsReducer, userReducer} ) => ({
+    chatsFromRedux: chatsReducer.chats, user: userReducer
 });
 const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
 
