@@ -4,16 +4,16 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+// import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 // import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
+// import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 
 import {connect} from 'react-redux';
@@ -67,29 +67,6 @@ function ShowInfo(props) {
                 <Typography variant="body1" className={classes.typo}>{user.name}</Typography>
                 <Typography variant="body1" className={classes.typo}>{user.email}</Typography>
             </DialogTitle>
-
-
-
-            {/*<List className={classes.list}>*/}
-            {/*    {contacts.map((contact) => (*/}
-            {/*        <ListItem button onClick={() => handleListItemClick(contact.email)} key={contact.email}>*/}
-            {/*            <ListItemAvatar>*/}
-            {/*                <Avatar alt="X" src={'/src/img/'+contact.avatar}>*/}
-            {/*                </Avatar>*/}
-            {/*            </ListItemAvatar>*/}
-            {/*            <ListItemText primary={contact.email} className = { classes['test-class'] } />*/}
-            {/*        </ListItem>*/}
-            {/*    ))}*/}
-
-            {/*    <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>*/}
-            {/*        <ListItemAvatar>*/}
-            {/*            <Avatar>*/}
-            {/*                <AddIcon />*/}
-            {/*            </Avatar>*/}
-            {/*        </ListItemAvatar>*/}
-            {/*        <ListItemText primary="Add account" />*/}
-            {/*    </ListItem>*/}
-            {/*</List>*/}
         </Dialog>
     )
 }
@@ -104,9 +81,6 @@ function SimpleDialogDemo(props) {
 
     const [open, setOpen] = React.useState(false);
 
-    // const contacts = [...props.contactsFromRedux]
-
-    // const [selectedValue, setSelectedValue] = React.useState(contacts[1].email);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -121,7 +95,6 @@ function SimpleDialogDemo(props) {
 
     return (
         <div>
-            {/*<Typography variant="subtitle1">Selected: {selectedValue}</Typography>*/}
             <br />
                 <Avatar alt="X" src={avatarPath} onClick={handleClickOpen} />
             <ShowInfo  open={open} onClose={handleClose} user={props.user}/>
