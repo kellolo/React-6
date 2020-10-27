@@ -90,8 +90,7 @@ function SimpleDialogDemo(props) {
         setOpen(false);
         // setSelectedValue(value);
     };
-    console.log(__dirname)
-    let avatarPath = paths.join(__dirname,'src','img', props.user.avatar);
+    let avatarPath = paths.join('src','img', props.user.avatar);
 
     return (
         <div>

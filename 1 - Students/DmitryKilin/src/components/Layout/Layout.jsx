@@ -5,8 +5,6 @@
         import ChatsList from "../ChatsList/ChatsList.jsx";
         import Messages from "../Messages/Messages.jsx";
 
-        import { contacts } from '../../moduls/Contacts/Contacts'
-
         export default class Layout extends Component {
             constructor(props) {
                 super(props);
@@ -20,7 +18,7 @@
                 return (
                     <StylesProvider>
                         <div className="wrapper">
-                            <ChatsList contacts={contacts.emails()} activeChatId={activeChatId}/>
+                            <ChatsList  activeChatId={activeChatId}/>
                             <Messages />
                         </div>
                     </StylesProvider>
