@@ -24,7 +24,8 @@ export default class Layout extends Component {
                  
         return (
                 <StylesProvider>
-                    <div className="w-100 d-flex flex-column align-items-center">
+                    {/* <img className="img__background" src="/src/assets/imgs/back.jpg" alt=""/> */}
+                    <div className="w-100 d-flex flex-column align-items-center main-opacity">
                         <Header chatName={this.props.chatName} />
                         <div className="d-flex w-100 justify-content-center">
                             <ChatList contacts = { this.state.contacts } />

@@ -13,16 +13,20 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import PersonIcon from "@material-ui/icons/Person";
 import AddIcon from "@material-ui/icons/Add";
-import Typography from "@material-ui/core/Typography";
-import { blue } from "@material-ui/core/colors";
-
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import Typography from "@material-ui/core/Typography";
+// import { blue } from "@material-ui/core/colors";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addChat } from '../../store/actions/chats.actions.js'
 
 const useStyles = makeStyles({
+  "w-400px" : {
+    width: "400px"
+  },
   "contacts": {
     color: "#fff",
     backgroundColor: "#215c5a",
+    width: "400px",
   },
   "white-color": {
     color: "#fff",
@@ -39,7 +43,7 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles(); //className = { classes['white-color'] }
-  const { onClose, selectedValue, open, contacts } = props;
+  const { onClose, selectedValue, open, contacts} = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -47,6 +51,9 @@ function SimpleDialog(props) {
 
   const handleListItemClick = (value) => {
     onClose(value);
+  };
+  const handleListItemClickAdd = (value) => {
+    console.log('Будет добавление нового')
   };
 
   let contactsArray = contacts.map((cont) => (
@@ -67,12 +74,12 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle  className = { classes['contacts'] } id="simple-dialog-title">Контакты</DialogTitle>
-      <List>{contactsArray}</List>
+      <List className = { classes['w-400px'] }>{contactsArray}</List>
 
       <ListItem
         autoFocus
         button
-        onClick={() => handleListItemClick("addAccount")}
+        onClick={() => handleListItemClickAdd("addAccount")}
       >
         <ListItemAvatar>
           <Avatar className = { classes["burgundy-color"] }>
@@ -91,7 +98,7 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo(props) {
+function SimpleDialogDemo(props) {
   const classes = useStyles(); //className = { classes['white-color'] }
   const [open, setOpen] = React.useState(false);
   const { contacts } = props;
@@ -104,6 +111,7 @@ export default function SimpleDialogDemo(props) {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    props.addChat(value);
   };
 
   return (
@@ -122,3 +130,10 @@ export default function SimpleDialogDemo(props) {
     </div>
   );
 }
+const mapStateToProps = ({ chatsReducer, contactsReducer }) => ({
+  chatsFromRedux: chatsReducer.chats,
+  contactsFromRedux: contactsReducer.contacts
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleDialogDemo);
