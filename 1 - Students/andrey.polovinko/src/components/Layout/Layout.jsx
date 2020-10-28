@@ -1,6 +1,5 @@
 import './style.css'
 import React, {Component, Fragment} from 'react'
-import {StylesProvider, createGenerateClassName} from '@material-ui/core/styles'
 import Messages from '../Messages/Messages.jsx'
 import ChatList from '../ChatList/ChatList.jsx'
 import ChatDialog from "../ChatDialog/ChatDialog.jsx";
@@ -25,21 +24,21 @@ class Layout extends Component {
     render() {
 
         return (
-            <StylesProvider>
+
                 <div className="w-100 d-flex flex-column align-items-center">
                     <h1 className="text-primary">  { this.props.chatName ? this.props.chatName : 'Welcome' } </h1>
                     <div className="d-flex ">
                         <div className="mr-3">
                             <ChatList />
                             <div className="mt-5">
-                                <ChatDialog contacts={this.state.contacts}/>
+                                <ChatDialog  contacts={this.state.contacts}/>
                             </div>
                         </div>
                         <Messages />
                     </div>
                 </div>
 
-            </StylesProvider>
+
         )
     }
 }

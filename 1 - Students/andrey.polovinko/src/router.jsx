@@ -21,9 +21,7 @@ class Router extends Component {
                 <Switch>
                     <Route exact path="/" render = { () => <Layout setChats = { this.getChats }/> } />
 
-
                     { chatsSwitchesArr }
-
 
                 </Switch>
 
