@@ -4,16 +4,14 @@ import React, { Component } from 'react';
 import Message from '../Message/Message.jsx';
 import ChatInput from '../ChatInput/ChatInput.jsx';
 
-export default class Messages extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+class Messages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [
-                {sender: 'Bot', text: '...'},
-                {sender: 'Me', text: 'Some text 1'},
-                {sender: 'Me', text: 'Some text2'},
-                {sender: 'Bot', text: '...'},
-            ]
+          messages: [], 
         }
     }
 
@@ -29,7 +27,7 @@ export default class Messages extends Component {
     }
 
     componentDidUpdate() {
-        let { messages } = this.state;
+        let { messages } = this.props;
         if (messages[messages.length - 1].sender != 'Bot') {
             setTimeout(() => {
                 this.setState({
@@ -41,7 +39,7 @@ export default class Messages extends Component {
     }
 
     render() {
-        let { messages } = this.state;
+        let { messages } = this.props;
         let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>);
 
         return (
@@ -54,3 +52,11 @@ export default class Messages extends Component {
         )
     }
 }
+
+const mapStateToProps = ({ messagesReducer }) => ({
+    messages: messagesReducer.messages
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

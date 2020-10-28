@@ -10,13 +10,12 @@ export default class Layout extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: ['Petrovich', 'Alekseich', 'Vasilych'],
-           
+                      
         }
     }
     
     componentDidMount() {
-        // this.props.setChats(this.state.chats);
+       
     }
     
     componentDidUpdate() {
@@ -24,18 +23,14 @@ export default class Layout extends Component {
     }
 
     render() {
-       /*  let chat = this.state.chats.find(el => el._id == this.props.chatId); */
-        /* let chatName = chat ? chat.title : 'Welcome'; */
-        
+               
         return (
                 <StylesProvider>
                     <div className="layout">
-                  
-                        <Header />
-                        <h1> { this.props.chatName ? this.props.chatName : 'Welcome' } </h1> 
+                        <Header chatName={this.props.chatName} />
                         <div className="wrapper">
                             <ChatList contacts = { this.state.contacts } />
-                            <Messages />
+                            <Messages chatName={this.props.chatName} />
                         </div>
                     </div>
                     
