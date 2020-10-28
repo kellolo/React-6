@@ -13,7 +13,6 @@ class Router extends Component {
 
   render() {
     let { chatsFromRedux } = this.props;
-    
     let chatsSwitchesArr = chatsFromRedux.map((ch) => (
       <Route
         exact

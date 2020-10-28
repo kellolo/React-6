@@ -5,19 +5,19 @@ import { object } from "prop-types";
 const storeChats = {
   chats: [
     {
-      id: "1",
+      id: 'chat_1',
       contact: "Larry",
     },
     {
-      id: "2",
+      id: "chat_2",
       contact: "Ваня",
     },
     {
-      id: "3",
+      id: "chat_3",
       contact: "Вероника",
     },
     {
-      id: "4",
+      id: "chat_4",
       contact: "Грузин",
     },
   ],
@@ -27,9 +27,12 @@ export default (store = storeChats, action) => {
   switch (action.type) {
     case ADD_CHAT: {
       let { contact } = action;
-      let chatId = Object.keys(store.chats).length + 2;
-      let newChat = {chatId, contact}
-      return update(store, { chats: { $push: [newChat] } });
+      let chekToAdd = store.chats.some( elem => contact === elem.contact )
+      if (!chekToAdd){
+        let id = 'chat_'.concat(String(store.chats.length+1));
+        let newChat = {id, contact}
+        return update(store, { chats: { $push: [newChat] } });
+       }
     }
     default:
       return store;
