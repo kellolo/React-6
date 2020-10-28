@@ -1,10 +1,15 @@
 .Layout {
     width: 70%;
-    margin: 40px auto;
+    padding: 40px;
+    margin: 0 auto;
+}
+.main {
+    background-image: url('../../img/main_bg.jpg');
 }
 .msgWrapper {
     width: 100%;
-    height: 400px;
+    height: calc(100vh - 200px);
+    /* height: 100%; */
     display: flex;
     justify-content: space-between;
 }
