@@ -16,9 +16,11 @@ export default class Messages extends React.Component {
 
     addMessage = (message, sender = 'Me') => {
         let {messages} = this.state;
-        this.setState({
-            messages: [...messages, {sender: sender, text: message}],
-        });
+        if (message.trim() !== '') {
+            this.setState({
+                messages: [...messages, {sender: sender, text: message}],
+            });
+        }
     }
 
     componentDidMount() {
