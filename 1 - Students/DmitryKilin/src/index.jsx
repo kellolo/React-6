@@ -6,11 +6,14 @@ import './layout/css/style.css'
 
 import Layout from "./components/Layout/Layout.jsx";
 import { StylesProvider } from '@material-ui/core/styles'
-import {BrowserRouter} from "react-router-dom";
+// import {BrowserRouter} from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+
+
 import Router from "./router.jsx";
 
 import { Provider } from 'react-redux';
-import initStore from './store';
+import {initStore, history} from './store';
 
 const app = document.querySelector('#app');
 
@@ -22,9 +25,9 @@ const app = document.querySelector('#app');
 
 ReactDom.render(
     <Provider store = { initStore() }>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <Router></Router>
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>,
     app
 )

@@ -8,16 +8,18 @@ import {chatBot} from "../../moduls/Bot/Bot"
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 
+import {sendMessage} from '../../store/actions/messages.actions.js'
+
 class Messages extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+
+        }
     }
 
-    sendMessage = (message) => {
-        // let { messages } = this.state;
-        // this.setState({
-        //     messages: [...messages, message],
-        // })
+    send = (message) => {
+        this.props.sendMessage(message)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -37,7 +39,7 @@ class Messages extends Component {
         return (
             <div className="messages-container">
 
-                <ChatInput send = { this.sendMessage } />
+                <ChatInput send = { this.send } />
                     <div className="msg-wrap">
                         { messagesArray }
                     </div>
@@ -50,6 +52,6 @@ class Messages extends Component {
 const mapStateToProps = ({messagesReducer}) => ({
     messagesFromRedux: messagesReducer.messages
 });
-const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+const mapDispatchToProps = dipatch => bindActionCreators({ sendMessage }, dipatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages)

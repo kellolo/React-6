@@ -1,3 +1,7 @@
+import update from 'react-addons-update';
+import { SEND_MSG } from '../actions/messages.actions.js';
+
+
 const storeMessages = {
     messages: [
         { text: "А знаешь, как в Париже называют четвертьфунтовый чизбургер?", sender: 'Винсент', id: 'mes_1'},
@@ -18,6 +22,11 @@ const storeMessages = {
 
 export default (store = storeMessages, action) => {
     switch (action.type) {
+        case SEND_MSG: {
+            let {text, sender} = action.message;
+            let newMessage = {text, sender, id: 'mes_new'}
+            return update(store, { messages: { $push: [ newMessage ] } })
+        }
         default:
             return store;
     }
