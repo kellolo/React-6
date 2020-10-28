@@ -1,3 +1,5 @@
+import { SEND_CHATS } from '../actions/chats.action.js';
+
 const storeChats = {
     chats: [
         {
@@ -21,6 +23,11 @@ const storeChats = {
 
 export default (store = storeChats, action) => {
     switch(action.type) {
+        case SEND_CHATS: {
+            let { id, title } = action;
+            let newChats = { id, title };
+            return update(store, { chats: { $push: [ newChats ] } })
+        }
         default:
             return store;
     }

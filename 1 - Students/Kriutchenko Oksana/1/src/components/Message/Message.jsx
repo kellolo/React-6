@@ -6,12 +6,12 @@ export default props => {
 
     return (
        
-      <div className="msg" style={ { alignSelf: props === 'Me' ?  'flex-start' : 'flex-end' } }>
+      <div className="msg" style={ { alignSelf: sender === 'Me' ?  'flex-start' : 'flex-end' } }>
             <strong>{ sender }</strong>
 
             <p>{ text }</p>
        
         </div> 
-   
+       
     )
 }
