@@ -21,22 +21,7 @@ class Messages extends React.Component {
     }
 
     componentDidUpdate() {
-
-        setTimeout(() => {
-            let { conversations, author, users, activeId } = this.props;
-            let { userId, messages } = conversations[activeId];
-
-            const lastSender = messages[messages.length - 1].sender
-            let lastSenderName;
-        
-            if (lastSender == author) {
-                lastSenderName = users.find(item => item.id == lastSender).name;
-                this.addMessage(userId, 'Hello, ' + lastSenderName + '! Please, wait for respond...')
-            }
-        }, 1000);
-
         this.scrollDown();
-        
     }
 
     addMessage = (senderId, text) => {
@@ -65,9 +50,11 @@ class Messages extends React.Component {
         }
         )
 
+        let activePosition = chats.findIndex(item => item.id == activeId)
+
         return(
             <div className="messages-container col-sm-8">
-                <MessagesHeader currConversationName={ chats[activeId].name } avatarAddress={ chats[activeId].avatar } myAvatar = { authorAvatar }/>
+                <MessagesHeader currConversationName={ chats[activePosition].name } avatarAddress={ chats[activePosition].avatar } myAvatar = { authorAvatar }/>
                 <div className="messages-inner-container">
                     { msgsRender }
                     <div className="scroll-pointer" ref={ item => this.scrollPointer = item }></div>

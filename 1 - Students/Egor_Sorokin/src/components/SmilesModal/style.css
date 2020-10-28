@@ -1,0 +1,15 @@
+.smiles-list {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.smiles-list-item {
+    padding: 5px;
+    width: 55px;
+    text-align: center;
+}
+
+.smiles-list-item:hover {
+    outline: 0.5px solid #666666;
+}
