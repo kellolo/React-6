@@ -42,7 +42,7 @@ export default (store = storeMessages, action) => {
             }
         }
         case MESSAGES_INIT: {
-            const chatId = Object.keys(store.conversations).length;
+            const chatId = Number(Object.keys(store.conversations)[Object.keys(store.conversations).length-1])+1;
             return update(store, {
                 conversations: { $merge: { [chatId]: {
                     userId: action.userId,

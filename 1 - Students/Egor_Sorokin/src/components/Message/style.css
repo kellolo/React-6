@@ -21,6 +21,10 @@
     background-color: #ffebeb;
 }
 
+.message img {
+    max-height: 26px;
+} 
+
 .myMessage strong {
     padding-right: 15px;
     float: right;

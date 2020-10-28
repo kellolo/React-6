@@ -88,6 +88,9 @@ function ChatList(props) {
         }
 
         let lastMessage = lastMessages.find(item => item.id == conversationElement.id).lastMessage;
+        let regex = /(<img[^<]* alt=")(:[A-Za-z0-9]*:)("[^<]*>)/g
+        lastMessage = lastMessage.replace(regex, '$2')
+        lastMessage = lastMessage.replace(/&nbsp;/g, ' ')
 
         return(
             <Link to={'/chat/' + conversationElement.id + '/' } key={conversationElement.id}>
