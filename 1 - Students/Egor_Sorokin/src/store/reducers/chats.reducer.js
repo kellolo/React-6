@@ -1,5 +1,5 @@
 import update from 'react-addons-update'
-import { ADD_CHAT } from "../actions/chat.actions.js";
+import { ADD_CHAT, DELETE_CHAT } from "../actions/chat.actions.js";
 
 const storeChats = {
     chats: [
@@ -12,19 +12,20 @@ const storeChats = {
         {
             id: 1,
             userId: '1',
-            name: 'Bot2',
+            name: 'User',
             avatar: 'https://via.placeholder.com/70/cccc55',
         },
         {
             id: 2,
             userId: '2',
-            name: 'Bot3',
+            name: 'User2',
             avatar: 'https://via.placeholder.com/70/55cc55',
         }
     ]
 }
 
 export default (store = storeChats, action) => {
+    // console.log(store)
     switch (action.type) {
         case ADD_CHAT: {
             return update(store, {
@@ -36,6 +37,17 @@ export default (store = storeChats, action) => {
                             avatar: action.avatar,
                         }]}
             });
+        }
+        case DELETE_CHAT: {
+            let itemToDelete = store.chats.findIndex(item => item.id == action.id)
+            let newChats = store.chats.slice();
+            newChats.splice(itemToDelete, 1)
+            return update(store, {
+                chats: 
+                        {
+                            $set: newChats
+                        }
+            })
         }
         default:
             return store;

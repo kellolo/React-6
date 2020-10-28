@@ -7,22 +7,22 @@ const storeUsers = {
         },
         {
             id: 1,
-            name: 'Bot2',
+            name: 'User',
             avatar: 'https://via.placeholder.com/70/cccc55',
         },
         {
             id: 2,
-            name: 'Bot3',
+            name: 'User2',
             avatar: 'https://via.placeholder.com/70/55cc55',
         },
         {
             id: 3,
-            name: 'Bot4',
+            name: 'User3',
             avatar: 'https://via.placeholder.com/70/555555',
         },
         {
             id: 4,
-            name: 'Bot5',
+            name: 'User4',
             avatar: 'https://via.placeholder.com/70/cccccc',
         },
         {

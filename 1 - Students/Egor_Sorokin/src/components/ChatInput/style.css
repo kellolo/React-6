@@ -1,6 +1,6 @@
-.input-text-box {
+#input-text-box {
     height: 40px;
-    width: calc(100% - 45px);
+    width: calc(100% - 95px);
     border-radius: 5px;
     border: 0.5px solid #cc6c6c7a;
     outline: none;
@@ -9,11 +9,14 @@
 
 .buttons-block {
     margin-left: 5px;
+    display: flex;
 }
 
 .chat-input-button {
     height: 40px;
     width: 40px;
+
+    margin-right: 5px;
 
     background-color:#cc6c6c3d;
     border: none;
@@ -21,6 +24,10 @@
     font-size: 26px;
     color: #d85757
 }
+
+/* .chat-input-button:last-child {
+    margin-right: 0px;
+} */
 
 .chat-input-button:hover {
     background-color:#9939393d;
