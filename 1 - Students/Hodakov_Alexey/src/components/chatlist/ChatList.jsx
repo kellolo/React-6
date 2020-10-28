@@ -2,6 +2,7 @@ import './style.css';
 import React, { Component, Fragment } from 'react';
 import ChatDialog from '../ChatDialog/ChatDialog.jsx';
 import { Link } from 'react-router-dom';
+import { addChat } from '../../store/actions/chats.actions.js'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,6 +14,10 @@ class ChatList extends Component {
             
         }
     }
+    addChat = (contact) => {
+        this.props.addChat(contact)
+        console.log('test')
+      };
     
     componentDidMount() {}
 
@@ -31,7 +36,7 @@ class ChatList extends Component {
                         { chatsArr }
                     </ul>
                     <div>
-                        <ChatDialog contacts = { contactsFromRedux }/>
+                        <ChatDialog contacts = { contactsFromRedux } addChat = { this.addChat } />
                     </div>
                 </div>
             </Fragment>
@@ -43,6 +48,6 @@ const mapStateToProps = ({ chatsReducer, contactsReducer }) => ({
     chatsFromRedux: chatsReducer.chats,
     contactsFromRedux: contactsReducer.contacts
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

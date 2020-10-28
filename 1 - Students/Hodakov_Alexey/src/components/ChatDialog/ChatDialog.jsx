@@ -13,11 +13,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import PersonIcon from "@material-ui/icons/Person";
 import AddIcon from "@material-ui/icons/Add";
-import Typography from "@material-ui/core/Typography";
-import { blue } from "@material-ui/core/colors";
-
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import Typography from "@material-ui/core/Typography";
+// import { blue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   "contacts": {
@@ -39,7 +36,7 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles(); //className = { classes['white-color'] }
-  const { onClose, selectedValue, open, contacts } = props;
+  const { onClose, selectedValue, open, contacts} = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -104,6 +101,7 @@ export default function SimpleDialogDemo(props) {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    console.log('test2')
   };
 
   return (

@@ -16,31 +16,14 @@ class Messages extends Component {
   }
 
   send = (txt) => {
-    let { messages } = this.state;
     this.props.sendMessage(txt, 'Me')
-    this.setState({
-      messages: [...messages, { sender: "Me", text: txt }],
-    });
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.scrollDown();
+  }
 
   componentDidUpdate() {
-    let { messages } = this.state;
-    let lastMessage = messages[messages.length - 1];
-
-    if (lastMessage.sender === "Me") {
-      setTimeout(
-        () =>
-          this.setState({
-            messages: [
-              ...this.state.messages,
-              { sender: "bot", text: "Интересно ..." },
-            ],
-          }),
-        1200
-      );
-    }
     this.scrollDown();
   }
   scrollDown = () => {
@@ -49,8 +32,8 @@ class Messages extends Component {
 
   render() {
     let { messagesFromRedux, chatName } = this.props;
-    //console.log(this.state.messages)
     let messagesArray = "";
+
     if (this.props.chatName != undefined) {
       messagesArray = messagesFromRedux.map((msg, i) => (
         <Message  sender = { msg.sender === 'Me' ? msg.sender : chatName } text={msg.text} key={i} />
