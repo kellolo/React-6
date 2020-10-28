@@ -15,7 +15,6 @@ const storeChats = {
 export default (store = storeChats, action) => {
     switch (action.type) {
         case NEW_CHAT: {
-            console.log(store.chats.length)
             let {contactName} = action;
             let newChat = {title: contactName, contactName: contactName, id: 'ch_'.concat(String(store.chats.length+1)), messageList: []}
             return update(store, {chats: { $push: [newChat] } })
