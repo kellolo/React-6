@@ -20,9 +20,13 @@ import { bindActionCreators } from 'redux';
 import { addChat } from '../../store/actions/chats.actions.js'
 
 const useStyles = makeStyles({
+  "w-400px" : {
+    width: "400px"
+  },
   "contacts": {
     color: "#fff",
     backgroundColor: "#215c5a",
+    width: "400px",
   },
   "white-color": {
     color: "#fff",
@@ -39,7 +43,7 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles(); //className = { classes['white-color'] }
-  const { onClose, selectedValue, open, contacts, addNewChat} = props;
+  const { onClose, selectedValue, open, contacts} = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -47,6 +51,9 @@ function SimpleDialog(props) {
 
   const handleListItemClick = (value) => {
     onClose(value);
+  };
+  const handleListItemClickAdd = (value) => {
+    console.log('Будет добавление нового')
   };
 
   let contactsArray = contacts.map((cont) => (
@@ -67,12 +74,12 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle  className = { classes['contacts'] } id="simple-dialog-title">Контакты</DialogTitle>
-      <List>{contactsArray}</List>
+      <List className = { classes['w-400px'] }>{contactsArray}</List>
 
       <ListItem
         autoFocus
         button
-        onClick={() => handleListItemClick("addAccount")}
+        onClick={() => handleListItemClickAdd("addAccount")}
       >
         <ListItemAvatar>
           <Avatar className = { classes["burgundy-color"] }>
