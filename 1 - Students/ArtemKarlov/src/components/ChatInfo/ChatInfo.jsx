@@ -9,16 +9,16 @@ const useStyles = makeStyles(() => ({
 
 export default (props) => {
     const classes = useStyles();
-    const {opponentInfo} = props;
+    const {chatInfo} = props;
     return (
         <Fragment>
             <div className="chat__header chat-header">
                     <p className="chat-header__label">Chat with</p>
                     <div className="chat-header__details">
                         <div className="chat-header__img img-container ">
-                            <Avatar alt={opponentInfo.name} src={opponentInfo.avatarUrl} className={classes.accountAvatar}/>
+                            <Avatar alt={chatInfo.title} src={chatInfo.avatarUrl} className={classes.accountAvatar}/>
                         </div>                    
-                        <h2 className="chat-header__title">{opponentInfo.name}</h2>
+                        <h2 className="chat-header__title">{chatInfo.title}</h2>
                     </div>                    
                 </div>
         </Fragment>

@@ -16,21 +16,21 @@ const account = {
     avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
     contacts: [
         {
-            id: 'contact_0',
+            id: 'cont_0',
             name: 'John',
             surname: 'Doe',
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
             citation: 'Hi our deadlines are. Hi our deadlines are... Hi our deadlines are.....',
         },
         {
-            id: 'contact_1',
+            id: 'cont_1',
             name: 'Smith',
             surname: 'Agent',
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg2',
             citation: 'You hear that, Mr. Anderson?',
         },
         {
-            id: 'contact_2',
+            id: 'cont_2',
             name: 'Morpheus',
             surname: '',
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg2',
@@ -56,8 +56,8 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {opponentId} = this.props;
-        const opponent = account.contacts.find(opp => opp.id === opponentId);        
+        const {chatInfo} = this.props;
+        // const opponent = account.contacts.find(opp => opp.id === opponentId);        
         
         return (            
             <div className="layout">
@@ -67,7 +67,7 @@ export default class Layout extends React.Component {
                     <Account userName={account.name} avatarUrl={account.avatarUrl} />
                     <Chats contacts={account.contacts} />                
                 </div>
-                <ChatField opponent={(opponent)? opponent : {name: 'Vasya'}} />
+                <ChatField chatInfo={(chatInfo)? chatInfo : {name: 'Vasya'}} />
             </div>
         )
     }

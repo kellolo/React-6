@@ -7,7 +7,6 @@ import initStore from './store';
 
 import Router from './router.jsx';
 
-
 const customTheme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -34,13 +33,10 @@ const customTheme = createMuiTheme({
     }
 });
 
-
-
 const app = document.querySelector('#app');
 
-
 ReactDom.render(
-    <Provider store={initStore}>
+    <Provider store={initStore()}>
         <BrowserRouter>
             <MuiThemeProvider theme={customTheme}>
                 <Router />
