@@ -126,21 +126,27 @@ export default function MiniDrawer() {
                 }}
             >
                 <div className={classes.toolbar}>
-                        <IconButton className={clsx({
-                    [classes.hide]: !open,
-                    })} onClick={handleDrawerClose}>
-                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                </IconButton>
+                  <IconButton className={clsx({
+                      [classes.hide]: !open,
+                      })} onClick={handleDrawerClose}>
+                      {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                  </IconButton>
                 </div>
                 <Divider />
                 <List>
-                {['Night mode', 'Settings', 'Help', 'Exit'].map((text, index) => (
-                    <ListItem button key={text}>
-                        
-                    <ListItemIcon>{[<NightsStayIcon fontSize="small"/>, <SettingsIcon fontSize="small"/>, <HelpOutlineIcon fontSize="small"/>, <ExitToAppIcon fontSize="small"/>][index]}</ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                  {['Night mode', 'Settings', 'Help', 'Exit'].map((text, index) => (
+                      <ListItem button key={text} disabled>                          
+                        <ListItemIcon>
+                          {
+                            [<NightsStayIcon fontSize="small"/>, 
+                            <SettingsIcon fontSize="small"/>, 
+                            <HelpOutlineIcon fontSize="small"/>, 
+                            <ExitToAppIcon fontSize="small"/>][index]
+                          }
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                      </ListItem>
+                  ))}
                 </List>
             </Drawer>
         </aside>
