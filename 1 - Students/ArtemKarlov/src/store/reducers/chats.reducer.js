@@ -13,13 +13,13 @@ const initStore = {
             id: "ch_1",
             title: "PetrovP",
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-            status: "I'm fine",
+            status: "You: I'm fine",
         },
         {
             id: "ch_2",
             title: "SidorovS",
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-            status: "my life my rules",
+            status: "sender: last message...",
         },
     ]
 }

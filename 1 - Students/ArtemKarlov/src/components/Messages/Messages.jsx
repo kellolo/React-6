@@ -19,7 +19,6 @@ class Messages extends React.Component {
         const messageId = `msg_${messages.length}`
         if (message.trim() !== '') {
             this.props.sendMessage(messageId, sender, message);
-            console.log(message);
         }
     }
 

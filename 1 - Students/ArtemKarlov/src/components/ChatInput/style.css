@@ -39,6 +39,7 @@
 
 .button-shell:hover {
     background-color: #23ad71;
+    cursor: pointer;
 }
 
 .button-shell:active {

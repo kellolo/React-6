@@ -9,7 +9,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 const useStyles = makeStyles(() => ({
     listItemText: {
-        maxHeight: '60px',
+        maxHeight: '45px',
         overflow: 'hidden',
     },
 }));
