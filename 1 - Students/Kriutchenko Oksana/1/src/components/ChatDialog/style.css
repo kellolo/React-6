@@ -1,3 +1,6 @@
-.ChatDialog {
-    
+.chat_dialog {
+    background-color: #fa81ea;
+}
+.list_item{
+    background-color: #215c5a;
 }

@@ -1,5 +1,5 @@
-export let SEND_CHATS = '@@chats/SEND'
+export let SEND_CHATS = '@@chat/SEND'
 
-export let sendChatlist = (id, title) => ({
-    id, title, type: SEND_CHATS
+export let sendChat = (contact) => ({
+    contact, type: SEND_CHATS
 })
