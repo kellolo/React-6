@@ -2,6 +2,7 @@ import './style.css';
 import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {sendMessage} from '../../store/actions/messages.actions.js';
 
 import Message from '../Message/Message.jsx';
 import ChatInput from '../ChatInput/ChatInput.jsx';
@@ -10,9 +11,6 @@ class Messages extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // messages: [
-            //     {sender: 'Bot', text: 'Wake up, Neo…'},
-            // ],
         }
     }
 
@@ -20,9 +18,8 @@ class Messages extends React.Component {
         let {messages} = this.props;
         const messageId = `msg_${messages.length}`
         if (message.trim() !== '') {
-            // this.setState({
-            //     messages: [...messages, {id: messageId, sender: sender, text: message}],
-            // });
+            this.props.sendMessage(messageId, sender, message);
+            console.log(message);
         }
     }
 
@@ -65,5 +62,5 @@ class Messages extends React.Component {
 const mapStateToProps = ({messagesReducer}) => ({
     messages: messagesReducer.messages,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({/*addMessage*/}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);
