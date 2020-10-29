@@ -1,3 +1,6 @@
+import update from 'react-addons-update';
+import {ADD_CHAT} from '../actions/chats.actions.js';
+
 const initStore = {
     chats: [
         {
@@ -23,6 +26,18 @@ const initStore = {
 
 export default (store = initStore, action) => {
     switch(action.type) {
+        case ADD_CHAT: {
+            return update(store, {
+                chats: {
+                    $push: [{
+                        id: action.chatId,
+                        title: action.title,
+                        avatarUrl: action.avatarUrl,
+                        status: action.status,
+                    }]
+                }
+            });
+        }
         default:
             return store;
     }

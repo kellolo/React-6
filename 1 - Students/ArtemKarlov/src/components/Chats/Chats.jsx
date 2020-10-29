@@ -2,6 +2,7 @@ import './style.css';
 import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {addChat} from '../../store/actions/chats.actions.js';
 
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
@@ -22,11 +23,12 @@ class Chats extends React.Component {
 
             const chatContact = contacts.find(contact => contact.name === contactName);
     
-            const chat = {};
-            chat.id = `ch_${chats.length}`;
-            chat.title = chatContact.name;
-            chat.avatarUrl = chatContact.avatarUrl;
-            chat.status = chatContact.citation;
+            const chatId = `ch_${chats.length}`;
+            const chatTitle = chatContact.name;
+            const chatAvatarUrl = chatContact.avatarUrl;
+            const chatStatus = chatContact.citation;
+
+            this.props.addChat(chatId, chatTitle, chatAvatarUrl, chatStatus);
     
             // this.setState({
             //     chats: [...chats, chat]
@@ -66,5 +68,5 @@ class Chats extends React.Component {
 const mapStateToProps = ({chatsReducer}) => ({
     chats: chatsReducer.chats,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({/*addChat*/}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);
