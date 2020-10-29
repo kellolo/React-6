@@ -3,5 +3,6 @@ import initialReducers from './reducers';
 
 
 export default () => {
-    return createStore(initialReducers, {})
+    const initialStore = {};
+    return createStore(initialReducers, initialStore);
 }

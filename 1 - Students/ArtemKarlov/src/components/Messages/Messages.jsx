@@ -1,25 +1,28 @@
 import './style.css';
 import React, { Fragment } from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import Message from '../Message/Message.jsx';
 import ChatInput from '../ChatInput/ChatInput.jsx';
 
-export default class Messages extends React.Component {
+class Messages extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [
-                {sender: 'Bot', text: 'Wake up, Neo…'},
-            ],
+            // messages: [
+            //     {sender: 'Bot', text: 'Wake up, Neo…'},
+            // ],
         }
     }
 
     addMessage = (message, sender = 'Me') => {
-        let {messages} = this.state;
+        let {messages} = this.props;
+        const messageId = `msg_${messages.length}`
         if (message.trim() !== '') {
-            this.setState({
-                messages: [...messages, {sender: sender, text: message}],
-            });
+            // this.setState({
+            //     messages: [...messages, {id: messageId, sender: sender, text: message}],
+            // });
         }
     }
 
@@ -30,7 +33,7 @@ export default class Messages extends React.Component {
     componentDidUpdate() {
         const botName = "Bot";
         const botMessage = "The Matrix has you…";
-        const {messages} = this.state;
+        const {messages} = this.props;
         const lastMessage = messages[messages.length-1];
         if (lastMessage.sender !== botName) {
             setTimeout(() => {
@@ -44,8 +47,8 @@ export default class Messages extends React.Component {
     }
 
     render() {
-        let {messages} = this.state;
-        let messagesArray = messages.map((msg, index) => <Message key={index} sender={msg.sender} message={msg.text} />)
+        let {messages} = this.props;
+        let messagesArray = messages.map((msg, index) => <Message key={msg.id} sender={msg.sender} message={msg.text} />)
 
         return (
             <Fragment>
@@ -58,3 +61,9 @@ export default class Messages extends React.Component {
         );
     }
 }
+
+const mapStateToProps = ({messagesReducer}) => ({
+    messages: messagesReducer.messages,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({/*addMessage*/}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
