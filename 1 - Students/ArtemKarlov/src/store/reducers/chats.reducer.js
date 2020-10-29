@@ -27,14 +27,11 @@ const initStore = {
 export default (store = initStore, action) => {
     switch(action.type) {
         case ADD_CHAT: {
+            const {id, title, avatarUrl, status} = action;
+            const newChat = {id, title, avatarUrl, status};
             return update(store, {
                 chats: {
-                    $push: [{
-                        id: action.chatId,
-                        title: action.title,
-                        avatarUrl: action.avatarUrl,
-                        status: action.status,
-                    }]
+                    $push: [newChat]
                 }
             });
         }

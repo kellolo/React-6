@@ -11,13 +11,11 @@ const initStore = {
 export default (store = initStore, action) => {
     switch(action.type) {
         case SEND_MESSAGE: {
+            const {id, sender, text} = action;
+            const newMsg = {id, sender, text};
             return update(store, {
                 messages: {
-                    $push: [{
-                        id: action.messageId,
-                        sender: action.sender,
-                        text: action.text,
-                    }]
+                    $push: [newMsg]
                 } 
             });
         }
