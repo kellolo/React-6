@@ -1,35 +1,35 @@
-
 import React from "react";
+
+import { connect } from "react-redux";
+
 import { Toolbar } from "primereact/toolbar";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
-export default class ChatControl extends React.Component {
+import { getSelectedChat, inputMessage, sendMessage } from "../../../actions";
+
+class ChatControl extends React.Component {
+    handleSendMessage = () => {
+        this.props.sendMessage();
+    }
     componentDidUpdate() {
-        if (this.props.chat.userId) {
-            this.inputMessage.element.focus();
-        }
+        this.inputMessage.element.focus();
     }
     render() {
         const chat = this.props.chat;
-        let message = chat.message;
-        if (!chat.userId) {
-            message = "";
-        }
         let leftContents =
             <React.Fragment>
                 <div className="p-inputgroup">
                     <InputText
                         ref={(input) => { this.inputMessage = input; }}
-                        value={message}
-                        placeholder={chat.userId ? 'Write a message...' : ''}
-                        disabled={chat.userId ? false : true}
-                        onChange={(e) => this.props.onMessageChange(e.target.value)}
-                        onKeyPress={(e) => { if (e.key === 'Enter') this.props.onMessageSend() }}
+                        value={chat.message}
+                        placeholder="Write a message..."
+                        onChange={(e) => this.props.inputMessage(e.target.value)}
+                        onKeyPress={(e) => { if (e.key === 'Enter') this.handleSendMessage() }}
                     />
                     <Button
                         icon="pi pi-reply"
-                        onClick={(e) => this.props.onMessageSend()}
+                        onClick={(e) => this.handleSendMessage()}
                         disabled={chat.message ? false : true}
                     />
                 </div>
@@ -42,3 +42,12 @@ export default class ChatControl extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    chat: getSelectedChat(state)
+})
+
+export default connect(
+    mapStateToProps,
+    { inputMessage, sendMessage }
+)(ChatControl);

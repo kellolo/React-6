@@ -14,9 +14,9 @@ export default class MessageItem extends React.Component {
             <div className={`p-px-3 p-py-2 p-d-flex p-jc-${this.props.justify} p-w-100`} >
                 <Message
                     sticky={true}
-                    content={MessageContent(this.props.message)}
+                    content={MessageContent(this.props.message, this.props.onClickClose)}
                     severity={classSeverity ? "" : this.props.severity}
-                    className={classSeverity}
+                    className={classSeverity + " p-mw-75"}
                 />
             </div>
         );

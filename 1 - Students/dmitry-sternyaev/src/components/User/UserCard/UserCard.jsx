@@ -16,7 +16,7 @@ export default function UserCard(user) {
     return (
         <Card
             title={user.userName}
-            subTitle="About"
+            subTitle={user.bot ? "Bot" : "User"}
             footer={footer}
             header={header}
             className="p-h-content-m p-rounded-0 p-border-top-0 p-border-right p-border-left p-border-bottom"

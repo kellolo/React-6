@@ -1,0 +1,49 @@
+{
+    "data": [
+        {
+            "userId": "ant",
+            "chatId": "fish",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "parrot",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "bee",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "crab",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "crocodile",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "duck",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "reindeer",
+            "message": ""
+        },
+        {
+            "userId": "ant",
+            "chatId": "gorilla",
+            "message": ""
+        },
+        {
+            "userId": "fish",
+            "chatId": "ant",
+            "message": ""
+        }
+    ]
+}

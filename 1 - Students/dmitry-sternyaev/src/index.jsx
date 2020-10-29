@@ -1,15 +1,24 @@
-import "./styles/custom.scss";
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import Router from "./components/Router/Router.jsx";
-import { createBrowserHistory } from 'history'
 
-const history = createBrowserHistory();
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./utils/history";
+
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react"
+import { store, persistor } from "./utils/store";
+
+import "./styles/custom.scss";
+
+import Root from "./components/Root/Root.jsx";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Router history={history}/>
-    </BrowserRouter>,
-    document.getElementById('root')
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <ConnectedRouter history={history}>
+                <Root />
+            </ConnectedRouter>
+        </PersistGate>
+    </Provider>,
+    document.getElementById("root")
 );
