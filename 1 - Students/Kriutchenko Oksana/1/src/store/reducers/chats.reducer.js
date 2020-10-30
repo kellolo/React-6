@@ -20,19 +20,7 @@ const storeChats = {
             id: 'chat_4',
             contact: 'Катя'
         },
-        {
-            id: 'chat_5',
-            contact: 'Люся'
-        },
-        {
-            id: 'chat_6',
-            contact: 'Виталик'
-        },
-        {
-            id: 'chat_7',
-            contact: 'Стас'
-        }
-        
+          
     ]
 }
 

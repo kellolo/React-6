@@ -45,7 +45,7 @@ import { bindActionCreators } from 'redux';
                                 contacts = { contactsFromRedux }
                                 /* sendChat={sendChat}
                                 select={props.onSelect} */
-                                chats={chatsFromRedux}/>
+                                /* chats={chatsFromRedux} *//>
                             </div>
                         </div>
                     </Fragment> 
