@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 
 import {initStore, history} from './store';
 import {ConnectedRouter} from 'connected-react-router';
+import {PersistGate} from 'redux-persist/integration/react';
 
 import Router from './router.jsx';
 
@@ -37,13 +38,17 @@ const customTheme = createMuiTheme({
 
 const app = document.querySelector('#app');
 
+const {store, persistor} = initStore();
+
 ReactDom.render(
-    <Provider store={initStore()}>
-        <ConnectedRouter history={history}>
-            <MuiThemeProvider theme={customTheme}>
-                <Router />
-            </MuiThemeProvider>   
-        </ConnectedRouter>
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <ConnectedRouter history={history}>
+                <MuiThemeProvider theme={customTheme}>
+                    <Router />
+                </MuiThemeProvider>   
+            </ConnectedRouter>
+        </PersistGate>
     </Provider>
     ,
     app
