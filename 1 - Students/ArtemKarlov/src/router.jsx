@@ -22,7 +22,7 @@ class Router extends React.Component {
         return (
             <Switch>
                 <Route exact path="/" component={Layout}/>
-                { routes }
+                {/* { routes } */}
 
                 {/* <Route exact path="/chat/ch_0" render={() => <Layout opponentId={'contact_0'} />} />*/}
             </Switch>

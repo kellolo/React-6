@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+// import {BrowserRouter} from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {Provider} from 'react-redux';
-import initStore, {history} from './store';
+
+import {initStore, history} from './store';
 import {ConnectedRouter} from 'connected-react-router';
 
 import Router from './router.jsx';

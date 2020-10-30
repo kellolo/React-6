@@ -6,7 +6,7 @@ import middlewares from '../middlewares/';
 
 export const history = createBrowserHistory();
 
-function initStore() {
+export function initStore() {
     const initialStore = {};
     const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
     
@@ -19,5 +19,3 @@ function initStore() {
         )
     );
 }
-
-export default initStore;
