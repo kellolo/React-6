@@ -1,0 +1,18 @@
+[
+    {
+        "id": "chat_1",
+      "contact": "Larry"
+    },
+    {
+        "id": "chat_2",
+      "contact": "Ваня"
+    },
+    {
+        "id": "chat_3",
+      "contact": "Вероника"
+    },
+    {
+        "id": "chat_4",
+      "contact": "Грузин"
+    }
+]

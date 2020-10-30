@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import ChatDialog from '../ChatDialog/ChatDialog.jsx';
 import { Link } from 'react-router-dom';
 import Avatar from './Avatar/Avatar.jsx'
+import { loadChats } from '../../store/actions/chats.actions.js'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,7 +16,10 @@ class ChatList extends Component {
         }
     }
     
-    componentDidMount() {}
+    componentDidMount() {
+        let userId = 'user-1';
+        this.props.loadChats('/api/chats/'+ userId);
+    }
 
     componentDidUpdate() {}
 
@@ -47,6 +51,6 @@ const mapStateToProps = ({ chatsReducer, contactsReducer }) => ({
     chatsFromRedux: chatsReducer.chats,
     contactsFromRedux: contactsReducer.contacts
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ loadChats }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

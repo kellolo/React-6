@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "m-o",
+        "sender": "u-1",
+        "text": "some text"
+    },
+    {
+        "_id": "m-1",
+        "sender": "u-1",
+        "text": "some text2"
+    },
+    {
+        "_id": "m-2",
+        "sender": "u-1",
+        "text": "some text3"
+    }
+]

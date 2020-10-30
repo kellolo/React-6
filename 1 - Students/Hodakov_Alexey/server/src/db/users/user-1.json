@@ -1,0 +1,28 @@
+{
+    "_id": "user-1",
+    "name": "Georg",
+    "password": "testpass",
+    "contacts": [
+        "obj-1",
+        "obj-2",
+        "obj-3"
+    ],
+    "chats": [
+        {
+            "id": "chat_1",
+            "contact": "Larry"
+        },
+        {
+            "id": "chat_2",
+            "contact": "Ваня"
+        },
+        {
+            "id": "chat_3",
+            "contact": "Вероника"
+        },
+        {
+            "id": "chat_4",
+            "contact": "Грузин"
+        }
+    ]
+}
