@@ -19,7 +19,20 @@ const storeChats = {
         {
             id: 'chat_4',
             contact: 'Катя'
+        },
+        {
+            id: 'chat_5',
+            contact: 'Люся'
+        },
+        {
+            id: 'chat_6',
+            contact: 'Виталик'
+        },
+        {
+            id: 'chat_7',
+            contact: 'Стас'
         }
+        
     ]
 }
 
@@ -31,8 +44,8 @@ export default (store = storeChats, action) => {
             return update(store, { chats: { $push: [ newChats ] } }) */
             
                 let { contact } = action;
-                let chekToAdd = store.chats.some( elem => contact === elem.contact )
-                if (!chekToAdd){
+                let chekToChat = store.chats.some( elem => contact === elem.contact )
+                if (!chekToChat){
                   let id = 'chat_'.concat(String(store.chats.length+1));
                   let newChat = {id, contact}
                   return update(store, { chats: { $push: [newChat] } });
@@ -41,4 +54,4 @@ export default (store = storeChats, action) => {
         default:
             return store;
     }
-}
+};

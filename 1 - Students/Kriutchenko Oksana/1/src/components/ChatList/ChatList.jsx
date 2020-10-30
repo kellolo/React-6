@@ -2,8 +2,9 @@ import './style.css';
 
 import React, { Component, Fragment } from 'react';
 import ChatDialog from '../ChatDialog/ChatDialog.jsx';
-
+import Avatar from './Avatar/Avatar.jsx'
 import { Link } from 'react-router-dom'; 
+import { sendChat } from '../../store/actions/chats.action.js';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,7 +28,7 @@ import { bindActionCreators } from 'redux';
     render() {
                 let { chatsFromRedux, contactsFromRedux } = this.props;
                 let chatsArr = chatsFromRedux.map(ch => <li className="list" key = { ch.id }>
-                                                   {/*  <Avatar text={ch.contact.slice(0,2)}></Avatar> */}
+                                                    <Avatar text={ch.contact.slice(0,2)}></Avatar>
                                                     <Link className="link" to = { `/chat/${ch.id}` }>{ch.contact}</Link>
                                                 </li>)
     return (
@@ -40,7 +41,11 @@ import { bindActionCreators } from 'redux';
                                 { chatsArr }
                             </ul>
                             <div>
-                                <ChatDialog contacts = { contactsFromRedux }/>
+                                <ChatDialog 
+                                contacts = { contactsFromRedux }
+                                /* sendChat={sendChat}
+                                select={props.onSelect} */
+                                chats={chatsFromRedux}/>
                             </div>
                         </div>
                     </Fragment> 
@@ -51,5 +56,5 @@ const mapStateToProps = ({ chatsReducer, contactsReducer }) => ({
     chatsFromRedux: chatsReducer.chats,
     contactsFromRedux: contactsReducer.contacts
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendChat }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

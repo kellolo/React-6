@@ -28,21 +28,25 @@ const useStyles = makeStyles({
       },
        "contacts": {
         color: "#fff",
-        backgroundColor: "#215c5a",
+        backgroundColor: "#fa81ea",
         width: "400px",
       },
          
       "pink-color": {
-        color: "#fa81ea",
+        color: "#000",
+        backgroundColor: "#fa81ea",
         border: "1px solid #fa81ea",
         borderRadius: "20px",
+        marginBottom: "0", 
+        width:"80%"
+        
       },  
       "icon-color":{
-        backgroundColor: "#2f8481",
+        backgroundColor: "#fa81f3",
       }, 
-      "burgundy-color":{
-        backgroundColor: "#800020",
-        } 
+ /*      "burgundy-color":{
+        backgroundColor: "#808080",
+        }  */
 })
 
 function SimpleDialog(props) {
@@ -82,7 +86,7 @@ function SimpleDialog(props) {
         <List className = { classes['w-400px'] }>{contactsArray}</List>
   
         <ListItem
-            className="list_item"
+          className="list_item"
           autoFocus
           button
           onClick={() => handleListItemClickAdd("addAccount")}
@@ -121,10 +125,9 @@ function SimpleDialog(props) {
   
     return (
       <div>
-        {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-                  <br /> */}
+        
         <Button variant="outlined"  className = { classes['pink-color'] } onClick={handleClickOpen}>
-          Open simple dialog
+          Добавить контакт
         </Button>
         <SimpleDialog
           selectedValue={selectedValue}
@@ -142,76 +145,3 @@ function SimpleDialog(props) {
   const mapDispatchToProps = dispatch => bindActionCreators({ sendChat }, dispatch);
   
   export default connect(mapStateToProps, mapDispatchToProps)(SimpleDialogDemo);
-
-/* function SimpleDialog(props) {
-    const classes = useStyles(); //className = { classes['test-class'] }
-    const { onClose, selectedValue, open } = props;
-
-    const handleClose = () => {
-        onClose(selectedValue);
-    };
-
-    const handleListItemClick = (value) => {
-        onClose(value);
-    };
-    return (
-            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-                <List>
-                    {emails.map((email) => (
-                    <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-                        <ListItemAvatar>
-                        <Avatar>
-                            <PersonIcon />
-                        </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={email} className = { classes['test-class'] } />
-                    </ListItem>
-                    ))}
-
-                    <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <AddIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary="Add account" />
-                    </ListItem>
-                </List>
-            </Dialog>
-    )
-}
-
-SimpleDialog.propTypes = {
-    onClose: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-    selectedValue: PropTypes.string.isRequired,
-};
-
-export default function SimpleDialogDemo(props) {
-    const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (value) => {
-        setOpen(false);
-        setSelectedValue(value);
-    };
-
-
-    console.log(props.contacts);
-
-    return (
-        <div>
-            <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-                <br />
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open simple dialog
-            </Button>
-                <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-        </div>
-    );
-} */

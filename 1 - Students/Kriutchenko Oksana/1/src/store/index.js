@@ -1,7 +1,7 @@
 import { createStore , compose, applyMiddleware} from 'redux';
 import initialReducers from './reducers';
 
-import middlewares from '../middlewares';
+import middlewares from "../middlewares";
 
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';

@@ -21,7 +21,7 @@ ReactDom.render(
     </Provider>
     ,
     app
-)
+);
 /* import Messages from './components/Messages/Messages.jsx'
 import ChatList from './components/ChatList/ChatList.jsx' */
 /* import Layout from './components/Layout/Layout.jsx' */

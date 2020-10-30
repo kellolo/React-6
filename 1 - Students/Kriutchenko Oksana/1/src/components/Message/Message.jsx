@@ -6,15 +6,15 @@ export default props => {
 
     return (
        
-      <di
-            className="msg" style={  { alignSelf: sender === 'Bot' ? 'flex-start' : 'flex-end',
-            textAlign: sender === 'Bot' ? 'left' : 'right' } }>
+      <div
+            className="msg" style={  { alignSelf: sender === 'Me' ? 'flex-start' : 'flex-end',
+            textAlign: sender === 'Me' ? 'left' : 'right' } }>
            
-            <strong>{ sender }</strong>
-
-            <p>{ text }</p>
+            <strong className="msg_name">{ sender }</strong>
+          
+            <p className="msg_text">{ text }</p>
        
-        </di> 
+        </div> 
        
     )
 }

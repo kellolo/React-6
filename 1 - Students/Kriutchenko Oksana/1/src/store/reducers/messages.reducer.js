@@ -4,10 +4,9 @@ import { SEND_MSG } from '../actions/messages.action.js';
 
 const storeMsg = {
     messages: [
-        {sender: 'Bot', text: '...'},
-        {sender: 'Me', text: 'Some text 1'},
-        {sender: 'Me', text: 'Some text2'},
-        {sender: 'Bot', text: '...'},
+        {sender: 'Bot', text: 'Приветик)'},
+        {sender: 'Bot', text: 'Как дела?'},
+        {sender: 'Bot', text: 'Вау, круто'},
     ]
 }
 
@@ -21,4 +20,4 @@ export default (store = storeMsg, action) => {
         default:
             return store;
     }
-}
+};

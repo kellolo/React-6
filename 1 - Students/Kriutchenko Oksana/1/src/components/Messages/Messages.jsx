@@ -27,38 +27,56 @@ class Messages extends Component {
     } */
 
     componentDidMount() {
-        console.log('MOUNTED')
+        this.scrollDown();
     }
+  
 
     componentDidUpdate() {
-        let { messages } = this.props;
-        if (messages[messages.length - 1].sender != 'Bot') {
+        this.scrollDown();
+       /* let { messages } = this.props;
+         if (messages[messages.length - 1].sender != 'Bot') {
             setTimeout(() => {
                 this.setState({
                     messages: [...messages, { sender: 'Bot', text: 'Я робот, отстань' }],
                 })
-            }, 500);
+            }, 500); */
         }
         
-    }
+    
+    scrollDown = () => {
+        this.scrollPointer.scrollIntoView({ behavior: "smooth" });
+    };
 
     render() {
-        let { messages } = this.props;
-        let messagesArray = messages.map((msg, i) => <Message sender = { msg.sender } text = { msg.text }  key = { i }/>);
         
+        let { messagesFromRedux, chatName } = this.props;
+        let messagesArray = "";
+        
+        if (this.props.chatName != undefined) {
+            messagesFromRedux.map((msg, i) => ( 
+            <Message sender = { msg.sender ==='Me' ? msg.sender : chatName } text = { msg.text }  key = { i }/>));
+        } else{
+            messagesArray = " ";
+        }
         return (
             <div className="msg-main">
                 <div className="msg-wrap" >
                     { messagesArray }
+                    <div
+                         ref={(el) => {
+                         this.scrollPointer = el;
+                         }}
+                    ></div>
                 </div>
                  <ChatInput send = { this.send } />
             </div>
         )
     }
+
 }
 
 const mapStateToProps = ({ messagesReducer }) => ({
-    messages: messagesReducer.messages
+    messagesFromRedux: messagesReducer.messages
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);

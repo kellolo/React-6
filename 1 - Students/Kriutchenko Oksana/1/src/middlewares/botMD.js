@@ -1,5 +1,6 @@
 
 import { SEND_MSG, sendMessage } from '../store/actions/messages.action.js';
+import { bindActionCreators } from 'redux';
 
 export default store => next => action => {
     switch(action.type) {
