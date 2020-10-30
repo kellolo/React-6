@@ -23,7 +23,7 @@ class ChatInput extends Component {
     render() {
         let { text } = this.state;
         return (
-            <div className="input-group w-25 mt-3">
+            <div className="input-group mt-3">
                 <input type="text" className="form-control" value={text} placeholder="Text" onChange={this.changeText} />
                 <div className="input-group-append">
                     <button onClick={this.send} className="btn btn-outline-success">Send</button>

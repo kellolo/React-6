@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "userId": "1",
+      "chatId": "2",
+      "messageId": "1",
+      "messageText": "Hello, Fish!",
+      "senderId": "1"
+    },
+    {
+      "userId": "1",
+      "chatId": "2",
+      "messageId": "2",
+      "messageText": "Hello, Ant!",
+      "senderId": "2"
+    }
+  ]
+}

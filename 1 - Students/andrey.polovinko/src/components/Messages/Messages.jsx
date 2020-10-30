@@ -43,8 +43,8 @@ class Messages extends React.Component {
         let { messages } = this.state;
         let messagesArray = messages.map((msg, i) => <Message sender={msg.sender} text={msg.text} key={i} />)
         return (
-            <div className="d-flex flex-column align-items-center mt-3">
-                <div className="messages w-50">
+            <div className=" ">
+                <div className="messages">
                     {messagesArray}
                 </div>
                 <ChatInput send={this.sendMessage} />

@@ -1,56 +1,66 @@
-import "./messages.css";
-import React from "react";
-import Message from "../message/Message.jsx";
-import ChatInput from '../chatInput/ChatInput.jsx'
+import "./style.css";
+import React, { Component } from "react";
+import Message from "../Message/Message.jsx";
+import ChatInput from "../ChatInput/ChatInput.jsx";
+import {sendMessage} from "../../store/actions/messages.actions.js";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-export default class Messages extends React.Component {
+class Messages extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [
-        { sender: "Bot", text: "Привет, Учитель!" },
-        { sender: "Bot", text: "Я, могу подумать над твоими словами ..." },
-      ],
-      // botAnswer: [
-      //   { sender: "Bot", text: "Интересно!" },
-      //   { sender: "Bot", text: "Не совсем понимаю тебя..." },
-      //   { sender: "Bot", text: "Это наводит меня на размышления." }
-      // ],
-      // counterAnswer: 0,
+      messages: [],
     };
   }
 
-  sendMessage = text => {
-    let { messages } = this.state;
-    this.setState({
-      messages: [...messages, { sender: "Me", text: text }],
-    });
+  send = (txt) => {
+    this.props.sendMessage(txt, 'Me')
   };
 
-  componentDidUpdate(){
-    let {messages} = this.state;
-    let lastMessage = messages[messages.length - 1]
-
-    if (lastMessage.sender === 'Me') {
-        setTimeout(() => this.setState({
-            messages: [...this.state.messages, {sender: 'bot', text: 'Интересно ...'}]
-        }), 1200)
-      }
+  componentDidMount() {
+    this.scrollDown();
   }
-  
+
+  componentDidUpdate() {
+    this.scrollDown();
+  }
+  scrollDown = () => {
+    this.scrollPointer.scrollIntoView({ behavior: "smooth" });
+  };
 
   render() {
-    let { messages} = this.state;
-    let messagesArray = messages.map((msg, i) => (
-      <Message sender={msg.sender} text={msg.text} key={i} />
-    ));
+    let { messagesFromRedux, chatName } = this.props;
+    let messagesArray = "";
+
+    if (this.props.chatName != undefined) {
+      messagesArray = messagesFromRedux.map((msg, i) => (
+        <Message  sender = { msg.sender === 'Me' ? msg.sender : chatName } text={msg.text} key={i} />
+      ));
+    } else {
+      messagesArray = "Выберете себе собеседника!";
+    }
 
     return (
       <div className="d-flex flex-column align-items-center messages__wrap">
-        <div className="message__text">{messagesArray}</div>
-        <ChatInput send = { this.sendMessage }/>
+        <div className="message__text">
+          {messagesArray}
+          <div
+            ref={(el) => {
+              this.scrollPointer = el;
+            }}
+          ></div>
+        </div>
+        <ChatInput send={this.send} />
       </div>
     );
   }
 }
+const mapStateToProps = ({ messagesReducer }) => ({
+  messagesFromRedux: messagesReducer.messages,
+});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators( { sendMessage }, dispatch );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

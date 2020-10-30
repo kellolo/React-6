@@ -1,0 +1,12 @@
+.wrap{
+    background-color: #e5fcff;
+    width: 60%;
+}
+
+.title{
+    text-align: center;
+    width: 100%;
+    background-color: #ace4fc;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
