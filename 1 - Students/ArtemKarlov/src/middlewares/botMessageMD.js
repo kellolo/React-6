@@ -1,4 +1,3 @@
-import { Store } from '@material-ui/icons';
 import {SEND_MESSAGE, sendMessage} from '../store/actions/messages.actions.js';
 
 export default store => next => (action) => {
@@ -12,7 +11,7 @@ export default store => next => (action) => {
                 idArr[1]++;
                 const msgId = idArr.join('_');
                 setTimeout(() => {
-                    store.dispatch(sendMessage(msgId, botName, botMessage));
+                    return store.dispatch(sendMessage(msgId, botName, botMessage));
                     // console.log(store.getState().messagesReducer.messages);
                 }, 1000);
             } 
