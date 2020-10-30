@@ -16,27 +16,19 @@ class Messages extends React.Component {
 
     addMessage = (message, sender = 'Me') => {
         let {messages} = this.props;
-        const messageId = `msg_${messages.length}`
         if (message.trim() !== '') {
+            const messageId = `msg_${messages.length}`
             this.props.sendMessage(messageId, sender, message);
         }
     }
 
     componentDidMount() {
-
+        const MessageElements = document.querySelectorAll(".chat-dialog__message");
+        const lastMessageElement = MessageElements[MessageElements.length-1];
+        lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     }
 
-    componentDidUpdate() {
-        const botName = "Bot";
-        const botMessage = "The Matrix has you…";
-        const {messages} = this.props;
-        const lastMessage = messages[messages.length-1];
-        if (lastMessage.sender !== botName) {
-            setTimeout(() => {
-                this.addMessage(botMessage, botName);
-            }, 1000);
-        } 
-        
+    componentDidUpdate() {        
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
         const lastMessageElement = MessageElements[MessageElements.length-1];
         lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
