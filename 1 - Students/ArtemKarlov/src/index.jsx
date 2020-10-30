@@ -3,7 +3,8 @@ import ReactDom from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {Provider} from 'react-redux';
-import initStore from './store';
+import initStore, {history} from './store';
+import {ConnectedRouter} from 'connected-react-router';
 
 import Router from './router.jsx';
 
@@ -37,11 +38,11 @@ const app = document.querySelector('#app');
 
 ReactDom.render(
     <Provider store={initStore()}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <MuiThemeProvider theme={customTheme}>
                 <Router />
             </MuiThemeProvider>   
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>
     ,
     app
