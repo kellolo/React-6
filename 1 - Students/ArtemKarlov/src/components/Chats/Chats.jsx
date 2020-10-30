@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addChat} from '../../store/actions/chats.actions.js';
+import {delContact} from '../../store/actions/contacts.actions.js';
 
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
@@ -15,13 +16,13 @@ class Chats extends React.Component {
         }
     }
 
-    addChat = (contactName) => {
+    addChat = (contactId) => {
         const {chats} = this.props;
         const {contacts} = this.props;        
 
-        if (contactName !== null) {         
+        if (contactId !== null) {         
 
-            const chatContact = contacts.find(contact => contact.name === contactName);
+            const chatContact = contacts.find(contact => contact.id === contactId);
     
             const chatId = `ch_${chats.length}`;
             const chatTitle = chatContact.name;
@@ -29,6 +30,8 @@ class Chats extends React.Component {
             const chatStatus = chatContact.citation;
 
             this.props.addChat(chatId, chatTitle, chatAvatarUrl, chatStatus);
+            this.props.delContact(contactId);
+
     
             // this.setState({
             //     chats: [...chats, chat]
@@ -47,7 +50,7 @@ class Chats extends React.Component {
     render() {         
         const { chats } = this.props;
         const {contacts} = this.props;
-        const contactList = contacts.map((contact) => contact.name);
+        // const contactList = contacts.map((contact) => contact.name);
         
         
         
@@ -56,7 +59,7 @@ class Chats extends React.Component {
                 <section className="layout__chats chats">
                     <div className="chats__header">
                         <h2 className="chats__title">Chats</h2>
-                        <ChatAdd contacts={contactList} getContactName={ this.addChat }/>
+                        <ChatAdd contacts={contacts} getContactId={ this.addChat }/>
                     </div>
                     <ChatList chats={chats} />
                 </section>                
@@ -65,8 +68,9 @@ class Chats extends React.Component {
     }
 }
 
-const mapStateToProps = ({chatsReducer}) => ({
+const mapStateToProps = ({chatsReducer, contactsReducer}) => ({
     chats: chatsReducer.chats,
+    contacts: contactsReducer.contacts,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({addChat}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat, delContact}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

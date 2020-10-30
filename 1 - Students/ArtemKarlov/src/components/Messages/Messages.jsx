@@ -43,7 +43,7 @@ class Messages extends React.Component {
                 <div className="chat__dialog chat-dialog">
                     { messagesArray }                    
                 </div> 
-                <ChatInput sendMessage = { this.addMessage } /> 
+                <ChatInput getMessage = { this.addMessage } /> 
             </Fragment>
                
         );

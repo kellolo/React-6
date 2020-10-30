@@ -26,7 +26,7 @@ export default class ChatInput extends React.Component {
 
     send = () => {
         let {text} = this.state;
-        this.props.sendMessage(text);
+        this.props.getMessage(text);
         this.setState({text: ''});
     }   
     

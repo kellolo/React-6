@@ -37,13 +37,11 @@ function SimpleDialog(props) {
       <DialogTitle id="simple-dialog-title">Add chat with...</DialogTitle>
       <List>
         {contacts.map((contact) => (
-          <ListItem button onClick={() => handleListItemClick(contact)} key={contact}>
+          <ListItem button onClick={() => handleListItemClick(contact.id)} key={contact.id}>
             <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
-              </Avatar>
+              <Avatar className={classes.avatar} alt={contact.name} src={contact.avatarUrl} />
             </ListItemAvatar>
-            <ListItemText primary={contact} />
+            <ListItemText primary={contact.name} />
           </ListItem>
         ))}
       </List>
@@ -58,7 +56,7 @@ SimpleDialog.propTypes = {
 };
 
 export default function SimpleDialogDemo(props) {
-  const { contacts, getContactName } = props;
+  const { contacts, getContactId } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(null);
 
@@ -72,7 +70,7 @@ export default function SimpleDialogDemo(props) {
   };
 
   React.useEffect(() => { 
-    getContactName(selectedValue);
+    getContactId(selectedValue);
     setSelectedValue(null);
   });
  

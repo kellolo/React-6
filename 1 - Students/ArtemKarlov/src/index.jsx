@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-// import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {Provider} from 'react-redux';
 
@@ -43,11 +43,13 @@ const {store, persistor} = initStore();
 ReactDom.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            <ConnectedRouter history={history}>
+            {/* <ConnectedRouter history={history}> */}
+            <BrowserRouter>
                 <MuiThemeProvider theme={customTheme}>
                     <Router />
-                </MuiThemeProvider>   
-            </ConnectedRouter>
+                </MuiThemeProvider>
+                </BrowserRouter>   
+            {/* </ConnectedRouter> */}
         </PersistGate>
     </Provider>
     ,

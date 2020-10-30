@@ -65,7 +65,7 @@ export default class Layout extends React.Component {
                 {/* <AccountChats account = {account} /> */}
                 <div className="layout__account-chatlist">
                     <Account userName={account.name} avatarUrl={account.avatarUrl} />
-                    <Chats contacts={account.contacts} />                
+                    <Chats />                
                 </div>
                 <ChatField chatInfo={(chatInfo)? chatInfo : {title: 'Vasya'}} />
             </div>
