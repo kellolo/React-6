@@ -28,11 +28,11 @@ const customTheme = createMuiTheme({
                 color: '#ffffff',
             }
         },
-        MuiTypography: {
-            colorTextSecondary: {
-                color: '#808080'
-            },
-        },
+        // MuiTypography: {
+        //     colorTextSecondary: {
+        //         color: '#808080'
+        //     },
+        // },
     }
 });
 
@@ -48,7 +48,7 @@ ReactDom.render(
                 <MuiThemeProvider theme={customTheme}>
                     <Router />
                 </MuiThemeProvider>
-                </BrowserRouter>   
+                </BrowserRouter>
             {/* </ConnectedRouter> */}
         </PersistGate>
     </Provider>

@@ -41,7 +41,7 @@ function SimpleDialog(props) {
             <ListItemAvatar>
               <Avatar className={classes.avatar} alt={contact.name} src={contact.avatarUrl} />
             </ListItemAvatar>
-            <ListItemText primary={contact.name} />
+            <ListItemText primary={`${contact.name} ${contact.middleName} ${contact.surname}`} />
           </ListItem>
         ))}
       </List>

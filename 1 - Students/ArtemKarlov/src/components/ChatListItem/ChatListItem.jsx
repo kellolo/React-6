@@ -13,7 +13,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 const useStyles = makeStyles(() => ({
     listItemText: {
         maxHeight: '45px',
-        overflow: 'hidden',
+        
     },
 }));
 
@@ -22,14 +22,20 @@ const SelectedListItem = withStyles({
         '.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
             backgroundColor: 'rgba(37, 140, 96, 0.4)',
         },
-        '.MuiListItem-root.Mui-selected:hover .MuiTypography-colorTextSecondary': {
+        '.MuiListItem-root.Mui-selected:hover .MuiListItemText-secondary': {
             color: '#808080',
         },
         '.MuiListItem-button:hover': {
             backgroundColor: '#258C60',
         },
-        '.MuiListItem-button:hover .MuiTypography-colorTextSecondary': {
+        '.MuiListItem-button:hover .MuiListItemText-secondary': {
             color: '#1C1C1C',
+        },
+        '.MuiListItemText-secondary': {
+            color: '#808080',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
         }
     },
 
@@ -42,6 +48,7 @@ function ChatListItem(props) {
     const classes = useStyles();
 
     const lastMessage = messages[messages.length-1];
+    const showedMessage = (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
     
     const handleListItemClick = (event, index, chatId) => {
         onClick(event, index, chatId);
@@ -61,7 +68,7 @@ function ChatListItem(props) {
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemText}
                     primary={chat.title}
-                    secondary={lastMessage.text}
+                    secondary={showedMessage}
                 />
             </ListItem>
         </Fragment>
