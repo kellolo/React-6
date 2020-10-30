@@ -38,8 +38,8 @@ export default (props) => {
     const {index, selectedIndex, chat, onClick} = props;
     const classes = useStyles();
     
-    const handleListItemClick = (event, index) => {
-        onClick(event, index);
+    const handleListItemClick = (event, index, chatId) => {
+        onClick(event, index, chatId);
       };
 
     return (
@@ -49,7 +49,7 @@ export default (props) => {
                 button 
                 alignItems="flex-start"
                 selected={selectedIndex === index}
-                onClick={(event) => handleListItemClick(event, index)}
+                onClick={(event) => handleListItemClick(event, index, chat.id)}
             >
                 <ListItemAvatar>
                     <Avatar alt={chat.title} src={chat.avatarUrl} />
