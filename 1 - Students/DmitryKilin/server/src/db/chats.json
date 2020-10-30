@@ -1,0 +1,6 @@
+[
+  {"title": "Винсент и Джулс", "contactName": "Jules", "id": "ch_1", "messageList": ["mes_1", "mes_2","mes_3", "mes_4", "mes_5"]},
+  {"title": "Золотые часы", "contactName": "Esmeralda", "id": "ch_2", "messageList": ["mes_6", "mes_7", "mes_8", "mes_9"]},
+  {"title": "Винсент Вега и жена Марселласа Уоллеса", "contactName": "Vincent", "id": "ch_3", "messageList": ["mes_10", "mes_11", "mes_12", "mes_13"]},
+  {"title": "empty chat", "contactName": "", "id": "ch_4", "messageList": []}
+]

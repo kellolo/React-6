@@ -11,9 +11,17 @@ import {bindActionCreators} from "redux";
 import {makeStyles} from "@material-ui/core/styles";
 import userReducer from "../../store/reducers/user.reduser";
 
+import { loadChats } from '../../store/actions/chats.actions.js'
+
+
 class ChatsList extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        // let userId = 'u-1';
+        this.props.loadChats('/api/chats/');
     }
 
 
@@ -52,6 +60,6 @@ class ChatsList extends Component {
 const mapStateToProps = ({chatsReducer, userReducer} ) => ({
     chatsFromRedux: chatsReducer.chats, user: userReducer
 });
-const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+const mapDispatchToProps = dipatch => bindActionCreators({loadChats}, dipatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatsList)
