@@ -11,14 +11,19 @@ import { StylesProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import initStore, { history } from './store';
 
+import { PersistGate } from 'redux-persist/integration/react';
+
+const { store, persistor } = initStore();
 
 ReactDOM.render(
-  <Provider store={ initStore() }>
+  <Provider store={ store }>
+    <PersistGate loading={ null } persistor={ persistor }>
       <StylesProvider>
         <ConnectedRouter history={ history }>
             <Router />
         </ConnectedRouter>
-    </StylesProvider>
+      </StylesProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
