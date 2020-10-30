@@ -7,7 +7,7 @@ const initStore = {
             id: "ch_0",
             title: "IvanovI",
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-            status: "Hi our deadlines are...",
+            // status: "Hi our deadlines are...",
         },
         {
             id: "ch_1",

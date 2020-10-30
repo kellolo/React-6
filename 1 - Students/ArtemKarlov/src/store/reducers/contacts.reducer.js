@@ -9,7 +9,7 @@ const initStore = {
             name: 'John',
             surname: 'Doe',
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-            citation: 'Hi our deadlines are.....',
+            // citation: 'Hi our deadlines are.....',
         },
         {
             id: 'cont_1',

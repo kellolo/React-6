@@ -1,6 +1,9 @@
 import './style.css';
 import React, { Fragment } from 'react';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import ListItem from '@material-ui/core/ListItem';
@@ -34,9 +37,11 @@ const SelectedListItem = withStyles({
 
 
 
-export default (props) => {
-    const {index, selectedIndex, chat, onClick} = props;
+function ChatListItem(props) {
+    const {index, selectedIndex, chat, onClick, messages} = props;
     const classes = useStyles();
+
+    const lastMessage = messages[messages.length-1];
     
     const handleListItemClick = (event, index, chatId) => {
         onClick(event, index, chatId);
@@ -56,9 +61,15 @@ export default (props) => {
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemText}
                     primary={chat.title}
-                    secondary={chat.status}
+                    secondary={lastMessage.text}
                 />
             </ListItem>
         </Fragment>
     );
 }
+
+const mapStateToProps = ({messagesReducer}) => ({
+    messages: messagesReducer.messages,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatListItem);
