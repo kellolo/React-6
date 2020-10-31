@@ -1,20 +1,21 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Messages from './components/Messages/Messages.jsx'
-import ChatList from './components/ChatList/ChatList.jsx'
-import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
+// import {BrowserRouter} from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router';
+import Router from './router.jsx'
+import { Provider } from 'react-redux';
+import { initStore, history } from './store';
 
 const app = document.querySelector('#app')
 
 ReactDom.render(
-    <StylesProvider>
-    <div >
-       <ChatList />
-       <Messages />
-    </div>
-    </StylesProvider>,
+    <Provider store={initStore()}>
+        <ConnectedRouter history = { history }>
+            <Router/>
+        </ConnectedRouter>
+    </Provider>,
     app
 )
 

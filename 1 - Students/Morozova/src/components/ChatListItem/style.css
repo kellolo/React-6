@@ -1,14 +1,1 @@
-/* .MuiListItem-button:hover {
-    text-decoration: none;
-    background-color: rgba(0, 0, 139, 1);
-    border: 1px solid darkblue;
-    border-radius: 25px;
-}
-
-.MuiListItem-button{
-    color: '#00008B'
-} */
-/* 
-.MuiList-root {
-    border-bottom: 2px solid darkblue;
-} */
+.ChatListItem {}

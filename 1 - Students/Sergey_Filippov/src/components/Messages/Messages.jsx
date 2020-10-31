@@ -5,21 +5,20 @@ import Message from '../Message/Message.jsx'
 
 import ChatInput from '../ChatInput/ChatInput.jsx'
 
-export default class Messages extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { sendMessage } from '../../store/actions/messages.action.js';
+
+class Messages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [
-                {sender:"Добро" ,text:"пожаловать"}
-            ]
+            
         }
     }
 
-    sendMessage = txt => {
-        let { messages } = this.state;
-        this.setState({
-            messages: [...messages, { sender: 'Me', text: txt }],
-        })
+    send = txt => {
+        this.props.sendMessage(txt, 'Me');
     }
 
    
@@ -27,7 +26,7 @@ export default class Messages extends Component {
 
     componentDidUpdate() {
         let { messages } = this.state;
-        if (messages.length % 2 === 0) {  
+        if (messages.length % 2 === 1) {  
             setTimeout(() =>
             this.setState(
                 { messages: [ ...messages, {sender: "bot" , text: 'Не приставай ко мне, я робот!'} ] }),
@@ -40,12 +39,19 @@ export default class Messages extends Component {
         let messagesArray = messages.map((msg, i) => <Message  sender = { msg.sender } text = { msg.text }  key = { i }/>);
 
         return (
-            <div className="d-flex flex-column align-items-center">
-                <div className="msg-wrap">
+            <div className="d-flex flex-column align-items-center msgs">
+                <div className="msg-wrap d-flex flex-column">
                     { messagesArray }
                 </div>
-                <ChatInput send = { this.sendMessage } />
+                <ChatInput send = { this.send } />
             </div>
         )
     }
 }
+const mapStateToProps = ({ messagesReducer }) => ({
+    messages: messagesReducer.messages
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

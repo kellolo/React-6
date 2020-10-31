@@ -6,77 +6,72 @@ import Message from '../Message/Message.jsx'
 import ChatInput from '../ChatInput/ChatInput.jsx'
 import MessagesHeader from '../MessagesHeader/MessagesHeader.jsx'
 
-export default class Messages extends React.Component {
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { sendMessage } from '../../store/actions/messages.actions'
+
+
+class Messages extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            conversations: [
-                {
-                    id: 0,
-                    name: 'Bot',
-                    messages: [{sender: 'Bot', text: 'Hello'}, {sender: 'Bot', text: 'How are you?'}]
-                },
-                {
-                    id: 1,
-                    name: 'Bot2',
-                    messages: [{sender: 'Bot2', text: 'Hello! I am Bot2'}]
-                },
-                {
-                    id: 2,
-                    name: 'Bot3',
-                    messages: [{sender: 'Bot3', text: 'Hello! I am Bot3'}]
-                },
-            ],
-            activeId: props.activeId,
-        }
     }
 
     componentDidUpdate() {
-        setTimeout(() => {
-            let { conversations, activeId } = this.state;
-            let { name, messages } = conversations[activeId];
-            
-
-            const lastSender = messages[messages.length - 1].sender
-        
-            if (lastSender == this.props.author) {
-                this.addMessage(name, 'Hello, ' + lastSender + '! Please, wait for respond...')
-            }
-        }, 1000);
-        
-        if (this.state.activeId !== this.props.activeId) {
-            this.setState({activeId: this.props.activeId});
-        }
-        
+        this.scrollDown();
     }
 
-    addMessage = (senderName, text) => {
+    addMessage = (senderId, text) => {
         if (text !='') {
-            let newConversState = this.state.conversations;
-            newConversState[this.state.activeId] = {
-                id: newConversState[this.state.activeId].id,
-                name: newConversState[this.state.activeId].name,
-                messages: [...newConversState[this.state.activeId].messages, {sender: senderName, text: text}]
-            }
-            this.setState({conversations: newConversState});
+            this.props.sendMessage(this.props.activeId, senderId, text);
         } 
     }
 
-    render() {
-        let { author } = this.props;
-        let { conversations, activeId } = this.state;
-        let { messages } = conversations[activeId];
+    scrollDown = () => {
+        this.scrollPointer.scrollIntoView({behavior: 'smooth'})
+    }
 
-        let msgsRender = messages.map((msg, i) => <Message author={this.props.author} sender = { msg.sender } text = { msg.text } key = {i} />)
-    
+    render() {
+        let { author, conversations, messages, activeId, chats, users } = this.props;
+        let messagesArray = conversations.find(item => item.id == activeId).messages;
+        
+        let authorUser = users.find(item => item.id == author);
+        let authorName = authorUser.name
+        let authorAvatar = authorUser.avatar;
+
+        let otherUser = users.find(item => item.id == conversations.find(item => item.id == activeId).userId)
+
+        let msgsRender = messagesArray.map((msg, i) => {
+            let thisMessage = messages.find(item => item.id == msg)
+            let senderName = users.find(item => item.id == thisMessage.sender).name;
+            return (
+                <Message author = { authorName } sender = { senderName } text = { thisMessage.text } key = { i } />
+            )
+        }
+        )
+
+        let activePosition = chats.findIndex(item => item.id == activeId)
+
         return(
-            <div className="messagesContainer col-sm-8">
-                <MessagesHeader currConversationName={this.props.currConversationName} avatarAddress={this.props.avatarAddress}/>
-                <div className="messagesInnerContainer">
+            <div className="messages-container col-sm-8">
+                <MessagesHeader currConversationName={ otherUser.name } avatarAddress={ otherUser.avatar } myAvatar = { authorAvatar }/>
+                <div className="messages-inner-container">
                     { msgsRender }
+                    <div className="scroll-pointer" ref={ item => this.scrollPointer = item }></div>
                 </div>
-                <ChatInput author = { author } sendFunction= { this.addMessage }/>
+                <ChatInput author = { author } sendFunction= { this.addMessage } />
             </div>
         )
     }
 }
+
+const mapStateToProps = ({ messagesReducer, chatsReducer, usersReducer }) => ({
+    conversations: messagesReducer.conversations,
+    messages: messagesReducer.messages,
+    users: usersReducer.users,
+    chats: chatsReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

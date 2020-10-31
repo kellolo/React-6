@@ -1,0 +1,21 @@
+.chat-menu-aside{
+    /* position: absolute; */
+    /* background-color: #fff; */
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.chat-menu-aside .navbar {
+    padding: 12px 0;
+}
+
+.chat-menu-aside .chat-menu-toggler{
+    margin: 0 0 0 20px;
+}
+
+@media (min-width: 768px) {
+    .chat-menu-aside .chat-menu-toggler{
+        display: none;
+    }
+
+}

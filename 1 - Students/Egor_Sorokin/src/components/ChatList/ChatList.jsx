@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { push } from 'connected-react-router'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import UserSelect from '../UserSelect/UserSelect.jsx'
 import './style.css'
 
-const useStyles = makeStyles((theme) => ({
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { addChat, deleteChat, loadChats } from '../../store/actions/chat.actions.js'
+import { messagesInit, messagesClear } from '../../store/actions/messages.actions.js'
+
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -22,81 +32,103 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatList(props) {
-    const [ conversationsArray, setConversationsArray] = useState([
-        {
-            id: 0,
-            name: 'Bot',
-            avatar: 'https://via.placeholder.com/70',
-            lastMessage: 'Bot: How are you?'
-        },
-        {
-            id: 1,
-            name: 'Bot2',
-            avatar: 'https://via.placeholder.com/70/cccc55',
-            lastMessage: 'Bot2: Hello! I am Bot2'
-        },
-        {
-            id: 2,
-            name: 'Bot3',
-            avatar: 'https://via.placeholder.com/70/55cc55',
-            lastMessage: 'Bot3: Hello! I am Bot3'
+function ChatList(props) {
+
+    useEffect(() => {
+        props.loadChats('/api/chats/' + props.author);
+    }, [])
+
+    let callDeleteChat = (e) => {
+        e.stopPropagation();
+        e.preventDefault()
+        let chatIdToDelete = e.nativeEvent.path.find(item => item.className == "delete-chat-button").dataset.chatItemId
+        props.deleteChat(chatIdToDelete);
+        props.messagesClear(chatIdToDelete)
+        if (props.activeIndex == chatIdToDelete) {
+            props.push('/')
         }
-    ]);
+    }
 
     const classes = useStyles();
 
-    const [ activeIndex, setActiveIndex ] = useState(0);
-    // const [ lastActiveIndex, setLastActiveIndex ] = useState(0);
+    let {activeIndex, chats, users, conversations, messages, author } = props;
+
+    let lastMessages = conversations.map(item => {
+        let msgs = item.messages;
+        let msgText;
+        if (msgs.length != 0) {
+            msgText = messages.find(item => item.id == msgs[msgs.length-1]).text
+            return({ id: item.id, lastMessage: msgText })
+        } else {
+            return({ id: item.id, lastMessage: 'No messages yet'})
+        }
+    })
   
     let isActive;
 
-    const handleListItemClick = (event, index) => {
-        // setLastActiveIndex(activeIndex);
-        setActiveIndex(index);
-        let activeConv = conversationsArray[index];
-        props.getFunction(activeConv.id, activeConv.avatar, activeConv.name);
-    };
-
-    useEffect(() => {
-        let activeConv = conversationsArray[activeIndex];
-        props.getFunction(activeConv.id, activeConv.avatar, activeConv.name);
-    }, [activeIndex]);
-
     let addNewConversation = (name) => {
-        // setConversationsArray([...conversationsArray, 
-        //     {
-        //         id: 3,
-        //         name: name,
-        //         avatar: 'https://via.placeholder.com/70/55cc55',
-        //         lastMessage: 'No messages'
-        //     }
-        // ])
+        let userToAdd = users.find(item => item.name == name)
+        let idToAdd = userToAdd.id;
+        let newChatId = 'c-' + (Number(chats.reduce((res, item) => {
+            return (Math.max(res, item.id.slice(2)));
+        }, 0)) + 1);
+        props.addChat(newChatId, idToAdd, userToAdd.name, userToAdd.avatar);
+        props.messagesInit(newChatId, idToAdd);
     }
+    
+    let userList = []
 
-    let conversationsRender = conversationsArray.map((conversationElement) => {
+    users.forEach (item => {
+        if ((typeof chats.find(el => el.userId == item.id) == 'undefined') && (item.id != author)) {
+            userList.push(item);
+        }
+    })
+
+    let conversationsRender = chats.map((conversationElement) => {
         if (activeIndex == conversationElement.id) {
             isActive = true;
         } else {
             isActive = false;
         }
+
+        let thisChat = conversations.find(item => item.id == conversationElement.id)
+        let thisUser = users.find(item => item.id == thisChat.userId)
+
+        let lastMessage = lastMessages.find(item => item.id == thisChat.id).lastMessage;
+        let regex = /(<img[^<]* alt=")(:[A-Za-z0-9_]*:)("[^<]*>)/g
+        lastMessage = lastMessage.replace(regex, '$2')
+        lastMessage = lastMessage.replace(/&nbsp;/g, ' ')
+
         return(
-            <ListItem button onClick={(event) => handleListItemClick(event, conversationElement.id)} selected={isActive} key={conversationElement.id}>
-                <ListItemAvatar>
-                    <Avatar src={conversationElement.avatar}>
-                        <ImageIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={ conversationElement.name } secondary= { conversationElement.lastMessage } />
-            </ListItem>
-            // <Conversation isActive={isActive} conversationAvatar={conversationElement.avatar} conversationHeader={conversationElement.name} lastMessage={conversationElement.lastMessage} key = {conversationElement.id}/>
+            <Link to={'/chat/' + conversationElement.id + '/' } key={conversationElement.id}>
+                <ListItem button selected={isActive}>
+                    <ListItemAvatar>
+                        <Avatar src={thisUser.avatar}>
+                            <ImageIcon />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={ thisUser.name } secondary= { lastMessage } />
+                    <div className = "delete-chat-button" data-chat-item-id = { conversationElement.id } onClick = { callDeleteChat } ><IconButton aria-label="delete"><DeleteIcon /></IconButton></div>
+                </ListItem>
+            </Link>
         )
     })
-  
+
     return (
     <List className={classes.root}> 
         { conversationsRender }
-        <UserSelect addNewConversation={addNewConversation} />
+        <UserSelect userList={userList} addNewConversation={addNewConversation} />
     </List>
     );
 }
+
+const mapStateToProps = ({ chatsReducer, usersReducer, messagesReducer }) => ({
+    conversations: messagesReducer.conversations,
+    messages: messagesReducer.messages,
+    chats: chatsReducer.chats,
+    users: usersReducer.users,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ push, addChat, deleteChat, messagesInit, messagesClear, loadChats }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

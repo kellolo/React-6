@@ -1,11 +1,13 @@
-const MiniCssPlugin = require("mini-css-extract-plugin");
-const HtmlWebpack = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpack = require("copy-webpack-plugin");
 
 const path = require("path");
 
 module.exports = {
   entry: {
     main: path.resolve(__dirname, "src", "index.jsx"),
+    // main: './src/index.jsx'
   },
   output: {
     path: path.join(__dirname, "dist"),
@@ -17,7 +19,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.jsx?$/i,
@@ -27,18 +29,31 @@ module.exports = {
           plugins: [
             ["@babel/plugin-proposal-class-properties", { loose: true }],
           ],
+          //preset: ["@babel/preset-env", "@babel/preset-react"],
+        },
+      },
+      {
+        test: /\.(png|jpe?g|svg|gif)$/i,
+        loader: "file-loader",
+        options:{
+          outputPath: "img",
+          publicPath: "../img",
         },
       },
     ],
   },
   plugins: [
-    new MiniCssPlugin({
+    new MiniCssExtractPlugin({
       filename: path.join("style", "[name].css"),
       chunkFilename: "[id].css",
     }),
-    new HtmlWebpack({
+    new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.resolve(__dirname, "public", "index.html"),
+    }),
+    new CopyWebpack(
+      {
+      patterns: [{ from: "src/assets/imgs", to: "img" }], 
     }),
   ],
   devServer: {

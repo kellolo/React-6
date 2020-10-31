@@ -1,28 +1,33 @@
 import './style.css'
-import React, { Fragment } from 'react'
-import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+import React, {Fragment} from 'react'
+import {Link} from 'react-router-dom'
+import { ListGroup, ListGroupItem } from 'reactstrap';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 let ChatList = (props) => {
-    let contactList = ['Ivanych', 'Stepan', 'Alekseyich'];
+
+    let { chatsFromRedux } = props;
+    let chatsArr = chatsFromRedux.map(ch =><ListGroupItem  key = { ch.id }>
+        <Link to = { `/chat/${ch.id}` }>{ch.title}</Link>
+    </ListGroupItem>)
+
     return (
         <Fragment>
-            <div className="ChatList d-flex justify-content-around">
-                            <ul>
-                                <li>
-                                    <a href="">Chat 1</a>
-                                </li>
-                                <li>
-                                    <a href="">Chat 2</a>
-                                </li>
-                                <li>
-                                    <a href="">Chat 3</a>
-                                </li>
-                            </ul>
-                            <div>
-                                <ChatDialog contacts={contactList}/>
-                            </div>
-                        </div>
+            <ListGroup flush>
+                {chatsArr}
+            </ListGroup>
         </Fragment>
     )
 }
-export default ChatList
+
+const mapStateToProps = ({ chatsReducer }) => ({
+    chatsFromRedux: chatsReducer.chats
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+
+
+
+

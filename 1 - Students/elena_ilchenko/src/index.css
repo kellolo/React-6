@@ -12,9 +12,4 @@ code {
     monospace;
 }
 
-.MsgWrapper {
-  width: 70%;
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-}
+

@@ -17,7 +17,6 @@ import PersonIcon from '@material-ui/icons/Person'
 import AddIcon from '@material-ui/icons/Add'
 import { blue } from '@material-ui/core/colors'
 
-const users = [{name: 'Bot4', avatar: 'https://via.placeholder.com/30/22AA22'}, {name: 'Bot5', avatar: 'https://via.placeholder.com/30/AA2222'}];
 const useStyles = makeStyles({
     avatar: {
         backgroundColor: blue[100],
@@ -42,7 +41,7 @@ function SimpleDialog(props) {
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
         <DialogTitle id="simple-dialog-title">Slect user to start new chat</DialogTitle>
         <List>
-          {users.map((user) => (
+          {props.users.map((user) => (
             <ListItem button onClick={() => handleListItemClick(user.name)} key={user.name}>
               <ListItemAvatar>
                 <Avatar src={user.avatar} className={classes.avatar}>
@@ -52,23 +51,24 @@ function SimpleDialog(props) {
               <ListItemText primary={user.name} />
             </ListItem>
           ))}
-  
-          {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItem> */}
         </List>
       </Dialog>
     );
   }
+
+  SimpleDialog.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    selectedValue: PropTypes.string.isRequired,
+  };
   
   export default function UserSelect(props) {
     const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState(users[1]);
+    const [selectedValue, setSelectedValue] = React.useState('');
+
+    const users = props.userList.map(item => {
+      return({name: item.name, avatar: item.avatar})
+    });
   
     const handleClickOpen = () => {
       setOpen(true);
@@ -88,7 +88,7 @@ function SimpleDialog(props) {
         <Button className="chat-add-button" variant="outlined" color="primary" onClick={handleClickOpen}>
           <AddIcon />
         </Button>
-        <SimpleDialog addNewConversationSD = {addNewConversationSDD} selectedValue={selectedValue} open={open} onClose={handleClose} />
+        <SimpleDialog addNewConversationSD = {addNewConversationSDD} users = { users } selectedValue={selectedValue} open={open} onClose={handleClose} />
       </div>
     );
   }

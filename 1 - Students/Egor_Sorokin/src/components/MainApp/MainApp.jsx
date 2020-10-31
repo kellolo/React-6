@@ -1,38 +1,30 @@
 import './style.css'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import Messages from '../Messages/Messages.jsx'
+import MessagesBlank from '../MessagesBlank/MessagesBlank.jsx'
 import ChatList from '../ChatList/ChatList.jsx'
 
-export default class MainApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            activeConv: {
-                id: '0',
-                avatar: 'https://via.placeholder.com/70',
-                name: 'Bot',
-            }
+export default props => {
+
+    let [chatId, setChatId] = useState(props.chatId)
+
+    let { me, myAvatar } = props;
+
+    let messagesRender = () => {
+        if (chatId == '-1') {
+            return (<MessagesBlank myAvatar = { myAvatar } />)
+        } else {
+            return (<Messages author = { me } activeId={ chatId }  />)
         }
     }
-
-    getActiveConv = (id, avatar, name) => {
-        this.setState({activeConv: {
-            id: id,
-            avatar: avatar,
-            name: name,
-        }});
-    }
-
-    render() {
-
         return(
             <main>
                 <div className="row">
-                    <ChatList getFunction = {this.getActiveConv} />
-                    <Messages author = 'Egor' activeId={this.state.activeConv.id} currConversationName={this.state.activeConv.name} avatarAddress={this.state.activeConv.avatar} />
+                    <ChatList author = { me } activeIndex = { chatId } /> 
+                    { messagesRender() }
                 </div>
             </main>
-    )}
+        )
 }

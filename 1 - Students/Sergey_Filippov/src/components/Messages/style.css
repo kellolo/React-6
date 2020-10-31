@@ -1,5 +1,8 @@
 .msg-wrap {
     height: 80vh;
     overflow-y: auto;
-    width: 50%
+    width: 100%;
+}
+.msgs{
+    width: 70%;
 }

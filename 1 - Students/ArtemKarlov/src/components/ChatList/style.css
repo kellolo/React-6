@@ -1,0 +1,14 @@
+.chats__chats-list {
+    flex-grow: 1;
+
+} 
+.chats-list {
+    /* padding-right: 30px; */
+    overflow-y: auto;
+}
+
+.chats-list__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

@@ -2,19 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Messages from './components/Messages/Messages';
-import ChatList from './components/ChatList/ChatList';
+import Router from './components/Router/Router';
+// import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { StylesProvider } from '@material-ui/core/styles'
+import { StylesProvider } from '@material-ui/core/styles';
+
+import { Provider } from 'react-redux';
+import initStore, { history } from './store';
 
 
 ReactDOM.render(
-  <StylesProvider>
-    <div className="MsgWrapper">
-      <ChatList />
-      <Messages />
-    </div>
-  </StylesProvider>,
+  <Provider store={ initStore() }>
+      <StylesProvider>
+        <ConnectedRouter history={ history }>
+            <Router />
+        </ConnectedRouter>
+    </StylesProvider>
+  </Provider>,
   document.getElementById('root')
 );
 

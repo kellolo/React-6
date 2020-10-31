@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDom from "react-dom";
-import "./layout/styles/style.css";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { StylesProvider } from "@material-ui/core/styles";
+// import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from "connected-react-router";
+import Router from "./router.jsx";
 
-import Header from "./components/header/Header.jsx";
-import Main from "./components/main/main.jsx";
-import Footer from "./components/footer/Footer.jsx";
+import { Provider } from "react-redux";
+import { initStore, history } from "./store";
 
 const app = document.querySelector("#app");
 
 ReactDom.render(
-  <StylesProvider>
-    <div className="wrap">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
-  </StylesProvider>,
+  <Provider store={ initStore() }>
+    <ConnectedRouter history = { history }>
+      <Router />
+    </ConnectedRouter>
+  </Provider>,
   app
 );

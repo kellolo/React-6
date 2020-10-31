@@ -2,7 +2,9 @@ import './style.css'
 
 import React from 'react'
 
+
 export default props => {
+
     let { author, sender, text } = props;
     let addClass;
     if (author == sender) {
@@ -14,7 +16,7 @@ export default props => {
         <div className="message">
             <div className={addClass}>
                 <strong>{ sender }</strong>
-                <p>{ text }</p>
+                <p dangerouslySetInnerHTML = { {__html: text} }></p>
             </div>
         </div>
     )

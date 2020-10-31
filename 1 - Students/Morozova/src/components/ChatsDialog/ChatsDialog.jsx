@@ -1,3 +1,4 @@
+import './style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,12 +15,16 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
-const emails = ['Ann', 'Giovanni', 'Marco'];
+const emails = ['Elisabeth', 'Marco', 'Michel', 'Joseph', 'Mirinda'];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
     color: blue[600],
   },
+  openBtn: {
+    color: '#333',
+    border: '1px solid rgba(51, 51, 51, .5)',
+  }
 });
 
 function SimpleDialog(props) {
@@ -36,7 +41,7 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Choose friend to start chat</DialogTitle>
       <List>
         {emails.map((email) => (
           <ListItem button onClick={() => handleListItemClick(email)} key={email}>
@@ -55,7 +60,7 @@ function SimpleDialog(props) {
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Add account" />
+          <ListItemText primary="Add friend" />
         </ListItem>
       </List>
     </Dialog>
@@ -69,9 +74,11 @@ SimpleDialog.propTypes = {
 };
 
 export default function SimpleDialogDemo(props) {
+  const { addFunction } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-  const { addFunction } = props;
+
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -85,10 +92,10 @@ export default function SimpleDialogDemo(props) {
 
   return (
     <div>
-      {/* <Typography variant="subtitle1">Chat with: {selectedValue}</Typography>
+      {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
       <br /> */}
-      <Button variant="outlined" style={ {color: '#00008B'} } onClick={handleClickOpen}>
-        Open a new chat
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={ classes.openBtn }>
+        Open new chat
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>

@@ -8,6 +8,10 @@
     clear: both;
 }
 
+.myMessage, .othersMessage {
+    max-width: 70%;
+}
+
 .message strong {
     display: block;
     /* padding-left: 10px; */
@@ -16,10 +20,16 @@
 .message p {
     display: block;
     padding: 5px 15px;
-    height: 36px;
+    min-height: 36px;
     border-radius: 18px;
     background-color: #ffebeb;
+    max-width: 100%;
+    line-break: anywhere;
 }
+
+.message img {
+    max-height: 26px;
+} 
 
 .myMessage strong {
     padding-right: 15px;

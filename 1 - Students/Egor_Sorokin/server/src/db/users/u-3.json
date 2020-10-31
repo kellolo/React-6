@@ -1,0 +1,11 @@
+{
+    "_id": "u-3",
+    "name": "User3",
+    "email": "user3@icloud.com",
+    "password": "1234",
+    "avatar": "https://via.placeholder.com/70/555555",
+    "contacts": ["u-5"],
+    "chats": [
+        
+    ]
+}

@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
 
@@ -33,22 +34,45 @@ module.exports = {
                     ],
                     // preset: ["@babel/preset-env", "@babel/preset-react"]
                 }
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
+            },
         ]
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: './src/img/*.*' },
+            ],
+        }),
         new MiniCssExtractPlugin({
             filename: path.join('style', '[name].css'),
             chunkFilename: '[id].css'
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, 'public', 'index.html')
+            template: path.resolve(__dirname, 'public', 'index.html'),
+            favicon: "./src/favicon.png",
         })
     ],
+    devtool: 'cheap-inline-module-source-map',
     devServer: {
         port: 3300,
         hot: true,
-        open: false
+        open: false,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:4000',
+                pathRewrite: { '^/api' : '' },
+                secure: false,
+                changeOrigin: true
+            }
+        }
     }
 }

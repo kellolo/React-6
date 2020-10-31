@@ -10,7 +10,6 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "dist"),
-    publicPath: "",
     filename: path.join("js", "bundle.js"),
   },
   target: "web",
@@ -34,25 +33,45 @@ module.exports = {
                 loose: true,
               },
             ],
+            ["@babel/plugin-transform-runtime"],
           ],
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets/images",
+          name: "[name].[ext]",
+        },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets/fonts",
+          name: "[name].[ext]",
         },
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: path.join("style", "[name].css"),
+      filename: path.join("", "[name].css"),
       chunkFilename: "[id].css",
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.resolve(__dirname, "public", "index.html"),
     }),
-    new FaviconsWebpackPlugin(path.resolve(__dirname, "public", "favicon.ico")),
+    new FaviconsWebpackPlugin(
+      path.resolve(__dirname, "public/assets", "favicon.ico")
+    ),
   ],
   devServer: {
     port: 3300,
     hot: true,
     open: true,
+    historyApiFallback: true,
   },
 };

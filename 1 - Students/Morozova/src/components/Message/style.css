@@ -1,21 +1,27 @@
-.message {
-    margin: 7px 0;
-    padding: 5px 15px;
-    color: darkblue;
-    min-width: 200px;
-    min-height: 60px;
+.msg {
+    min-width: 300px;
     max-width: 350px;
-    border: 1px solid darkblue;
+    min-height: 60px;
+    background-color: #bdc1ff;
+    margin: 10px 0;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-radius: 10px 0 10px 0;
+    border: 2px solid #555555;
 }
 
-.sender{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    font-size: 13px;
+.msgName {
+    font-family: 'Harmattan', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #3f51b5;
 }
 
-.message-text {
+.msgText {
     margin: 0;
-    padding: 0 3px;
+    font-family: 'Harmattan', sans-serif;
+    font-size: 24px;
+    line-height: 24px;
+    color: #333333;
 }
