@@ -1,27 +1,33 @@
 import './style.css'
-import React, { Fragment } from 'react'
-import ChatDialog from '../ChatDialog/ChatDialog.jsx'
-import { Link } from 'react-router-dom'
+import React, {Fragment} from 'react'
+import {Link} from 'react-router-dom'
+import { ListGroup, ListGroupItem } from 'reactstrap';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 let ChatList = (props) => {
-    let { chats, contacts } = props;
-    let chatsArr = chats.map(ch => <li className="list-group-item list-group-item-primary" key = { ch._id }>
-        <Link to = { `/chat/${ch._id}` }>{ch.title}</Link>
-    </li>)
+
+    let { chatsFromRedux } = props;
+    let chatsArr = chatsFromRedux.map(ch =><ListGroupItem  key = { ch.id }>
+        <Link to = { `/chat/${ch.id}` }>{ch.title}</Link>
+    </ListGroupItem>)
+
     return (
         <Fragment>
-            <div className="ChatList d-flex flex-column">
-                {/* <Link to = "/test/">
-                                <a href="#">Test</a>
-                            </Link> */}
-                <ul className="list-group list-group-flush">
-                    { chatsArr }
-                </ul>
-                <div>
-                    <ChatDialog contacts = { contacts }/>
-                </div>
-            </div>
+            <ListGroup flush>
+                {chatsArr}
+            </ListGroup>
         </Fragment>
     )
 }
-export default ChatList
+
+const mapStateToProps = ({ chatsReducer }) => ({
+    chatsFromRedux: chatsReducer.chats
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+
+
+
+
