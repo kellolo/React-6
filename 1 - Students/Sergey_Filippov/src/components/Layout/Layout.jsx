@@ -10,16 +10,7 @@ export default class Layout extends Component {
         super(props);
         this.state = {
             contacts: ['Petrovich', 'Alekseich', 'Vasilych'],
-            chats: [
-                {
-                    title: 'Chat 1',
-                    _id: 'ch_1'
-                }, 
-                {
-                    title: 'Chat 2',
-                    _id: 'ch_2'
-                }
-            ]
+            
         }
     }
     
