@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
       zIndex: '2',
       backgroundColor: '#258C60',
       margin: '0 auto',
+      top: '8px',
     // marginRight: 36,
   },
   hide: {

@@ -15,15 +15,13 @@ class Router extends React.Component {
         const {chats} = this.props;
 
         const routesArr = chats.map((chat) => {
-            console.log(`path: /chat/${chat.id}`);
-            return <Route exact path={`/chat/${chat.id}`} render={() => <Layout chatInfo={chat} />} key={chat.id}/>
+            // console.log(`path: /chat/${chat.id}`);
+            return <Route exact path={`/chat/${chat.id}`} render={() => <Layout chatId={chat.id} />} />
         });
 
         return (
             <Switch>
-                {/* <Route exact path="/" component={Layout}/> */}
-                <Route exact path="/" render={() => <Layout chatInfo={{title: "Bot News"}} />}/>
-                <Route exact path="/chat/ch_0" render={() => <Layout chatInfo={{title: "testChat"}} />}/>
+                <Route exact path="/" component={Layout}/>
                
                 { routesArr }   
                 

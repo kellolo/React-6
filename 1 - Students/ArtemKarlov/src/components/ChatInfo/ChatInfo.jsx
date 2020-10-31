@@ -1,5 +1,8 @@
 import './style.css';
 import React, { Fragment } from 'react';
+
+import {connect} from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -7,9 +10,10 @@ const useStyles = makeStyles(() => ({
     accountAvatar: {width: '100%', height: '100%'}
 }));
 
-export default (props) => {
+function ChatInfo(props) {
     const classes = useStyles();
-    const {chatInfo} = props;
+    const {chatId, chats} = props;
+    const chatInfo = chats.find((chat) => chat.id === chatId);
     return (
         <Fragment>
             <div className="chat__header chat-header">
@@ -24,3 +28,8 @@ export default (props) => {
         </Fragment>
     );
 }
+
+const mapStateToProps = ({chatsReducer}) => ({
+    chats: chatsReducer.chats,
+});
+export default connect(mapStateToProps)(ChatInfo);

@@ -82,8 +82,7 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {chatInfo} = this.props;
-        console.log((chatInfo)? chatInfo : {title: 'Vasya'});
+        const {chatId} = this.props;
         // const opponent = account.contacts.find(opp => opp.id === opponentId);        
         
         return ( 
@@ -95,7 +94,7 @@ export default class Layout extends React.Component {
                         <Account userName={account.name} avatarUrl={account.avatarUrl} />
                         <Chats />                
                     </div>
-                    <ChatField chatInfo={(chatInfo)? chatInfo : {title: 'Vasya', avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',}} />
+                    <ChatField chatId={(chatId)? chatId : 'ch_0'} />
                 </div>
             </MuiThemeProvider>
         )
