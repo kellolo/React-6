@@ -5,6 +5,11 @@ const initStore = {
     chats: [
         {
             id: "ch_0",
+            title: "BOT",
+            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
+        },
+        {
+            id: "ch_1",
             title: "Vasya Vasin",
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
         },

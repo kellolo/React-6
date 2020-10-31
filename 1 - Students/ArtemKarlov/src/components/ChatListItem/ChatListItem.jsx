@@ -50,8 +50,8 @@ function ChatListItem(props) {
     const lastMessage = messages[messages.length-1];
     const showedMessage = (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
     
-    const handleListItemClick = (event, index, chatId) => {
-        onClick(event, index, chatId);
+    const handleListItemClick = (chatId) => {
+        onClick(chatId);
       };
 
     return (
@@ -60,8 +60,8 @@ function ChatListItem(props) {
             <ListItem  
                 button 
                 alignItems="flex-start"
-                selected={selectedIndex === index}
-                onClick={(event) => handleListItemClick(event, index, chat.id)}
+                selected={selectedIndex === chat.id}
+                onClick={() => handleListItemClick(chat.id)}
             >
                 <ListItemAvatar>
                     <Avatar alt={chat.title} src={chat.avatarUrl} />

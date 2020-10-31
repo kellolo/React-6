@@ -56,8 +56,8 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {chat} = this.props;
-        console.log((chat)? chat : {title: 'Vasya'});
+        const {chatInfo} = this.props;
+        console.log((chatInfo)? chatInfo : {title: 'Vasya'});
         // const opponent = account.contacts.find(opp => opp.id === opponentId);        
         
         return (            
@@ -68,7 +68,7 @@ export default class Layout extends React.Component {
                     <Account userName={account.name} avatarUrl={account.avatarUrl} />
                     <Chats />                
                 </div>
-                <ChatField chatInfo={(chat)? chat : {title: 'Vasya'}} />
+                <ChatField chatInfo={(chatInfo)? chatInfo : {title: 'Vasya', avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',}} />
             </div>
         )
     }

@@ -14,17 +14,17 @@ import ChatListItem from '../ChatListItem/ChatListItem.jsx';
 
 function ChatList(props) {
 
-    const [selectedIndex, setSelectedIndex] = React.useState(null);
+    const [selectedIndex, setSelectedIndex] = React.useState('ch_0');
 
-    const handleChatListItemClick = (event, index, chatId) => {
-      setSelectedIndex(index);
+    const handleChatListItemClick = (chatId) => {
+      setSelectedIndex(chatId);
       props.push(`/chat/${chatId}`);
     };
          
     const { chats } = props;
     
-    const chatList = chats.map((chatListItem, itemIndex) => 
-        <ChatListItem key={chatListItem.id} index={itemIndex} selectedIndex={selectedIndex} chat={chatListItem} onClick={handleChatListItemClick}/>
+    const chatList = chats.map((chatListItem) => 
+        <ChatListItem key={chatListItem.id} selectedIndex={selectedIndex} chat={chatListItem} onClick={handleChatListItemClick}/>
     );
     
     return (

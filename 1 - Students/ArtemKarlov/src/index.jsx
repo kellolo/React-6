@@ -43,13 +43,13 @@ const {store, persistor} = initStore();
 ReactDom.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            {/* <ConnectedRouter history={history}> */}
-            <BrowserRouter>
+            <ConnectedRouter history={history}>
+            {/* <BrowserRouter> */}
                 <MuiThemeProvider theme={customTheme}>
                     <Router />
                 </MuiThemeProvider>
-                </BrowserRouter>
-            {/* </ConnectedRouter> */}
+                {/* </BrowserRouter> */}
+            </ConnectedRouter>
         </PersistGate>
     </Provider>
     ,
