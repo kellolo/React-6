@@ -1,13 +1,39 @@
 import './style.css';
 import React from 'react';
 
-
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import Controls from '../Controls/Controls.jsx';
-import AccountChats from '../AccountChats/AccountChats.jsx';
+// import AccountChats from '../AccountChats/AccountChats.jsx';
 import Account from '../Account/Account.jsx';
 import Chats from '../Chats/Chats.jsx';
 import ChatField from '../ChatField/ChatField.jsx';
+
+const customTheme = createMuiTheme({
+    overrides: {
+        MuiPaper: {
+            root : {
+                backgroundColor: '#258C60',
+                color: '#ffffff',
+            }
+        },
+        MuiListItemIcon: {
+            root: {
+                color: '#ffffff',
+            }
+        },
+        MuiIconButton: {
+            root: {
+                color: '#ffffff',
+            }
+        },
+        // MuiTypography: {
+        //     colorTextSecondary: {
+        //         color: '#808080'
+        //     },
+        // },
+    }
+});
 
 
 const account = {
@@ -60,16 +86,18 @@ export default class Layout extends React.Component {
         console.log((chatInfo)? chatInfo : {title: 'Vasya'});
         // const opponent = account.contacts.find(opp => opp.id === opponentId);        
         
-        return (            
-            <div className="layout">
-                <Controls />
-                {/* <AccountChats account = {account} /> */}
-                <div className="layout__account-chatlist">
-                    <Account userName={account.name} avatarUrl={account.avatarUrl} />
-                    <Chats />                
+        return ( 
+            <MuiThemeProvider theme={customTheme}>           
+                <div className="layout">
+                    <Controls />
+                    {/* <AccountChats account = {account} /> */}
+                    <div className="layout__account-chatlist">
+                        <Account userName={account.name} avatarUrl={account.avatarUrl} />
+                        <Chats />                
+                    </div>
+                    <ChatField chatInfo={(chatInfo)? chatInfo : {title: 'Vasya', avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',}} />
                 </div>
-                <ChatField chatInfo={(chatInfo)? chatInfo : {title: 'Vasya', avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',}} />
-            </div>
+            </MuiThemeProvider>
         )
     }
 }

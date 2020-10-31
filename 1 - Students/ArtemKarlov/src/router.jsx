@@ -8,14 +8,13 @@ import Layout from './components/Layout/Layout.jsx';
 class Router extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {            
-        }
+
     }
 
     render() {
         const {chats} = this.props;
 
-        const routes = chats.map((chat) => {
+        const routesArr = chats.map((chat) => {
             console.log(`path: /chat/${chat.id}`);
             return <Route exact path={`/chat/${chat.id}`} render={() => <Layout chatInfo={chat} />} key={chat.id}/>
         });
@@ -24,9 +23,10 @@ class Router extends React.Component {
             <Switch>
                 {/* <Route exact path="/" component={Layout}/> */}
                 <Route exact path="/" render={() => <Layout chatInfo={{title: "Bot News"}} />}/>
-                { routes }
-
-                {/* <Route exact path="/chat/ch_0" render={() => <Layout opponentId={'contact_0'} />} />*/}
+                <Route exact path="/chat/ch_0" render={() => <Layout chatInfo={{title: "testChat"}} />}/>
+               
+                { routesArr }   
+                
             </Switch>
         )
     }
