@@ -5,11 +5,11 @@ import ChatInfo from '../ChatInfo/ChatInfo.jsx';
 import Messages from '../Messages/Messages.jsx';
 
 export default (props) => {
-    const {chatName} = props;
+    const {chatInfo} = props;
     return (
         <Fragment>
             <section className="lyaout__chat chat">
-                <ChatInfo opponentName={chatName}/>
+                <ChatInfo chatInfo={chatInfo}/>
                 <Messages />
             </section>
         </Fragment>
