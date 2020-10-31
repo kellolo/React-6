@@ -1,0 +1,20 @@
+[
+    {
+        "id": "c-0",
+        "userId": "u-0",
+        "name": "Bot",
+        "avatar": "https://via.placeholder.com/70"
+    },
+    {
+        "id": "c-1",
+        "userId": "u-1",
+        "name": "User",
+        "avatar": "https://via.placeholder.com/70/cccc55"
+    },
+    {
+        "id": "c-2",
+        "userId": "u-2",
+        "name": "User2",
+        "avatar": "https://via.placeholder.com/70/55cc55"
+    }
+]
