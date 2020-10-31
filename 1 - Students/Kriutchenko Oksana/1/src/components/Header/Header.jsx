@@ -1,16 +1,11 @@
+import './style.css';
+import React, { Fragment } from 'react';
 
-import './style.css'
-import React, { Fragment } from 'react'
 
-
- export default props => {
-            //let { some } = props;
-    return (
-                <Fragment>
-                    <div className="Header">
-                       <div className="logo"></div>
-                    </div>
-                </Fragment>
-            )
-}
-     
+export default (props) => {
+    let { chatName } = props;
+    return  <div className="header">
+             <h1> { props.chatName ? props.chatName : 'Welcome' } </h1>
+            </div>
+    }  
+    
