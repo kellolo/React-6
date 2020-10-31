@@ -56,7 +56,8 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {chatInfo} = this.props;
+        const {chat} = this.props;
+        console.log((chat)? chat : {title: 'Vasya'});
         // const opponent = account.contacts.find(opp => opp.id === opponentId);        
         
         return (            
@@ -67,7 +68,7 @@ export default class Layout extends React.Component {
                     <Account userName={account.name} avatarUrl={account.avatarUrl} />
                     <Chats />                
                 </div>
-                <ChatField chatInfo={(chatInfo)? chatInfo : {title: 'Vasya'}} />
+                <ChatField chatInfo={(chat)? chat : {title: 'Vasya'}} />
             </div>
         )
     }

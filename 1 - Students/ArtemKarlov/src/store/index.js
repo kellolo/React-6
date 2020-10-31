@@ -11,8 +11,8 @@ const persistConfig = {
     key: 'chatPersist',
     storage,
     stateReconciler: autoMergeLevel2,
-    whitelist: ['chatsReducer', 'messagesReducer', 'contactsReducer']
-    // whitelist: []
+    // whitelist: ['chatsReducer', 'messagesReducer', 'contactsReducer']
+    whitelist: []
 };
 
 export const history = createBrowserHistory();
