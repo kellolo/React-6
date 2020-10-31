@@ -59,7 +59,7 @@ function ShowInfo(props) {
         // onClose(value);
     };
 
-    let avatarPath = paths.join('','src','img', user.avatar);
+    let avatarPath = paths.join('/src','img', user.avatar);
 
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} >

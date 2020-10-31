@@ -60,7 +60,7 @@ function SimpleDialog(props) {
                     {contacts.map((contact) => (
                     <ListItem button onClick={() => handleListItemClick(contact.name)} key={contact.email}>
                         <ListItemAvatar>
-                        <Avatar alt="X" src={paths.join('','src','img', contact.avatar)}>
+                        <Avatar alt="X" src={paths.join('/src','img', contact.avatar)}>
                         </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={contact.name} className = { classes['test-class'] } />
