@@ -1,10 +1,17 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import { Toolbar } from "primereact/toolbar";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import UserToolbarItem from "../../User/UserToolbarItem/UserToolbarItem.jsx";
 
-export default class ChatsHeader extends React.Component {
+import { logOut } from "../../../actions";
+
+import UserToolbarItem from "../../User/UserToolbarItem/UserToolbarItem.jsx";
+import { confirm } from "../../ConfirmDialog/ConfirmDialog.jsx";
+
+class ChatsHeader extends React.Component {
 
     menuUserItems = [
         {
@@ -23,7 +30,10 @@ export default class ChatsHeader extends React.Component {
         {
             label: 'Log out',
             icon: 'pi pi-fw pi-power-off',
-            disabled: true,
+            command: async () => {
+                if (await confirm("Are you sure you want to log out?"))
+                    this.props.logOut();
+            },
         }
     ]
 
@@ -63,3 +73,12 @@ export default class ChatsHeader extends React.Component {
         );
     }
 }
+
+const mapStateToProps = ({ userReducer }) => ({
+    user: userReducer.user
+})
+
+export default connect(
+    mapStateToProps,
+    { logOut }
+)(ChatsHeader);

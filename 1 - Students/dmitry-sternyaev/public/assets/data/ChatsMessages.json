@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "userId": "ant",
+      "chatId": "fish",
+      "messageId": "1604001471561",
+      "messageText": "Hello, Fish!",
+      "senderId": "ant",
+      "status": "READ"
+    },
+    {
+      "userId": "ant",
+      "chatId": "fish",
+      "messageId": "1604001471562",
+      "messageText": "Hello, Ant!",
+      "senderId": "fish",
+      "status": "SENT"
+    },
+    {
+      "userId": "fish",
+      "chatId": "ant",
+      "messageId": "1604001471561",
+      "messageText": "Hello, Fish!",
+      "senderId": "ant",
+      "status": "READ"
+    },
+    {
+      "userId": "fish",
+      "chatId": "ant",
+      "messageId": "1604001471562",
+      "messageText": "Hello, Ant!",
+      "senderId": "fish",
+      "status": "SENT"
+    }
+  ]
+}

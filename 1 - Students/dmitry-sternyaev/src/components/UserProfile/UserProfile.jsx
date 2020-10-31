@@ -1,10 +1,19 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import UserCard from "../User/UserCard/UserCard.jsx";
 
-export default class UserProfile extends React.Component {
+class UserProfile extends React.Component {
     render() {
-        return ( 
+        return (
             UserCard(this.props.user)
         );
     }
 }
+
+const mapStateToProps = ({ userReducer }) => ({
+    user: userReducer.user
+})
+
+export default connect(mapStateToProps)(UserProfile);
