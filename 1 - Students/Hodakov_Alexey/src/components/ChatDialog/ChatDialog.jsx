@@ -13,11 +13,10 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import PersonIcon from "@material-ui/icons/Person";
 import AddIcon from "@material-ui/icons/Add";
-// import Typography from "@material-ui/core/Typography";
-// import { blue } from "@material-ui/core/colors";
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addChat } from '../../store/actions/chats.actions.js'
+import { addDialog } from '../../store/actions/addDialog.actions.js';
 
 const useStyles = makeStyles({
   "w-400px" : {
@@ -111,7 +110,7 @@ function SimpleDialogDemo(props) {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
-    props.addChat(value);
+    props.addDialog(value);
   };
 
   return (
@@ -134,6 +133,6 @@ const mapStateToProps = ({ chatsReducer, contactsReducer }) => ({
   chatsFromRedux: chatsReducer.chats,
   contactsFromRedux: contactsReducer.contacts
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ addDialog }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleDialogDemo);

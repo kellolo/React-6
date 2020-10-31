@@ -10,6 +10,24 @@ let mod = {
       }
     });
   },
+
+  async loadContacts(req, res) {
+    fs.readFile(`${db}/users/${req.params.user}.json`, "utf-8", (err, data) => {
+      if (!err) {
+        let contacts = JSON.parse(data).contacts;
+        res.json(contacts);
+      }
+    });
+  },
+
+  async userInfo(req, res) {
+    fs.readFile(`${db}/users/${req.params.user}.json`, "utf-8", (err, data) => {
+      if (!err) {
+         res.json(JSON.parse(data));
+      }
+    });
+  },
+
 };
 
 module.exports = mod;

@@ -1,5 +1,5 @@
 import update from "react-addons-update";
-import { SUCCESSS_CHATS_LOADING } from "../actions/chatList.actions";
+
 
 const storeChats = {
   chats: [

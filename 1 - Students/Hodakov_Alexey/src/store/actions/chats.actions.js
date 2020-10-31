@@ -1,14 +1,14 @@
-export let ADD_CHAT = "@@chat/ADD_CHAT";
+// export let ADD_CHAT = "@@chat/ADD_CHAT";
 import { RSAA, getJSON } from "redux-api-middleware";
 
 export const START_CHATS_LOADING = "@@chats/START_LOADING";
 export const FAIL_CHATS_LOADING = "@@chats/FAIL_LOADING";
 export const SUCCESSS_CHATS_LOADING = "@@chats/SUCCESSS_LOADING";
 
-export let addChat = (contact) => ({
-  contact,
-  type: ADD_CHAT,
-});
+// export let addChat = (contact) => ({
+//   contact,
+//   type: ADD_CHAT,
+// });
 
 export const loadChats = url => ({
   [RSAA]: {

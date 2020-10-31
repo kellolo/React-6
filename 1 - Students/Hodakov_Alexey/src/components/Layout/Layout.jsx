@@ -10,27 +10,36 @@ import ChatList from "../ChatList/ChatList.jsx";
 import Header from "../Header/Header.jsx";
 import UserInfo from "../UserInfo/UserInfo.jsx";
 import ContactInfo from '../ContactInfo/ContactInfo.jsx';
+import { loadUserInfo } from '../../store/actions/userInfo.actions.js';
 
-export default class Layout extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    let userId = 'user-1';
+    this.props.loadUserInfo('/api/userinfo/'+ userId);
+  }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+  }
 
   render() {
+    let { userInfoRedux, chatsFromRedux } = this.props;
     return (
       <StylesProvider>
         <div className="w-100 d-flex flex-column align-items-center main-opacity">
           <div className="d-flex header">
-          <UserInfo className="header__text__blue" />
-          <ContactInfo className="header__text__green" chatName={this.props.chatName} />
+          <UserInfo className="header__text__blue" chatName={userInfoRedux.name} phone={userInfoRedux.phone} email={userInfoRedux.email} about={userInfoRedux.about}/>
+          <ContactInfo className="header__text__green" chatName={chatsFromRedux.name} phone={chatsFromRedux.phone} email={chatsFromRedux.email} about={chatsFromRedux.about}/>
           </div>
           <div className="d-flex w-100 justify-content-center">
-            <ChatList contacts={this.state.contacts} />
+            <ChatList />
             <Messages chatName={this.props.chatName} />
           </div>
         </div>
@@ -38,3 +47,11 @@ export default class Layout extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ chatsReducer,userInfoReducer  }) => ({
+  userInfoRedux: userInfoReducer.information,
+  chatsFromRedux: chatsReducer.chats,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ loadUserInfo }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

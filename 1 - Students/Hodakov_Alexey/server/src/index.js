@@ -17,6 +17,10 @@ server.use(express.json());
 
 server.get('/chats/:user', chats.loadChats); 
 
+server.get('/contacts/:user', chats.loadContacts); 
+
+server.get('/userinfo/:user', chats.userInfo);
+
 
 
 server.listen(3000, () => {

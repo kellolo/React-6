@@ -1,26 +1,10 @@
 import update from "react-addons-update";
-import { ADD_CHAT } from "../actions/chats.actions.js";
-import { SUCCESSS_CHATS_LOADING } from "../actions/chatList.actions.js";
-import { object } from "prop-types";
+import { ADD_CHAT } from "../actions/addDialog.actions.js";
+import { SUCCESSS_CHATS_LOADING } from "../actions/chats.actions.js";
 
 const storeChats = {
   chats: [
-    // {
-    //   id: 'chat_1',
-    //   contact: "Larry",
-    // },
-    // {
-    //   id: "chat_2",
-    //   contact: "Ваня",
-    // },
-    // {
-    //   id: "chat_3",
-    //   contact: "Вероника",
-    // },
-    // {
-    //   id: "chat_4",
-    //   contact: "Грузин",
-    // },
+
   ],
 };
 
@@ -50,11 +34,10 @@ export default (store = storeChats, action) => {
         let newChat = { id, contact };
         return update(store, { chats: { $push: [newChat] } });
       }
-      //break
+      // break
     }
     
     case SUCCESSS_CHATS_LOADING: {
-      // console.log(action.payload);
       return update(store, {
         chats: { $set: action.payload.chats}
       })

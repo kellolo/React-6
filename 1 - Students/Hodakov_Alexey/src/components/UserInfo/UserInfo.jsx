@@ -21,7 +21,7 @@ const useStyles = makeStyles({
       },
   });
 export default function AlertDialogSlide(props) {
-  let { chatName } = props;
+  let { chatName, phone, email, about } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -44,18 +44,18 @@ export default function AlertDialogSlide(props) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle className = { classes['text-green'] } id="alert-dialog-slide-title">{"ИМЯ"}</DialogTitle>
+        <DialogTitle className = { classes['text-green'] } id="alert-dialog-slide-title">{props.chatName}</DialogTitle>
         <DialogContent className="d-flex">
             <Photo />
             <div>
                 <div className="p-1">
-                    <PhoneAndroidIcon /><span> +7 (000) 000 0000</span>
+                    <PhoneAndroidIcon /><span> {props.phone} </span>
                 </div>
                 <div className="p-1">
-                    <AlternateEmailIcon /><span> sometext@domen.txt </span>
+                    <AlternateEmailIcon /><span> {props.email} </span>
                 </div>
                 <DialogContentText id="alert-dialog-slide-description">           
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quo aliquam doloremque saepe consequuntur nihil.
+                                {props.about}
                 </DialogContentText>
             </div>
         </DialogContent>
