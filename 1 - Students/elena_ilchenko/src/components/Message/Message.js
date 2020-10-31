@@ -6,7 +6,7 @@ const Message = (props) => {
     const cls = [];
     if (props.sender !== 'bot') {
         cls.push('selfMessage');
-    } 
+    }
 
     return (<div className={`MessageComponent ${cls.join(' ')}`}>
                                     {props.sender}: {props.text}

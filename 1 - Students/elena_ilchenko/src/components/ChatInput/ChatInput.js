@@ -12,7 +12,7 @@ class ChatInput extends Component {
     }
 
     send = () => {
-        if (this.state.text) this.props.onClickButton(this.state.text, 'me');
+        if (this.state.text) this.props.onClickButton('me', this.state.text);
         this.setState({
             text: ''
         })

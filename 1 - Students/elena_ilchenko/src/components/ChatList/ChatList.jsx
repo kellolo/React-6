@@ -18,7 +18,7 @@
 
     const ChatList = props => {
         const classes = useStyles();
-
+        
         return (
             <Fragment>
                 <div className='ChatList'>
@@ -41,6 +41,8 @@
                         <ChatDialog 
                             contacts={props.contacts}
                             addChat={props.addChat}
+                            select={props.onSelect}
+                            chats={props.chatsFromRedux}
                             />
                     </div>
 

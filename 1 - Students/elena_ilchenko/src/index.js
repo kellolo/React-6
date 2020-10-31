@@ -3,21 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Router from './components/Router/Router';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
 import { StylesProvider } from '@material-ui/core/styles';
 
 import { Provider } from 'react-redux';
-import initStore from './store';
+import initStore, { history } from './store';
 
 
 ReactDOM.render(
   <Provider store={ initStore() }>
-    <BrowserRouter>
       <StylesProvider>
-          <Router />
-      </StylesProvider>
-    </BrowserRouter>
+        <ConnectedRouter history={ history }>
+            <Router />
+        </ConnectedRouter>
+    </StylesProvider>
   </Provider>,
   document.getElementById('root')
 );
