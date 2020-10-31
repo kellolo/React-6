@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { push } from 'connected-react-router'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
@@ -17,10 +17,8 @@ import './style.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { addChat } from '../../store/actions/chat.actions.js'
-import { deleteChat } from '../../store/actions/chat.actions.js'
-import { messagesInit } from '../../store/actions/messages.actions.js'
-import { messagesClear } from '../../store/actions/messages.actions.js'
+import { addChat, deleteChat, loadChats } from '../../store/actions/chat.actions.js'
+import { messagesInit, messagesClear } from '../../store/actions/messages.actions.js'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -36,6 +34,10 @@ const useStyles = makeStyles(() => ({
 
 function ChatList(props) {
 
+    useEffect(() => {
+        props.loadChats('/api/chats/' + props.author);
+    }, [])
+
     let callDeleteChat = (e) => {
         e.stopPropagation();
         e.preventDefault()
@@ -49,27 +51,29 @@ function ChatList(props) {
 
     const classes = useStyles();
 
-    let {activeIndex, chats, users, author } = props;
+    let {activeIndex, chats, users, conversations, messages, author } = props;
 
-    let lastMessages = Object.keys(props.conversations).map(item => {
-        let msgs = props.conversations[item].messages;
+    let lastMessages = conversations.map(item => {
+        let msgs = item.messages;
+        let msgText;
         if (msgs.length != 0) {
-            return({ id: item, lastMessage: msgs[msgs.length-1].text})
+            msgText = messages.find(item => item.id == msgs[msgs.length-1]).text
+            return({ id: item.id, lastMessage: msgText })
         } else {
-            return({ id: item, lastMessage: 'No messages yet'})
+            return({ id: item.id, lastMessage: 'No messages yet'})
         }
-        
     })
   
     let isActive;
 
     let addNewConversation = (name) => {
-        let idToAdd = users.find(item => item.name == name).id;
-        let newChatId = Number(chats.reduce((res, item) => {
-            return (Math.max(res, item.id));
-        }, 0)) + 1;
-        props.addChat(newChatId, idToAdd, users[idToAdd].name, users[idToAdd].avatar);
-        props.messagesInit(idToAdd);
+        let userToAdd = users.find(item => item.name == name)
+        let idToAdd = userToAdd.id;
+        let newChatId = 'c-' + (Number(chats.reduce((res, item) => {
+            return (Math.max(res, item.id.slice(2)));
+        }, 0)) + 1);
+        props.addChat(newChatId, idToAdd, userToAdd.name, userToAdd.avatar);
+        props.messagesInit(newChatId, idToAdd);
     }
     
     let userList = []
@@ -87,8 +91,11 @@ function ChatList(props) {
             isActive = false;
         }
 
-        let lastMessage = lastMessages.find(item => item.id == conversationElement.id).lastMessage;
-        let regex = /(<img[^<]* alt=")(:[A-Za-z0-9]*:)("[^<]*>)/g
+        let thisChat = conversations.find(item => item.id == conversationElement.id)
+        let thisUser = users.find(item => item.id == thisChat.userId)
+
+        let lastMessage = lastMessages.find(item => item.id == thisChat.id).lastMessage;
+        let regex = /(<img[^<]* alt=")(:[A-Za-z0-9_]*:)("[^<]*>)/g
         lastMessage = lastMessage.replace(regex, '$2')
         lastMessage = lastMessage.replace(/&nbsp;/g, ' ')
 
@@ -96,11 +103,11 @@ function ChatList(props) {
             <Link to={'/chat/' + conversationElement.id + '/' } key={conversationElement.id}>
                 <ListItem button selected={isActive}>
                     <ListItemAvatar>
-                        <Avatar src={conversationElement.avatar}>
+                        <Avatar src={thisUser.avatar}>
                             <ImageIcon />
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary={ conversationElement.name } secondary= { lastMessage } />
+                    <ListItemText primary={ thisUser.name } secondary= { lastMessage } />
                     <div className = "delete-chat-button" data-chat-item-id = { conversationElement.id } onClick = { callDeleteChat } ><IconButton aria-label="delete"><DeleteIcon /></IconButton></div>
                 </ListItem>
             </Link>
@@ -117,10 +124,11 @@ function ChatList(props) {
 
 const mapStateToProps = ({ chatsReducer, usersReducer, messagesReducer }) => ({
     conversations: messagesReducer.conversations,
+    messages: messagesReducer.messages,
     chats: chatsReducer.chats,
     users: usersReducer.users,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ push, addChat, deleteChat, messagesInit, messagesClear }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ push, addChat, deleteChat, messagesInit, messagesClear, loadChats }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
