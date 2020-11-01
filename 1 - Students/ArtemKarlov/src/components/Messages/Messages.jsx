@@ -15,28 +15,39 @@ class Messages extends React.Component {
     }
 
     addMessage = (message, sender = 'Me') => {
-        let {messages} = this.props;
+        let {messages, chatId} = this.props;
         if (message.trim() !== '') {
             const messageId = `msg_${messages.length}`
-            this.props.sendMessage(messageId, sender, message);
+            this.props.sendMessage(messageId, sender, message, chatId);
         }
     }
 
     componentDidMount() {
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
-        const lastMessageElement = MessageElements[MessageElements.length-1];
-        lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+        if (MessageElements.length != 0) {
+            const lastMessageElement = MessageElements[MessageElements.length-1];
+            lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+        }
+        
     }
 
     componentDidUpdate() {        
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
-        const lastMessageElement = MessageElements[MessageElements.length-1];
-        lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+        if (MessageElements.length != 0) {
+            const lastMessageElement = MessageElements[MessageElements.length-1];
+            lastMessageElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+        }
     }
 
     render() {
-        let {messages} = this.props;
-        let messagesArray = messages.map((msg, index) => <Message key={msg.id} sender={msg.sender} message={msg.text} />)
+        const {messages, chats, chatId} = this.props;
+        const currentChat = chats.find((chat) => chat.id === chatId);
+        const chatMessagesId = currentChat.messagesId;
+        // let messagesArray = messages.map((msg, index) => <Message key={msg.id} sender={msg.sender} message={msg.text} />);
+
+        const chatMessages = messages.filter((msg) => chatMessagesId.includes(msg.id));
+
+        let messagesArray = chatMessages.map((msg, index) => <Message key={msg.id} sender={msg.sender} message={msg.text} />);
 
         return (
             <Fragment>
@@ -50,8 +61,9 @@ class Messages extends React.Component {
     }
 }
 
-const mapStateToProps = ({messagesReducer}) => ({
+const mapStateToProps = ({messagesReducer, chatsReducer}) => ({
     messages: messagesReducer.messages,
+    chats: chatsReducer.chats,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);

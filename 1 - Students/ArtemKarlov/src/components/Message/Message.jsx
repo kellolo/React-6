@@ -1,7 +1,7 @@
 import './style.css';
 import React from 'react';
 
-export default props => {
+export default function Message(props) {
     let {sender, message} = props;
 
     const messageClassNames = (sender === 'Me') ?

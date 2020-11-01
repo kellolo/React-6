@@ -16,7 +16,7 @@ import Messages from '../Messages/Messages.jsx';
 function ChatField(props) {
     const classes = useStyles();
     const {chatId, chats} = props;
-    const chatInfo = chats.find((chat) => chat.id === chatId);
+    const currentChat = chats.find((chat) => chat.id === chatId);
     return (
         <Fragment>
             <section className="lyaout__chat chat">
@@ -24,12 +24,12 @@ function ChatField(props) {
                     <p className="chat-header__label">Chat with</p>
                     <div className="chat-header__details">
                         <div className="chat-header__img img-container ">
-                            <Avatar alt={chatInfo.title} src={chatInfo.avatarUrl} className={classes.accountAvatar}/>
+                            <Avatar alt={currentChat.title} src={currentChat.avatarUrl} className={classes.accountAvatar}/>
                         </div>                    
-                        <h2 className="chat-header__title">{chatInfo.title}</h2>
+                        <h2 className="chat-header__title">{currentChat.title}</h2>
                     </div>                    
                 </div>
-                <Messages />
+                <Messages chatId={chatId} />
             </section>
         </Fragment>
     );
