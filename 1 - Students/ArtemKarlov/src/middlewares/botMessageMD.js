@@ -10,7 +10,7 @@ export default (store) => (next) => (action) => {
                 idArr[1] = Number(idArr[1]);
                 idArr[1]++;
                 const msgId = idArr.join('_');
-                const chatId = 'ch_0';
+                const {chatId} = action;
                 setTimeout(() => {
                     return store.dispatch(sendMessage(msgId, botName, botMessage, chatId));                    
                 }, 1000);

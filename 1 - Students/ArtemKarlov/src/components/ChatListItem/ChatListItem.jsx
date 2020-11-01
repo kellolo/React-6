@@ -44,11 +44,13 @@ const SelectedListItem = withStyles({
 
 
 function ChatListItem(props) {
-    const {index, selectedIndex, chat, onClick, messages} = props;
     const classes = useStyles();
+    const {index, selectedIndex, chat, onClick, messages} = props;
+    
+    const {messagesId} = chat;
+    const lastMessage = messages.find((msg) => msg.id === messagesId[messagesId.length-1]);
 
-    const lastMessage = messages[messages.length-1];
-    const showedMessage = (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
+    const showedMessage = (lastMessage === undefined) ? '' : (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
     
     const handleListItemClick = (chatId) => {
         onClick(chatId);

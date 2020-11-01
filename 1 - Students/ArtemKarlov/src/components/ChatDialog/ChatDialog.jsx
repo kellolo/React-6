@@ -28,7 +28,7 @@ function ChatDailog(props) {
                     <h2 className="chat-header__title">{currentChat.title}</h2>
                 </div>                    
             </div>
-            <Messages chatId={chatId} />            
+            <Messages chatId={chatId} currentChat={currentChat} />            
         </Fragment>
     );
 }

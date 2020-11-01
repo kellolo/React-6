@@ -8,7 +8,7 @@ const initStore = {
             id: "ch_0",
             title: "BOT",
             avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-            messagesId: ['msg_0'],
+            messagesId: [],
         },
     ]
 }
