@@ -95,7 +95,7 @@ export default class Layout extends React.Component {
                         <Account userName={account.name} avatarUrl={account.avatarUrl} />
                         <Chats />                
                     </div>
-                    <ChatField chatId={(chatId)? chatId : 'ch_0'} />
+                    <ChatField chatId={(chatId)? chatId : 'init'} />
                 </div>
             </MuiThemeProvider>
         )

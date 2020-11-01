@@ -42,7 +42,7 @@ class Messages extends React.Component {
     render() {
         const {messages, chats, chatId} = this.props;
         const currentChat = chats.find((chat) => chat.id === chatId);
-        const chatMessagesId = currentChat.messagesId;
+        const chatMessagesId = (currentChat) ? currentChat.messagesId : [];
         // let messagesArray = messages.map((msg, index) => <Message key={msg.id} sender={msg.sender} message={msg.text} />);
 
         const chatMessages = messages.filter((msg) => chatMessagesId.includes(msg.id));

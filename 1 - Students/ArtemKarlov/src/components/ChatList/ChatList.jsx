@@ -14,7 +14,7 @@ import ChatListItem from '../ChatListItem/ChatListItem.jsx';
 
 function ChatList(props) {
 
-    const [selectedIndex, setSelectedIndex] = React.useState('ch_0');
+    const [selectedIndex, setSelectedIndex] = React.useState(null);
 
     const handleChatListItemClick = (chatId) => {
       setSelectedIndex(chatId);
