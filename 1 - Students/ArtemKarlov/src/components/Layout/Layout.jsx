@@ -82,7 +82,8 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const {chatId} = this.props;
+        const {match} = this.props;
+        const {params:{chatId}} = match;
         // const opponent = account.contacts.find(opp => opp.id === opponentId);        
         
         return ( 
