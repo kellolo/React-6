@@ -19,8 +19,6 @@ import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import paths from "path";
-// import logo from "../../img/tarantino.jpg"
-
 
 const useStyles = makeStyles({
     'test-class': {
@@ -41,7 +39,7 @@ const useStyles = makeStyles({
         margin: '20px auto'
     },
     'avatar': {
-        margin: '0 auto'
+        margin: '0 auto',
     },
 })
 
@@ -97,7 +95,7 @@ function SimpleDialogDemo(props) {
     return (
         <div>
             <br />
-                <Avatar alt="X" src={avatarPath} onClick={handleClickOpen} />
+                <Avatar alt="X" style={{cursor: 'pointer'}} src={avatarPath} onClick={handleClickOpen} />
             <ShowInfo  open={open} onClose={handleClose} user={props.user}/>
         </div>
     );
@@ -106,6 +104,6 @@ function SimpleDialogDemo(props) {
 const mapStateToProps = ({userReducer}) => ({
     user: userReducer
 });
-const mapDispatchToProps = dipatch => bindActionCreators({}, dipatch);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleDialogDemo)
