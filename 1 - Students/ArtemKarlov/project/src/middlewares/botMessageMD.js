@@ -4,6 +4,8 @@ export default (store) => (next) => (action) => {
     switch (action.type) {
         case SEND_MESSAGE: {
 // console.log(store.getState().contactsReducer.contacts);
+// console.log(store.getState().messagesReducer.messages);
+
             const {chatId} = action;
             const botName = "Bot";
             const botMessage = "The Matrix has you…";

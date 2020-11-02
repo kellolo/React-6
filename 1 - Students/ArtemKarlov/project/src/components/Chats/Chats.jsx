@@ -34,7 +34,9 @@ class Chats extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadChats('api/chats');
+        const {account} = this.props;
+
+        this.props.loadChats('api/chats/'+ account.id);
     }
 
     componentDidUpdate() {
@@ -62,9 +64,10 @@ class Chats extends React.Component {
     }
 }
 
-const mapStateToProps = ({chatsReducer, contactsReducer}) => ({
+const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer}) => ({
     chats: chatsReducer.chats,
     contacts: contactsReducer.contacts,
+    account: accountReducer.account,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({addChat, delContact, loadChats}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

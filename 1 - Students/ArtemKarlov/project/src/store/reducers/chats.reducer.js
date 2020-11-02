@@ -21,7 +21,6 @@ export default (store = initStore, action) => {
         case ADD_CHAT: {
             const {id, contact} = action;
             const newChat = {id, contact,  messages: []};
-console.log(newChat);
             return update(store, {
                 chats: {
                     $push: [newChat]

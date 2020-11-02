@@ -1,4 +1,4 @@
-
+import {START_ACCOUNT_LOADING, SUCCESS_ACCOUNT_LOADING, ERROR_ACCOUNT_LOADING} from '../actions/account.actions.js';
 
 const initStore = {
     account: {
@@ -17,6 +17,11 @@ const initStore = {
 
 export default (store = initStore, action) => {
     switch(action.type) {
+
+        case SUCCESS_ACCOUNT_LOADING: {
+            console.log(action.payload);
+        }
+
         default: 
             return store;
     }

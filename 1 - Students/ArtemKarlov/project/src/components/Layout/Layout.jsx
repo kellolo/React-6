@@ -1,5 +1,8 @@
 import './style.css';
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {loadAccount} from '../../store/actions/account.actions.js';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -35,7 +38,7 @@ const customTheme = createMuiTheme({
     }
 });
 
-export default class Layout extends React.Component {
+class Layout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +46,8 @@ export default class Layout extends React.Component {
     }
     
     componentDidMount() {
-        // loadAccount(userId)
+        const accountID = "user-0";
+        this.props.loadAccount('api/'+ accountID);
     }
     
     componentDidUpdate() {
@@ -69,3 +73,7 @@ export default class Layout extends React.Component {
         )
     }
 }
+
+const mapStateToProps = ({}) => ({});
+const mapDispatchToProps = dispatch => bindActionCreators({loadAccount}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
