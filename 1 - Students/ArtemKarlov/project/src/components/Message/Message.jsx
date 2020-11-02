@@ -2,9 +2,9 @@ import './style.css';
 import React from 'react';
 
 export default function Message(props) {
-    let {sender, message} = props;
+    let {isSenderMe, message} = props;
 
-    const messageClassNames = (sender === 'Me') ?
+    const messageClassNames = (isSenderMe) ?
     "chat-dialog__message chat-dialog__message_from_me": 
     "chat-dialog__message chat-dialog__message_from_opponent";
     

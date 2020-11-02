@@ -3,5 +3,10 @@
         "id": "chatBot-0",
         "title": "BOT",
         "messages": []
+    },
+    {
+        "id": "chatBot-1",
+        "title": "NoBOT",
+        "messages": []
     }
 ]

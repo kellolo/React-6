@@ -13,7 +13,7 @@ export default (store = initStore, action) => {
         case SEND_MESSAGE: {
             const {id, sender, text} = action;
             const newMsg = {id, sender, text};
-            console.log(newMsg);
+console.log(newMsg);
             return update(store, {
                 messages: {
                     $push: [newMsg]

@@ -43,6 +43,7 @@ export default class Layout extends React.Component {
     }
     
     componentDidMount() {
+        // loadAccount(userId)
     }
     
     componentDidUpdate() {

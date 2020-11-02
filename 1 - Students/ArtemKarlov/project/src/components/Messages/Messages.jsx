@@ -14,7 +14,7 @@ class Messages extends React.Component {
         }
     }
 
-    addMessage = (message, sender = 'Me') => {
+    addMessage = (message, sender = this.props.account.id) => {
         const {messages, chatId} = this.props;
         if (message.trim() !== '') {
             const messageId = `msg-${messages.length}`
@@ -48,12 +48,15 @@ class Messages extends React.Component {
     }
 
     render() {
-        const {messages, currentChat} = this.props;
+        const {messages, currentChat, account} = this.props;
         const chatMessagesId = currentChat.messages;
 
         const chatMessages = messages.filter((msg) => chatMessagesId.includes(msg.id));
 
-        let messagesArray = chatMessages.map((msg, index) => <Message key={msg.id} sender={msg.sender} message={msg.text} />);
+        let messagesArray = chatMessages.map((msg, index) => {
+            const isSenderMe = (account.id === msg.sender) ? true : false;
+            return <Message key={msg.id} isSenderMe={isSenderMe} message={msg.text} />
+        });
 
         return (
             <Fragment>
@@ -67,9 +70,9 @@ class Messages extends React.Component {
     }
 }
 
-const mapStateToProps = ({messagesReducer, chatsReducer}) => ({
+const mapStateToProps = ({messagesReducer, accountReducer}) => ({
     messages: messagesReducer.messages,
-    // chats: chatsReducer.chats,
+    account: accountReducer.account,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);

@@ -27,9 +27,8 @@ class Chats extends React.Component {
     
             const chatId = `chat-${chats.length}`;
             const chatTitle = `${chatContact.name} ${chatContact.surname}`;
-            const chatAvatarUrl = chatContact.avatarUrl;
 
-            this.props.addChat(chatId, chatTitle, chatAvatarUrl);
+            this.props.addChat(chatId, chatTitle, contactId);
             this.props.delContact(contactId);
 
     
