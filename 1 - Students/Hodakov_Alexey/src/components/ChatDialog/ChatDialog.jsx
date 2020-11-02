@@ -94,7 +94,7 @@ function SimpleDialog(props) {
 SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
+  // selectedValue: PropTypes.string.isRequired,
 };
 
 function SimpleDialogDemo(props) {

@@ -10,7 +10,7 @@ export const SUCCESSS_CHATS_LOADING = "@@chats/SUCCESSS_LOADING";
 //   type: ADD_CHAT,
 // });
 
-export const loadChats = url => ({
+export const loadChats = (url) => ({
   [RSAA]: {
     endpoint: url,
     method: "GET",
@@ -19,7 +19,8 @@ export const loadChats = url => ({
       START_CHATS_LOADING,
       {
         type: SUCCESSS_CHATS_LOADING,
-        payload: (action, state, res) => getJSON(res).then((data) => ({ chats: data})),
+        payload: (action, state, res) =>
+          getJSON(res).then((data) => ({ chats: data })),
       },
       FAIL_CHATS_LOADING,
     ],

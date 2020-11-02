@@ -28,6 +28,16 @@ let mod = {
     });
   },
 
+  async loadContactChatsInfo(req, res) {
+    fs.readFile(`${db}/users/${req.params.user}.json`, "utf-8", (err, data) => {
+      if (!err) {
+        let chats = JSON.parse(data).chats;
+        let find = chats.find( el => el.id == req.params.chat)
+        res.json(find);
+      }
+    });
+  },
+
 };
 
 module.exports = mod;

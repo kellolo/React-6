@@ -24,7 +24,7 @@ const useStyles = makeStyles({
       },
   });
 export default function AlertDialogSlide(props) {
-  let { chatName, phone, email, about } = props;
+  let { contact, Phone, email, about } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -38,7 +38,7 @@ export default function AlertDialogSlide(props) {
 
   return (
     <div>
-        <div className="header__text header__text__green" onClick={handleClickOpen}> { props.chatName ? props.chatName : 'Welcome' } </div>
+        <div className="header__text header__text__green" onClick={handleClickOpen}> { props.chatName } </div>
       <Dialog
         open={open}
         TransitionComponent={Transition}

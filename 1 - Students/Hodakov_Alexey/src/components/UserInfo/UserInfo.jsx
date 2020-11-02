@@ -35,7 +35,7 @@ export default function AlertDialogSlide(props) {
 
   return (
     <div>
-        <div className="header__text header__text__blue" onClick={handleClickOpen}> { props.chatName ? props.chatName : 'Welcome' } </div>
+        <div className="header__text header__text__blue" onClick={handleClickOpen}> { props.chatName } </div>
       <Dialog
         open={open}
         TransitionComponent={Transition}

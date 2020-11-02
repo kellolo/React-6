@@ -21,6 +21,8 @@ server.get('/contacts/:user', chats.loadContacts);
 
 server.get('/userinfo/:user', chats.userInfo);
 
+server.get('/contactuserinfo/:user/:chat', chats.loadContactChatsInfo);
+
 
 
 server.listen(3000, () => {

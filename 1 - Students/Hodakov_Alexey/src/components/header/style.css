@@ -14,6 +14,7 @@
   margin-right: 500px;
 }
 .header__text__green {
+  width: 300px;
   font-size: 35px;
   padding: 5px 20px 20px 20px;
   border-top: 35px solid #215c5a;
