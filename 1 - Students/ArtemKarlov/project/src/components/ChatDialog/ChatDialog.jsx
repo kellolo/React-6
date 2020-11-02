@@ -14,8 +14,12 @@ import Messages from '../Messages/Messages.jsx';
 
 function ChatDailog(props) {
     const classes = useStyles();
-    const {chatId, chats} = props;
+    const {chatId, chats, contacts} = props;
     const currentChat = chats.find((chat) => chat.id === chatId);
+
+    let chatContact = contacts.find((cont) => cont.id === currentChat.contact);
+    chatContact = (chatContact === undefined) ? {name: 'BOT', middleName: '', surname: '', avatarUrl: '', } : chatContact;
+    const chatTitle = `${chatContact.name} ${chatContact.middleName} ${chatContact.surname}`;
      
     return (
         <Fragment>
@@ -23,17 +27,18 @@ function ChatDailog(props) {
                 <p className="chat-header__label">Chat with</p>
                 <div className="chat-header__details">
                     <div className="chat-header__img img-container ">
-                        <Avatar alt={currentChat.title} src={currentChat.avatarUrl} className={classes.accountAvatar}/>
+                        <Avatar alt={chatTitle} src={chatContact.avatarUrl} className={classes.accountAvatar}/>
                     </div>                    
-                    <h2 className="chat-header__title">{currentChat.title}</h2>
+                    <h2 className="chat-header__title">{chatTitle}</h2>
                 </div>                    
             </div>
-            <Messages chatId={chatId} currentChat={currentChat} />            
+            <Messages currentChat={currentChat} />            
         </Fragment>
     );
 }
 
-const mapStateToProps = ({chatsReducer}) => ({
+const mapStateToProps = ({chatsReducer, contactsReducer}) => ({
     chats: chatsReducer.chats,
+    contacts: contactsReducer.contacts,
 });
 export default connect(mapStateToProps)(ChatDailog);
