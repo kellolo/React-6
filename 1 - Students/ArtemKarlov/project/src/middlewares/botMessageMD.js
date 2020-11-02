@@ -6,7 +6,7 @@ export default (store) => (next) => (action) => {
             // store.getState().messageReducer.messages
             const botName = "Bot";
             const botMessage = "The Matrix has you…";
-            if ((action.chatId === 'c-0') && (action.sender !== botName)) {
+            if ((action.chatId === 'chatBot-0') && (action.sender !== botName)) {
                 const idArr = action.id.split('-');
                 idArr[1] = Number(idArr[1]);
                 idArr[1]++;

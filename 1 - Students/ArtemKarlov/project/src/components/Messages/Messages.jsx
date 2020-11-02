@@ -24,7 +24,7 @@ class Messages extends React.Component {
 
     componentDidMount() {
         const {chatId, currentChat} = this.props;         
-        if ((chatId == 'c-0') && (currentChat.messages.length == 0)) {
+        if ((chatId == 'chatBot-0') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
@@ -37,7 +37,7 @@ class Messages extends React.Component {
 
     componentDidUpdate() {     
         const {chatId, currentChat} = this.props;         
-        if ((chatId == 'c-0') && (currentChat.messages.length == 0)) {
+        if ((chatId == 'chatBot-0') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");

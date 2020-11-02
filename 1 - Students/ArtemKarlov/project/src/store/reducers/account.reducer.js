@@ -2,15 +2,15 @@
 
 const initStore = {
     account: {
-        id: "u-0",
+        id: "user-0",
         name: "Ivan",
         middleName: "Petrovich",
         surname: "Ivanov",
         avatarUrl: "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg",
         email: "IvanIvanov@gmail.com",
         tel: "+79271234567",
-        contacts: ["u-1", "u-2", "u-3", "u-4", "u-5", "u-6"],
-        chats: ["cu-0"],
+        contacts: ["user-1", "user-2", "user-3", "user-4", "user-5", "user-6"],
+        chats: ["chatBot-0"],
     }
 };
 
