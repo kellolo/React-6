@@ -12,7 +12,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 const useStyles = makeStyles(() => ({
     listItemText: {
-        maxHeight: '45px',
+        height: '44px',
         
     },
 }));
@@ -47,7 +47,7 @@ function ChatListItem(props) {
     const classes = useStyles();
     const {index, selectedIndex, chat, onClick, messages} = props;
     
-    const {messagesId} = chat;
+    const {messages: messagesId} = chat;
     const lastMessage = messages.find((msg) => msg.id === messagesId[messagesId.length-1]);
 
     const showedMessage = (lastMessage === undefined) ? '' : (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;

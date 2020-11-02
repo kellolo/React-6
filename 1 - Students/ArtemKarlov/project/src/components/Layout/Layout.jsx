@@ -35,38 +35,6 @@ const customTheme = createMuiTheme({
     }
 });
 
-
-const account = {
-    name: 'Ivan',
-    surname: 'Ivanov',
-    avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-    contacts: [
-        {
-            id: 'cont_0',
-            name: 'John',
-            surname: 'Doe',
-            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-            citation: 'Hi our deadlines are. Hi our deadlines are... Hi our deadlines are.....',
-        },
-        {
-            id: 'cont_1',
-            name: 'Smith',
-            surname: 'Agent',
-            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg2',
-            citation: 'You hear that, Mr. Anderson?',
-        },
-        {
-            id: 'cont_2',
-            name: 'Morpheus',
-            surname: '',
-            avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg2',
-            citation: 'Everything begins with choice.',
-        },
-        
-    ],
-}
-
-
 export default class Layout extends React.Component {
     constructor(props) {
         super(props);
@@ -83,8 +51,7 @@ export default class Layout extends React.Component {
 
     render() {
         const {match} = this.props;
-        const {params:{chatId}} = match;
-        // const opponent = account.contacts.find(opp => opp.id === opponentId);        
+        const {params:{chatId}} = match;       
         
         return ( 
             <MuiThemeProvider theme={customTheme}>           
@@ -92,7 +59,7 @@ export default class Layout extends React.Component {
                     <Controls />
                     {/* <AccountChats account = {account} /> */}
                     <div className="layout__account-chatlist">
-                        <Account userName={account.name} avatarUrl={account.avatarUrl} />
+                        <Account />
                         <Chats />                
                     </div>
                     <ChatField chatId={(chatId)? chatId : 'init'} />

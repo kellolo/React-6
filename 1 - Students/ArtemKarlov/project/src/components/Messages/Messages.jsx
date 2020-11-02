@@ -17,14 +17,14 @@ class Messages extends React.Component {
     addMessage = (message, sender = 'Me') => {
         const {messages, chatId} = this.props;
         if (message.trim() !== '') {
-            const messageId = `msg_${messages.length}`
+            const messageId = `msg-${messages.length}`
             this.props.sendMessage(messageId, sender, message, chatId);
         }
     }
 
     componentDidMount() {
         const {chatId, currentChat} = this.props;         
-        if ((chatId == 'ch_0') && (currentChat.messagesId.length == 0)) {
+        if ((chatId == 'c-0') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
@@ -37,7 +37,7 @@ class Messages extends React.Component {
 
     componentDidUpdate() {     
         const {chatId, currentChat} = this.props;         
-        if ((chatId == 'ch_0') && (currentChat.messagesId.length == 0)) {
+        if ((chatId == 'c-0') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
@@ -49,7 +49,7 @@ class Messages extends React.Component {
 
     render() {
         const {messages, currentChat} = this.props;
-        const chatMessagesId = currentChat.messagesId;
+        const chatMessagesId = currentChat.messages;
 
         const chatMessages = messages.filter((msg) => chatMessagesId.includes(msg.id));
 

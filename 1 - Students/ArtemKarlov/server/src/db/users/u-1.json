@@ -1,0 +1,71 @@
+{
+    "id": "u-1",
+    "name": "Ivan",
+    "surname": "Ivanov",
+    "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg",
+    "email": "IvanIvanov@gmail.com",
+    "tel": "+79271234567",
+    "contacts": [
+        {
+            "id": "cont-0",
+            "name": "John",
+            "middleName": "",
+            "surname": "Doe",
+            "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg",
+            "email": "JohnDoe@gmail.com",
+            "tel": "+79277654321"
+        },
+        {
+            "id": "cont-1",
+            "name": "Smith",
+            "middleName": "Agent",
+            "surname": "",
+            "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg2",
+            "email": "Smith@agent.com",
+            "tel": "+79277777777"
+        },
+        {
+            "id": "cont-2",
+            "name": "Morpheus",
+            "middleName": "",
+            "surname": "",
+            "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg2",
+            "email": "Morpheus@gmail.com",
+            "tel": "+79277654321"
+        },
+        {
+            "id": "cont-3",
+            "name": "John",
+            "middleName": "Herbert",
+            "surname": "Dillinger",
+            "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg",
+            "email": "JohnDillinger@gmail.com",
+            "tel": "+79277654321"
+        },
+        {
+            "id": "cont-4",
+            "name": "Jeffrey",
+            "middleName": "\"The Dude\"",
+            "surname": "Lebowski",
+            "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg",
+            "email": "Dude@gmail.com",
+            "tel": "+79277654321"
+        },
+        {
+            "id": "cont-5",
+            "name": "Rocky",
+            "middleName": "",
+            "surname": "Balboa",
+            "avatarUrl": "https://www.flaticon.com/svg/static/icons/svg/149/149071.svg",
+            "email": "RockyBalboa@gmail.com",
+            "tel": "+79277654321"
+        }
+    ],
+    "chats": [
+        {
+            "id": "ch-0",
+            "title": "CHAT_1",
+            "messages": []
+        }
+    ]
+}
