@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import {makeStyles} from "@material-ui/core/styles";
-// import userReducer from "../../store/reducers/user.reducer.js";
 
 import { loadChats } from '../../store/actions/chats.actions.js'
 import Typography from "@material-ui/core/Typography";

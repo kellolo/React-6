@@ -16,6 +16,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import paths from "path";
 import {loadContacts} from "../../store/actions/contacts.actions.js"
+import {changeUser} from "../../store/actions/user.actions";
+
 
 const useStyles = makeStyles({
     'test-class': {
@@ -41,24 +43,25 @@ const useStyles = makeStyles({
 function SimpleDialog(props) {
     const classes = useStyles();
 
-    const { onClose, contacts, open } = props;
-    // const { onClose, selectedValue, open } = props;
+    const { onClose, selectedValue, open, contacts } = props;
 
     const handleClose = () => {
         onClose(selectedValue);
+
     };
 
     const handleListItemClick = (value) => {
+        console.log(onClose)
         onClose(value);
     };
     return (
-            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+            <Dialog  onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
                 <DialogTitle id="simple-dialog-title" className={classes.dialogTitle}>
                     Select user:
                 </DialogTitle>
                 <List className={classes.list}>
                     {contacts.map((contact) => (
-                    <ListItem button onClick={() => handleListItemClick(contact.name)} key={contact.email}>
+                    <ListItem button onClick={() => handleListItemClick(contact.id)} key={contact.id}>
                         <ListItemAvatar>
                         <Avatar alt="X" src={paths.join('/src','img', contact.avatar)}>
                         </Avatar>
@@ -74,6 +77,7 @@ function SimpleDialog(props) {
 SimpleDialog.propTypes = {
     onClose: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
+    selectedValue: PropTypes.string.isRequired,
 };
 
 
@@ -81,19 +85,28 @@ function SelectUserDialog(props) {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = React.useState(props.userFromRedux.id);
 
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (value) => {
+
+        let newUser = _findUser(value)
+
+        props.changeUser(newUser)
         setOpen(false);
     };
 
     useEffect(() => {
         props.loadContacts('/api/contacts/')
     }, [])
+
+    function _findUser(userId) {
+        return props.contactsFromRedux.find((element) => element.id === userId)
+    }
 
 
     const avatarPath = paths.join( '/src','img', props.userFromRedux.avatar);
@@ -102,7 +115,9 @@ function SelectUserDialog(props) {
         <div>
             <Avatar alt="X" className={classes.avatar} src={avatarPath} onClick={handleClickOpen} />
 
-            <SimpleDialog  open={open} onClose={handleClose} contacts={props.contactsFromRedux}/>
+            <SimpleDialog  open={open} onClose={handleClose} contacts={props.contactsFromRedux}
+                           selectedValue={selectedValue}
+            />
         </div>
     );
 }
@@ -111,6 +126,6 @@ const mapStateToProps = ( {contactsReducer, userReducer} ) => ( {
     contactsFromRedux: contactsReducer.contacts,
     userFromRedux: userReducer
 } );
-const mapDispatchToProps = dispatch => bindActionCreators( {loadContacts}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators( {loadContacts, changeUser}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectUserDialog)

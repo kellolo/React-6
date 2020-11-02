@@ -8,7 +8,9 @@ const storeCurrentUser = {
 export default (store = storeCurrentUser, action) => {
     switch (action.type) {
         case CHANGE_USER: {
-            console.log(action.user)
+            return update(store,
+                { $set: action.user }
+            )
         }
         default:
             return store;
