@@ -18,18 +18,13 @@ class Chats extends React.Component {
     }
 
     addChat = (contactId) => {
-        const {chats} = this.props;
-        const {contacts} = this.props;        
+        const {chats} = this.props;       
 
-        if (contactId !== null) {         
-
-            const chatContact = contacts.find(contact => contact.id === contactId);
-    
+        if (contactId !== null) {      
             const chatId = `chat-${chats.length}`;
-            const chatTitle = `${chatContact.name} ${chatContact.surname}`;
 
-            this.props.addChat(chatId, chatTitle, contactId);
-            this.props.delContact(contactId);
+            this.props.addChat(chatId, contactId);
+            // this.props.delContact(contactId);  //создать контактлист и удалять из него
 
     
             // this.setState({

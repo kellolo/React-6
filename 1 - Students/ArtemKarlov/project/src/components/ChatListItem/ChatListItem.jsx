@@ -45,11 +45,14 @@ const SelectedListItem = withStyles({
 
 function ChatListItem(props) {
     const classes = useStyles();
-    const {index, selectedIndex, chat, onClick, messages} = props;
+    const {selectedIndex, chat, onClick, messages, contacts} = props;
+
+    let chatContact = contacts.find((cont) => cont.id === chat.contact);
+    chatContact = (chatContact === undefined) ? {name: 'BOT', surname: '', avatarUrl: '', } : chatContact;
+    const chatTitle = `${chatContact.name} ${chatContact.surname}`;
     
     const {messages: messagesId} = chat;
     const lastMessage = messages.find((msg) => msg.id === messagesId[messagesId.length-1]);
-
     const showedMessage = (lastMessage === undefined) ? '' : (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
     
     const handleListItemClick = (chatId) => {
@@ -66,10 +69,10 @@ function ChatListItem(props) {
                 onClick={() => handleListItemClick(chat.id)}
             >
                 <ListItemAvatar>
-                    <Avatar alt={chat.title} src={chat.avatarUrl} />
+                    <Avatar alt={chatTitle} src={chatContact.avatarUrl} />
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemText}
-                    primary={chat.title}
+                    primary={chatTitle}
                     secondary={showedMessage}
                 />
             </ListItem>
@@ -77,8 +80,9 @@ function ChatListItem(props) {
     );
 }
 
-const mapStateToProps = ({messagesReducer}) => ({
+const mapStateToProps = ({messagesReducer, contactsReducer}) => ({
     messages: messagesReducer.messages,
+    contacts: contactsReducer.contacts,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(ChatListItem);

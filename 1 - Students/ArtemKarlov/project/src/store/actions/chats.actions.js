@@ -2,10 +2,9 @@ import {RSAA, getJSON} from 'redux-api-middleware';
 
 export const ADD_CHAT = '@@chats/ADD_CHAT';
 
-export const addChat = (id, title, contact) => ({
+export const addChat = (id, contact) => ({
     type: ADD_CHAT,
     id,
-    title,
     contact,
 });
 

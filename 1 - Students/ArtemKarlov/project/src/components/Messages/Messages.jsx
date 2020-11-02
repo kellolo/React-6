@@ -15,7 +15,8 @@ class Messages extends React.Component {
     }
 
     addMessage = (message, sender = this.props.account.id) => {
-        const {messages, chatId} = this.props;
+        const {messages, currentChat} = this.props;
+        const chatId = currentChat.id;
         if (message.trim() !== '') {
             const messageId = `msg-${messages.length}`
             this.props.sendMessage(messageId, sender, message, chatId);
@@ -23,7 +24,8 @@ class Messages extends React.Component {
     }
 
     componentDidMount() {
-        const {chatId, currentChat} = this.props;         
+        const {currentChat} = this.props; 
+        const chatId = currentChat.id;        
         if ((chatId == 'chatBot-0') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
@@ -36,7 +38,8 @@ class Messages extends React.Component {
     }
 
     componentDidUpdate() {     
-        const {chatId, currentChat} = this.props;         
+        const {currentChat} = this.props;  
+        const chatId = currentChat.id;       
         if ((chatId == 'chatBot-0') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
@@ -53,7 +56,7 @@ class Messages extends React.Component {
 
         const chatMessages = messages.filter((msg) => chatMessagesId.includes(msg.id));
 
-        let messagesArray = chatMessages.map((msg, index) => {
+        let messagesArray = chatMessages.map((msg) => {
             const isSenderMe = (account.id === msg.sender) ? true : false;
             return <Message key={msg.id} isSenderMe={isSenderMe} message={msg.text} />
         });
