@@ -35,7 +35,7 @@ class Chats extends React.Component {
 
     componentDidMount() {
         const {account} = this.props;
-        // this.props.loadChats('api/chats/'+ account.id);
+        this.props.loadChats('api/chats/'+ account.id);
         this.props.createContactList([]);
     }
 
