@@ -1,0 +1,60 @@
+.login {
+    margin: 300px;
+    padding: 50px;
+    /* min-height: calc(100vh - 60px); */
+    background-color: #fbfbfb;
+    border: 1px solid #cc6c6c7a;
+    border-radius: 10px;
+}
+
+.login-header .MuiAvatar-root {
+    height: 200px;
+    width: 200px;
+    margin: 30px auto;
+}
+
+/* .login-inner-container {
+    padding: 20px;
+    height: calc(100vh - 160px);
+} */
+
+.login h2, .login p {
+    text-align: center;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+#login-form input {
+    border-color: #cc6c6c7a;
+    border-width: 0.5px;
+    padding: 5px;
+}
+
+#input-login {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#input-password {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+}
+
+#submit {
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: #cc6c6c7a;
+    font-size: 20px;
+}
+
+.error-message {
+    background-color: #fba6a6;
+    display: block;
+    padding: 5px 5px;
+    border-radius: 10px;
+}

@@ -1,8 +1,8 @@
 {
     "_id": "u-5",
     "name": "Egor",
-    "email": "john.appleseed@icloud.com",
-    "password": "4815162342",
+    "email": "egor@me.com",
+    "password": "password",
     "avatar": "https://cdn.pixabay.com/photo/2018/03/09/15/36/wildlife-3211742_960_720.jpg",
     "contacts": ["u-1", "u-2", "u-3", "u-4"],
     "chats": [
