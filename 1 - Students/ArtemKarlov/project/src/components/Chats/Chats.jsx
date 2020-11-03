@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addChat, loadChats} from '../../store/actions/chats.actions.js';
-import {delContact} from '../../store/actions/contacts.actions.js';
+import {createContactList, delContactListItem} from '../../store/actions/contactList.actions.js';
 
 
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
@@ -24,7 +24,7 @@ class Chats extends React.Component {
             const chatId = `chat-${chats.length}`;
 
             this.props.addChat(chatId, contactId);
-            // this.props.delContact(contactId);  //создать контактлист и удалять из него
+            this.props.delContactListItem(contactId);  
 
     
             // this.setState({
@@ -34,8 +34,9 @@ class Chats extends React.Component {
     }
 
     componentDidMount() {
-        // const {account} = this.props;
+        const {account} = this.props;
         // this.props.loadChats('api/chats/'+ account.id);
+        this.props.createContactList([]);
     }
 
     componentDidUpdate() {
@@ -44,7 +45,7 @@ class Chats extends React.Component {
 
     render() {         
         const { chats } = this.props;
-        const {contacts} = this.props;
+        const {contacts, contactList} = this.props;
         // const contactList = contacts.map((contact) => contact.name);
         
         
@@ -54,7 +55,7 @@ class Chats extends React.Component {
                 <section className="layout__chats chats">
                     <div className="chats__header">
                         <h2 className="chats__title">Chats</h2>
-                        <ChatAdd contacts={contacts} getContactId={ this.addChat }/>
+                        <ChatAdd contacts={contactList} getContactId={ this.addChat }/>
                     </div>
                     <ChatList chats={chats} />
                 </section>                
@@ -63,10 +64,11 @@ class Chats extends React.Component {
     }
 }
 
-const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer}) => ({
+const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactListReducer}) => ({
     chats: chatsReducer.chats,
     contacts: contactsReducer.contacts,
     account: accountReducer.account,
+    contactList: contactListReducer.contactList,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({addChat, delContact, loadChats}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, createContactList, delContactListItem}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

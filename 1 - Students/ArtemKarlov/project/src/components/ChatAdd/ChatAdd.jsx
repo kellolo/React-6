@@ -1,6 +1,9 @@
 import './style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import {connect} from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
@@ -22,7 +25,7 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles();
-  const { onClose, open, contacts } = props;
+  const { onClose, open, contacts, contactList } = props;
 
   const handleClose = () => {
     onClose(null);
@@ -55,10 +58,11 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo(props) {
-  const { contacts, getContactId } = props;
+function SimpleDialogDemo(props) {
+  const { contacts, getContactId, contactList } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(null);
+  console.log(contacts);
 
   const handleClickOpen = () => {
     setOpen(true);    
@@ -82,3 +86,9 @@ export default function SimpleDialogDemo(props) {
     </div>
   );
 }
+
+
+const mapStateToProps = ({contactListReducer}) => ({
+  contactList1: contactListReducer.contactList,
+});
+export default connect(mapStateToProps)(SimpleDialogDemo);

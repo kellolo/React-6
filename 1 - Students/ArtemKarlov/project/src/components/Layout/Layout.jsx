@@ -6,6 +6,7 @@ import {loadAccount} from '../../store/actions/account.actions.js';
 import {addChat, loadChats} from '../../store/actions/chats.actions.js';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { CircularProgress } from '@material-ui/core';
 
 import Controls from '../Controls/Controls.jsx';
 // import AccountChats from '../AccountChats/AccountChats.jsx';
@@ -49,8 +50,6 @@ class Layout extends React.Component {
     componentDidMount() {
         const accountID = "user-0";
         this.props.loadAccount('api/'+ accountID);
-        const {account} = this.props;
-        this.props.loadChats('api/chats/'+ account.id);
     }
     
     componentDidUpdate() {
@@ -59,8 +58,11 @@ class Layout extends React.Component {
 
     render() {
         const {match} = this.props;
-        const {params:{chatId}} = match;       
+        const {params:{chatId}} = match;  
         
+        if (this.props.isAccountLoading) {
+            return <CircularProgress /> 
+        }         
         return ( 
             <MuiThemeProvider theme={customTheme}>           
                 <div className="layout">
@@ -77,6 +79,6 @@ class Layout extends React.Component {
     }
 }
 
-const mapStateToProps = ({accountReducer}) => ({account: accountReducer.account});
+const mapStateToProps = ({accountReducer}) => ({account: accountReducer.account, isAccountLoading: accountReducer.isAccountLoading});
 const mapDispatchToProps = dispatch => bindActionCreators({loadAccount, loadChats}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
