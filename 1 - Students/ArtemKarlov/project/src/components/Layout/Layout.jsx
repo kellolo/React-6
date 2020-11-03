@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loadAccount} from '../../store/actions/account.actions.js';
+import {loadContacts} from '../../store/actions/contacts.actions.js';
 import {addChat, loadChats} from '../../store/actions/chats.actions.js';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -50,6 +51,7 @@ class Layout extends React.Component {
     componentDidMount() {
         const accountID = "user-0";
         this.props.loadAccount('api/'+ accountID);
+        this.props.loadContacts('api/contacts/'+ accountID);
     }
     
     componentDidUpdate() {
@@ -61,7 +63,7 @@ class Layout extends React.Component {
         const {params:{chatId}} = match;  
         
         if (this.props.isAccountLoading) {
-            return <CircularProgress /> 
+            return (<CircularProgress/>); //по идее тут нужно отрисовать лодер
         }         
         return ( 
             <MuiThemeProvider theme={customTheme}>           
@@ -80,5 +82,5 @@ class Layout extends React.Component {
 }
 
 const mapStateToProps = ({accountReducer}) => ({account: accountReducer.account, isAccountLoading: accountReducer.isAccountLoading});
-const mapDispatchToProps = dispatch => bindActionCreators({loadAccount, loadChats}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({loadAccount, loadContacts, loadChats}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
