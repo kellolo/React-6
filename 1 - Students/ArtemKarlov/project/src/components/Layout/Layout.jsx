@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loadAccount} from '../../store/actions/account.actions.js';
+import {addChat, loadChats} from '../../store/actions/chats.actions.js';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -48,6 +49,8 @@ class Layout extends React.Component {
     componentDidMount() {
         const accountID = "user-0";
         this.props.loadAccount('api/'+ accountID);
+        const {account} = this.props;
+        this.props.loadChats('api/chats/'+ account.id);
     }
     
     componentDidUpdate() {
@@ -74,6 +77,6 @@ class Layout extends React.Component {
     }
 }
 
-const mapStateToProps = ({}) => ({});
-const mapDispatchToProps = dispatch => bindActionCreators({loadAccount}, dispatch);
+const mapStateToProps = ({accountReducer}) => ({account: accountReducer.account});
+const mapDispatchToProps = dispatch => bindActionCreators({loadAccount, loadChats}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
