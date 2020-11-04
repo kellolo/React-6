@@ -1,21 +1,9 @@
 import update from 'react-addons-update';
 import { ADD_CHAT } from "../actions/chats.action";
+import { SUCCESS_CHATS_LOADING } from "../actions/chats.action";
 
 const storeChats = {
-    chats: [ 
-        {
-            chatName: 'Chat 1',
-            chatId: 1,
-        },
-        {
-            chatName: 'Chat 2',
-            chatId: 2,
-        },
-        {
-            chatName: 'Chat 3',
-            chatId: 3,
-        },
-    ]
+    chats: []
 }
 
 export default (store = storeChats, action) => {
@@ -28,6 +16,12 @@ export default (store = storeChats, action) => {
                         chatName: action.title, chatId: id
                 } } },  
             });
+        }
+        case SUCCESS_CHATS_LOADING: {
+            return update(store, {
+                chats: { $set: 
+                    action.payload.chats }
+            })
         }
         default:
             return store;
