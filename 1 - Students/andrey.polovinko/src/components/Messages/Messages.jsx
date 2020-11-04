@@ -3,24 +3,20 @@ import './style.css'
 import Message from '../Message/Message.jsx'
 import ChatInput from '../ChatInput/ChatInput.jsx'
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {sendMessage} from "../../store/actions/messages.actions";
+
 class Messages extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [
-                { sender: 'Me', text: 'Привет' },
-                { sender: 'Bot', text: 'Привет,я бот этого чата' },
-                { sender: 'Me', text: 'Привет' },
-                { sender: 'Bot', text: 'Задай свой вопрос' },
-            ]
+
         }
     }
 
-    sendMessage = (txt) => {
-        let { messages } = this.state
-        this.setState({
-            messages: [...messages, { sender: 'Me', text: txt }]
-        })
+    send = txt => {
+        this.props.sendMessage(txt, 'Me');
     }
 
     componentDidMount() {
@@ -28,29 +24,33 @@ class Messages extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.messages[[this.state.messages.length - 1]].sender === 'Me') {
+        let { messages } = this.props;
+        if (messages[[messages.length - 1]].sender === 'Me') {
             setTimeout(() =>
-                this.setState(
-                    { messages: [...this.state.messages, { sender: 'Bot', text: 'Я всегда готов помочь' }] }),
+                    this.setState(
+                        {messages: [...messages, {sender: 'Bot', text: 'Я всегда готов помочь'}]}),
                 1000);
 
-            console.log(this.state.messages[[this.state.messages.length - 1]].sender);
+            console.log(messages[[messages.length - 1]].sender);
         }
-       
     }
 
     render() {
-        let { messages } = this.state;
-        let messagesArray = messages.map((msg, i) => <Message sender={msg.sender} text={msg.text} key={i} />)
+        let { messages } = this.props;
+        let messagesArray = messages.map((msg, i) => <Message sender={msg.sender} text={msg.text} key={i}/>)
         return (
             <div className=" ">
                 <div className="messages">
                     {messagesArray}
                 </div>
-                <ChatInput send={this.sendMessage} />
+                <ChatInput send={this.send}/>
             </div>
         )
     }
 }
 
-export default Messages
+const mapStateToProps = ({messagesReducer}) => ({
+    messages: messagesReducer.messages
+});
+const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

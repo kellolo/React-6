@@ -1,8 +1,15 @@
 import React from "react";
-import { ScrollPanel } from "primereact/scrollpanel";
-import MessageItem from "../../MessageItem/MessageItem.jsx";
 
-export default class ChatMessages extends React.Component {
+import { connect } from "react-redux";
+
+import { ScrollPanel } from "primereact/scrollpanel";
+
+import { getSelectedChat, deleteMessage } from "../../../actions";
+
+import MessageItem from "../../MessageItem/MessageItem.jsx";
+import { confirm } from "../../ConfirmDialog/ConfirmDialog.jsx";
+
+class ChatMessages extends React.Component {
     scrollToBottom = () => {
         this.lastMessage && this.lastMessage.scrollIntoView({ behavior: "smooth" });
     }
@@ -10,16 +17,6 @@ export default class ChatMessages extends React.Component {
         this.scrollToBottom();
     }
     componentDidUpdate(props) {
-        const chat = props.chat;
-        if (
-            chat.userId &&
-            !chat.message &&
-            chat.messages.length &&
-            chat.messages[chat.messages.length - 1].senderId !== chat.userId &&
-            chat.bot
-        ) {
-            props.onBotReply()
-        }
         this.scrollToBottom();
     }
     render() {
@@ -40,6 +37,10 @@ export default class ChatMessages extends React.Component {
                             message={message}
                             justify={justify}
                             severity={severity}
+                            onClickClose={async (message) => {
+                                if (await confirm("Delete message?"))
+                                    this.props.deleteMessage(message);
+                            }}
                         />
                     </div >
                 );
@@ -51,4 +52,13 @@ export default class ChatMessages extends React.Component {
             </ScrollPanel>
         );
     }
-}   
+}
+
+const mapStateToProps = (state) => ({
+    chat: getSelectedChat(state),
+})
+
+export default connect(
+    mapStateToProps,
+    { deleteMessage }
+)(ChatMessages);

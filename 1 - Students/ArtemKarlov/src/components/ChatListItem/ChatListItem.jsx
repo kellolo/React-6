@@ -1,26 +1,82 @@
 import './style.css';
 import React, { Fragment } from 'react';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export default (props) => {
-    const {chat} = props;
-    // const chat = {
-    //     id: ch_1,
-    //     title: "Ivanov",
-    //     avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-    //      status: "Hi our deadlines are...",
-    // }
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+
+const useStyles = makeStyles(() => ({
+    listItemText: {
+        maxHeight: '45px',
+        
+    },
+}));
+
+const SelectedListItem = withStyles({
+    '@global': {
+        '.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+            backgroundColor: 'rgba(37, 140, 96, 0.4)',
+        },
+        '.MuiListItem-root.Mui-selected:hover .MuiListItemText-secondary': {
+            color: '#808080',
+        },
+        '.MuiListItem-button:hover': {
+            backgroundColor: '#258C60',
+        },
+        '.MuiListItem-button:hover .MuiListItemText-secondary': {
+            color: '#1C1C1C',
+        },
+        '.MuiListItemText-secondary': {
+            color: '#808080',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+        }
+    },
+
+})(() => null);
+
+
+
+function ChatListItem(props) {
+    const {index, selectedIndex, chat, onClick, messages} = props;
+    const classes = useStyles();
+
+    const lastMessage = messages[messages.length-1];
+    const showedMessage = (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
+    
+    const handleListItemClick = (event, index, chatId) => {
+        onClick(event, index, chatId);
+      };
+
     return (
         <Fragment>
-            <li className="chats-list__item chats-list-item" key={chat.id}>
-                <div className="chats-list-item__img img-container ">
-                    <img src={chat.avatarUrl} alt={chat.title} className="img-container__img"/>
-                </div>
-                <div className="chats-list-item__details">
-                    <h2 className="chats-list-item__name">{chat.title}</h2>
-                    <p className="chats-list-item__label">{chat.status}</p>
-                </div>
-            </li> 
+            <SelectedListItem/>
+            <ListItem  
+                button 
+                alignItems="flex-start"
+                selected={selectedIndex === index}
+                onClick={(event) => handleListItemClick(event, index, chat.id)}
+            >
+                <ListItemAvatar>
+                    <Avatar alt={chat.title} src={chat.avatarUrl} />
+                </ListItemAvatar>
+                <ListItemText className={classes.listItemText}
+                    primary={chat.title}
+                    secondary={showedMessage}
+                />
+            </ListItem>
         </Fragment>
     );
 }
+
+const mapStateToProps = ({messagesReducer}) => ({
+    messages: messagesReducer.messages,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatListItem);

@@ -2,7 +2,6 @@ import './style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,34 +10,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
-import { blue } from '@material-ui/core/colors';
+import { grey } from '@material-ui/core/colors';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
   avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
+    backgroundColor: grey[400],
+    color: grey[600],
   },
-  // button: {
-  //   width: '40px',
-  //   height: '40px',
-  //   backgroundColor: '#258C60',
-  //   border: 'none',
-  //   borderRadius: '4px',
-  //   '&:hover': {
-  //     backgroundColor: '#23ad71',
-  //   },
-  //   '&:active': {
-  //     backgroundColor: '#258c60',
-  //   },
-  // },
 });
 
 function SimpleDialog(props) {
   const classes = useStyles();
-  const { onClose, selectedValue, open, contacts } = props;
+  const { onClose, open, contacts } = props;
 
   const handleClose = () => {
     onClose(null);
@@ -53,24 +37,13 @@ function SimpleDialog(props) {
       <DialogTitle id="simple-dialog-title">Add chat with...</DialogTitle>
       <List>
         {contacts.map((contact) => (
-          <ListItem button onClick={() => handleListItemClick(contact)} key={contact}>
+          <ListItem button onClick={() => handleListItemClick(contact.id)} key={contact.id}>
             <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
-              </Avatar>
+              <Avatar className={classes.avatar} alt={contact.name} src={contact.avatarUrl} />
             </ListItemAvatar>
-            <ListItemText primary={contact} />
+            <ListItemText primary={`${contact.name} ${contact.middleName} ${contact.surname}`} />
           </ListItem>
         ))}
-
-        {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add contact" />
-        </ListItem> */}
       </List>
     </Dialog>
   );
@@ -83,8 +56,7 @@ SimpleDialog.propTypes = {
 };
 
 export default function SimpleDialogDemo(props) {
-  const classes = useStyles();
-  const { contacts, getContactName } = props;
+  const { contacts, getContactId } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(null);
 
@@ -98,7 +70,7 @@ export default function SimpleDialogDemo(props) {
   };
 
   React.useEffect(() => { 
-    getContactName(selectedValue);
+    getContactId(selectedValue);
     setSelectedValue(null);
   });
  
@@ -106,7 +78,6 @@ export default function SimpleDialogDemo(props) {
   return (
     <div>
       <button onClick={handleClickOpen} className="chats__add-button button-shell"><img src="../src/layout/images/plus.png" alt="" className="button-shell__img"/></button>
-      {/* <Button className={classes.button} variant="contained" onClick={handleClickOpen}></Button> */}
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} contacts={contacts}/>
     </div>
   );

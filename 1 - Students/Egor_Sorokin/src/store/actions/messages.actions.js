@@ -9,8 +9,9 @@ export const sendMessage = (chatId, sender, text) => ({
     text,
 })
 
-export const messagesInit = (userId) => ({
+export const messagesInit = (id, userId) => ({
     type: MESSAGES_INIT,
+    id,
     userId,
 })
 

@@ -22,8 +22,10 @@ export default class ChatInput extends React.Component {
     }
 
     sendOnKeyboard = (e) => {
-        if (e.key == 'Enter') {
-            this.send();
+        let keyCode = e.which || e.keyCode;
+        if (keyCode === 13) {
+            e.preventDefault()
+            this.send()
         }
     }
 
@@ -38,6 +40,16 @@ export default class ChatInput extends React.Component {
 
     render() {
         // let { text } = this.state;
+        // document.getElementsByTagName('div[contenteditable]').keydown(function(e) {
+        //     // trap the return key being pressed
+        //     if (e.keyCode === 13) {
+        //         // insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+        //         document.execCommand('insertHTML', false, '<br/>');
+        //         // prevent the default behaviour of return key pressed
+        //         return false;
+        //     }
+        // });
+        
         return(
             <div className="chat-input d-flex">
                 <div id = "input-text-box" ref = { this.inputTextBox } contentEditable = "true" onKeyPress = { this.sendOnKeyboard }></div>

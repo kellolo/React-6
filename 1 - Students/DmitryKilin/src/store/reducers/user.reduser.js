@@ -1,5 +1,5 @@
 const storeCurrentUser = {
-    name: 'Kventin', id: 'cn_5', email: 'kventin@mi.is', avatar: 'tarantino.jpg'
+    name: 'Kventin', id: 'cn_5', email: 'kventin@me.is', avatar: 'tarantino.jpg'
 }
 
 export default (store = storeCurrentUser, action) => {

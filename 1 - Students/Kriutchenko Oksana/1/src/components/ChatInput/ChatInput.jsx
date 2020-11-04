@@ -1,5 +1,5 @@
-import './style.css'
-import React, { Component } from 'react'
+import './style.css';
+import React, { Component } from 'react';
 
 export default class ChatInput extends Component {
     constructor(props) {
@@ -29,9 +29,12 @@ export default class ChatInput extends Component {
         let { text } = this.state;
         return (
             <div className="ChatInput">
-                <input className="input" type="text" value = { text } 
+                <input className="input" 
+                type="text" 
+                value = { text } 
                 onChange = { this.changeText } 
-                onKeyUp={ (evt) => this.handleKeyUp(evt, this.state.input) }/>
+                onKeyUp={ (evt) => this.handleKeyUp(evt, this.state.input) }
+                placeholder='Написать сообщение' />
 
                 <button className="button" onClick = { this.send }>Send</button>
                 </div>

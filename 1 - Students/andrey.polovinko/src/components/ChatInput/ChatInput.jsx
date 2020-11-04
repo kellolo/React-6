@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 
 class ChatInput extends Component {
@@ -10,21 +10,21 @@ class ChatInput extends Component {
     }
 
     changeText = evt => {
-        
+
         let val = evt.target.value;
-        this.setState({ text: val })
+        this.setState({text: val})
     }
 
     send = () => {
         this.props.send(this.state.text)
-        this.setState({ text: '' })
+        this.setState({text: ''})
     }
 
     render() {
-        let { text } = this.state;
+        let {text} = this.state;
         return (
             <div className="input-group mt-3">
-                <input type="text" className="form-control" value={text} placeholder="Text" onChange={this.changeText} />
+                <input type="text" className="form-control" value={text} placeholder="Text" onChange={this.changeText}/>
                 <div className="input-group-append">
                     <button onClick={this.send} className="btn btn-outline-success">Send</button>
                 </div>

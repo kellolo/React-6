@@ -73,6 +73,8 @@ export default function SimpleDialogDemo(props) {
         setOpen(false);
         setSelectedValue(value);
         props.addChat(value);
+        props.select(props.chats.length+1)
+        //to add code for routing
     };
 
     

@@ -1,12 +1,15 @@
-import './style.css'
+import './style.css';
 
-import React, { Component, Fragment } from 'react'
-import ChatDialog from '../ChatDialog/ChatDialog.jsx'
+import React, { Component, Fragment } from 'react';
+import ChatDialog from '../ChatDialog/ChatDialog.jsx';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import { connect } from 'react-redux';
+ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { loadChats } from '../../store/actions/chat.action.js'
+        
 
 class ChatList extends Component {
     constructor(props) {
@@ -17,7 +20,8 @@ class ChatList extends Component {
     }
     
     componentDidMount() {
-        
+        let userId = 'u-1';
+        this.props.loadChats('/api/chats/' + userId);
     }
     
     componentDidUpdate() {
@@ -48,5 +52,5 @@ class ChatList extends Component {
 const mapStateToProps = ({ chatsReducer }) => ({
     chatsFromRedux: chatsReducer.chats
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ /*createChat*/ }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ loadChats }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

@@ -1,7 +1,43 @@
 .ChatList {
     width: 30%;
-    max-height: 80vh;
+    max-height: 90vh;
     overflow-y: auto;
-    display: flex; 
-    flex-direction:column;
+    background-color:#fac3f3; 
+    justify-content: space-between;
+   margin-left: 20px;
 }
+.ul_list{
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    font-size: 20px;
+    width: 150px;
+}
+.list{ 
+    
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.list :hover{ 
+    color:#000;
+     
+}
+
+/* .list :active{ 
+   background-color:#C71585;
+   
+   } */
+
+.link{
+    min-height: 50px;
+    color:#808080;
+    display:block;
+    font-size: 18px;
+    font-weight:700;
+    padding: 20px;
+    text-decoration: none;
+}
+

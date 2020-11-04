@@ -8,6 +8,7 @@ module.exports = {
         main: path.resolve(__dirname, 'src', 'index.jsx')
         // main: './src/index.jsx'
     },
+
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '',
@@ -50,5 +51,6 @@ module.exports = {
         port: 3300,
         hot: true,
         open: false
-    }
+    },
+    devtool: 'cheap-inline-module-source-map'
 }

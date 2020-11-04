@@ -49,6 +49,14 @@ module.exports = {
         port: 3300,
         hot: true,
         open: false,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:4000',
+                pathRewrite: { '^/api': ''},
+                secure: false,
+                changeOrigin: true,
+            }
+        }
     },
     devtool: 'cheap-inline-module-source-map',
 }

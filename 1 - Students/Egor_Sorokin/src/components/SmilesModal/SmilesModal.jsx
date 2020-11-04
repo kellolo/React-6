@@ -16,6 +16,10 @@ let smilesTable = [
                     ["bomb", "bye2", "cool", "cray", "crazy"],
                     ["dance", "diablo", "drinks", "gamer", "girl_angel"],
                     ["give_heart", "give_rose", "good", "hang1", "hi"],
+                    ["ireful", "i_am_so_happy", "kiss", "kiss3", "lol"],
+                    ["mad", "man_in_love", "mocking", "music", "nea"],
+                    ["pardon", "rofl", "sad", "scratch_one-s_head", "shok"],
+                    ["shout", "smile", "sorry", "unknown", "wacko1"],
                 ];
 
 export default function SimplePopover(props) {

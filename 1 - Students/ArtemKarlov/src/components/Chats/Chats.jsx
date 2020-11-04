@@ -1,96 +1,55 @@
 import './style.css';
 import React, { Fragment } from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {addChat} from '../../store/actions/chats.actions.js';
+import {delContact} from '../../store/actions/contacts.actions.js';
 
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
 
 
-// ===========================================================================
-// временные контанты (наверное нужно будет передавать в props) 
-const contacts = [
-    {
-        id: 'ccontact_1',
-        name: 'John',
-        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-        citation: 'Hi our deadlines are...',
-    },
-    {
-        id: 'contact_2',
-        name: 'Smith',
-        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-        citation: 'You hear that, Mr. Anderson?',
-    },
-    {
-        id: 'contact_3',
-        name: 'Morpheus',
-        avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-        citation: 'Everything begins with choice.',
-    },
-    
-];
-
-const contactList = contacts.map((contact) => contact.name);
-// ==============================================================================
-
-
-
-export default class Chats extends React.Component {
+class Chats extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-           chats: [
-            {
-                id: "ch_0",
-                title: "Ivanov",
-                avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-                status: "Hi our deadlines are...",
-            },
-            {
-                id: "ch_1",
-                title: "Petrov",
-                avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-                status: "Hi our deadlines are...",
-            },
-            {
-                id: "ch_2",
-                title: "Sidorov",
-                avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-                status: "my life my rules",
-            },
-           ]
         }
     }
 
-    addChat = (contactName) => {
-        const {chats} = this.state;        
+    addChat = (contactId) => {
+        const {chats} = this.props;
+        const {contacts} = this.props;        
 
-        if (contactName !== null) {         
+        if (contactId !== null) {         
 
-            const chatContact = contacts.find(contact => contact.name === contactName);
+            const chatContact = contacts.find(contact => contact.id === contactId);
     
-            const chat = {};
-            chat.id = `ch_${chats.length}`;
-            chat.title = chatContact.name;
-            chat.avatarUrl = chatContact.avatarUrl;
-            chat.status = chatContact.citation;
+            const chatId = `ch_${chats.length}`;
+            const chatTitle = `${chatContact.name} ${chatContact.surname}`;
+            const chatAvatarUrl = chatContact.avatarUrl;
+
+            this.props.addChat(chatId, chatTitle, chatAvatarUrl);
+            this.props.delContact(contactId);
+
     
-            this.setState({
-                chats: [...chats, chat]
-            });
+            // this.setState({
+            //     chats: [...chats, chat]
+            // });
         }
     }
 
     componentDidMount() {
-      
+        
     }
 
     componentDidUpdate() {
       
     }
 
-    render() {
-         
-        const { chats } = this.state;
+    render() {         
+        const { chats } = this.props;
+        const {contacts} = this.props;
+        // const contactList = contacts.map((contact) => contact.name);
         
         
         
@@ -99,7 +58,7 @@ export default class Chats extends React.Component {
                 <section className="layout__chats chats">
                     <div className="chats__header">
                         <h2 className="chats__title">Chats</h2>
-                        <ChatAdd contacts={contactList} getContactName={ this.addChat }/>
+                        <ChatAdd contacts={contacts} getContactId={ this.addChat }/>
                     </div>
                     <ChatList chats={chats} />
                 </section>                
@@ -107,3 +66,10 @@ export default class Chats extends React.Component {
         );
     }
 }
+
+const mapStateToProps = ({chatsReducer, contactsReducer}) => ({
+    chats: chatsReducer.chats,
+    contacts: contactsReducer.contacts,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({addChat, delContact}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(Chats);

@@ -4,55 +4,94 @@ import { MESSAGES_INIT } from "../actions/messages.actions.js";
 import { MESSAGES_CLEAR } from "../actions/messages.actions.js";
 
 const storeMessages = {
-    conversations: {
-        0: {
-            userId: 0,
-            messages: [{sender: 0, text: 'Hello'}, {sender: 0, text: 'How are you?'}]
+    conversations: [
+        {
+            id: "c-0",
+            userId: "u-0",
+            messages: ["m-0", "m-1"]
         },
-        1: {
-            userId: 1,
-            messages: [{sender: 1, text: 'Hello!'}]
+        {
+            id: "c-1",
+            userId: "u-1",
+            messages: ["m-2"]
         },
-        2: {
-            userId: 2,
-            messages: [{sender: 2, text: 'Hello!'}]
+        {
+            id: "c-2",
+            userId: "u-2",
+            messages: ["m-3"]
         },
-    },
+    ],
+    messages: [
+        {
+            id: "m-0",
+            sender: "u-0",
+            text: "Hello"
+        },
+        {
+            id: "m-1",
+            sender: "u-0",
+            text: "How are you?"
+        },
+        {
+            id: "m-2",
+            sender: "u-1",
+            text: "Hello!"
+        },
+        {
+            id: "m-3",
+            sender: "u-2",
+            text: "Hello!"
+        },
+    ]
 }
 
 export default (store = storeMessages, action) => {
     switch (action.type) {
         case SEND_MESSAGE: {
-            if (typeof (Object.keys(store.conversations).find(item => action.chatId == item )) == 'undefined') {
+            let newMessageId = 'm-' + (Number(store.messages.reduce((res, item) => {
+                return (Math.max(res, item.id.slice(2)));
+            }, 0)) + 1);
+            const thisConversation = store.conversations.findIndex(item => action.chatId == item.id ) 
+            if (thisConversation == -1) {
                 return update(store, {
-                    conversations: { $merge: { [action.chatId]: {
+                    conversations: { $push: [ {
+                        id: action.chatId,
                         userId: store.conversations[action.chatId].userId,
-                        messages: [ {sender: action.sender, text: action.text} ]
-                    } }}
+                        messages: [ newMessageId ]
+                    }]},
+                    messages: { $push: [ {
+                        id: newMessageId,
+                        sender: action.sender,
+                        text: action.text
+                    }]}
                 });
             } else {
                 return update(store, {
-                    conversations: { $merge: { [action.chatId]: {
-                        userId: store.conversations[action.chatId].userId,
-                        messages: [...store.conversations[action.chatId].messages, 
-                        {sender: action.sender, text: action.text}
-                    ]
-                    } }}
+                    conversations: { [thisConversation]: { messages: { $push: [
+                        newMessageId
+                    ] }} },
+                    messages: { $push: [ {
+                        id: newMessageId,
+                        sender: action.sender,
+                        text: action.text
+                    }]}
                 });
             }
         }
         case MESSAGES_INIT: {
-            const chatId = Number(Object.keys(store.conversations)[Object.keys(store.conversations).length-1])+1;
             return update(store, {
-                conversations: { $merge: { [chatId]: {
+                conversations: {
+                    $push: [{
+                    id: action.id,
                     userId: action.userId,
                     messages: [],
-                } }}
+                } ]}
             });;
         }
         case MESSAGES_CLEAR: {
-            store.conversations[action.id] = undefined;
-            store.conversations = JSON.parse(JSON.stringify(store.conversations));
+            let idToDelete = store.conversations.findIndex(item => item.id == action.id);
+            store.conversations.splice(idToDelete, 1)
+            console.log(store.conversations)
             return store;
         }
         default:
