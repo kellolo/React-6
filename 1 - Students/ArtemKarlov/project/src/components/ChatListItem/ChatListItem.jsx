@@ -45,7 +45,7 @@ const SelectedListItem = withStyles({
 
 function ChatListItem(props) {
     const classes = useStyles();
-    const {selectedIndex, chat, onClick, messages, contacts} = props;
+    const {selectedIndex, chat, onClick, messages, contacts, account} = props;
 
     let chatContact = contacts.find((cont) => cont.id === chat.contacts);
     chatContact = (chatContact === undefined) ? {name: 'BOT', surname: '', avatarUrl: '', } : chatContact;
@@ -53,7 +53,7 @@ function ChatListItem(props) {
     
     const {messages: messagesId} = chat;
     const lastMessage = messages.find((msg) => msg.id === messagesId[messagesId.length-1]);
-    const showedMessage = (lastMessage === undefined) ? '' : (lastMessage.sender === 'Me') ? `Me: ${lastMessage.text}` : lastMessage.text;
+    const showedMessage = (lastMessage === undefined) ? '' : (lastMessage.sender === account.id) ? `Me: ${lastMessage.text}` : lastMessage.text;
     
     const handleListItemClick = (chatId) => {
         onClick(chatId);
@@ -80,9 +80,10 @@ function ChatListItem(props) {
     );
 }
 
-const mapStateToProps = ({messagesReducer, contactsReducer}) => ({
+const mapStateToProps = ({messagesReducer, contactsReducer, accountReducer}) => ({
     messages: messagesReducer.messages,
     contacts: contactsReducer.contacts,
+    account: accountReducer.account,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(ChatListItem);
