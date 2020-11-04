@@ -19,8 +19,8 @@ export default (store = initStore, action) => {
     switch(action.type) {
 
         case ADD_CHAT: {
-            const {id, contact} = action;
-            const newChat = {id, contact,  messages: []};
+            const {id, contacts} = action;
+            const newChat = {id, contacts,  messages: []};
             return update(store, {
                 chats: {
                     $push: [newChat]

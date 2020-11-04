@@ -18,10 +18,11 @@ class Chats extends React.Component {
     }
 
     addChat = (contactId) => {
-        const {chats} = this.props;       
+        const {chats, account} = this.props;       
 
         if (contactId !== null) {      
             const chatId = `chat-${chats.length}`;
+            // const contacts = [account.id, contactId];
 
             this.props.addChat(chatId, contactId);
             this.props.delContactListItem(contactId);  
@@ -41,7 +42,7 @@ class Chats extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.props.contactList.length == 0) {
+        if (!this.props.isContactListCreated) { 
             this.props.createContactList([]); 
         }
              
@@ -73,6 +74,7 @@ const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactL
     contacts: contactsReducer.contacts,
     account: accountReducer.account,
     contactList: contactListReducer.contactList,
+    isContactListCreated: contactListReducer.isContactListCreated,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, createContactList, delContactListItem}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

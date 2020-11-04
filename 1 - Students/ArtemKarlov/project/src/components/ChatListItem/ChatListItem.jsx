@@ -47,7 +47,7 @@ function ChatListItem(props) {
     const classes = useStyles();
     const {selectedIndex, chat, onClick, messages, contacts} = props;
 
-    let chatContact = contacts.find((cont) => cont.id === chat.contact);
+    let chatContact = contacts.find((cont) => cont.id === chat.contacts);
     chatContact = (chatContact === undefined) ? {name: 'BOT', surname: '', avatarUrl: '', } : chatContact;
     const chatTitle = `${chatContact.name} ${chatContact.surname}`;
     

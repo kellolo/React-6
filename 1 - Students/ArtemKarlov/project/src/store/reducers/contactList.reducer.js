@@ -5,6 +5,7 @@ const initStore = {
     contactList: [
         
     ],
+    isContactListCreated: false,
 };
 
 export default (store = initStore, action) => {
@@ -15,7 +16,8 @@ export default (store = initStore, action) => {
             return update(store, {
                 contactList: {
                     $set: contactList                    
-                }
+                },
+                isContactListCreated: {$set: true}
             });
         }
 
