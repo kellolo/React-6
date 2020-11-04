@@ -14,17 +14,22 @@ class ChatList extends Component {
     super(props);
     this.state = {};
   }
+  static defaultProps = {
+    userId: "user-1",
+  };
 
   componentDidMount() {
-    let userId = "user-1";
+    const { userId } = this.props;
     this.props.loadChats("/api/chats/" + userId);
     this.props.loadContacts("/api/contacts/" + userId);
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    this.render()
+  }
 
   render() {
-    let { chatsFromRedux, contactsFromRedux } = this.props;
+    let { chatsFromRedux, contactsFromRedux, userId } = this.props;
     let chatsArr = chatsFromRedux.map((ch) => (
       <li key={ch.id}>
         <Avatar text={ch.contact.slice(0, 2)}></Avatar>
@@ -39,7 +44,7 @@ class ChatList extends Component {
             <ul>{chatsArr}</ul>
           </div>
           <div>
-            <ChatDialog contacts={contactsFromRedux} />
+            <ChatDialog contacts={contactsFromRedux} userId={userId}/>
           </div>
         </div>
       </Fragment>

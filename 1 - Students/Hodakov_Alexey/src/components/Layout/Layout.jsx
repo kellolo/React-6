@@ -1,6 +1,6 @@
 import "./style.css";
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   StylesProvider,
   createGenerateClassName,
@@ -13,6 +13,7 @@ import UserInfo from "../UserInfo/UserInfo.jsx";
 import ContactInfo from "../ContactInfo/ContactInfo.jsx";
 import { loadUserInfo } from "../../store/actions/userInfo.actions.js";
 import { getContactInfo } from "../../store/actions/getContactInfo.actions.js";
+import { addDialog } from "../../store/actions/addDialog.actions.js";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -24,25 +25,19 @@ class Layout extends Component {
   }
   static defaultProps = {
     userId: "user-1",
-  }
+  };
 
   componentDidMount() {
-    // let userId = "user-1";
     const { chatId, userId } = this.props;
     this.props.loadUserInfo("/api/userinfo/" + userId);
-    // this.props.loadUserInfo("/api/contactuserinfo/" + userId + '/' + chatId);
-    this.props.getContactInfo(this.props.chatsFromRedux, chatId)
+    this.props.getContactInfo(this.props.chatsFromRedux, chatId);
   }
 
   componentDidUpdate() {}
 
   render() {
-    const { userInfoRedux, contactInfoRedux } = this.props;
-    if ( contactInfoRedux){
-      
-      console.log(contactInfoRedux.Phone);
-    }
-   
+    const { userId, chatName, userInfoRedux, contactInfoRedux } = this.props;
+
     return (
       <StylesProvider>
         <div className="w-100 d-flex flex-column align-items-center main-opacity">
@@ -56,15 +51,28 @@ class Layout extends Component {
             />
             <ContactInfo
               className="header__text__green"
-                 chatName={contactInfoRedux ? contactInfoRedux.contact  : 'Welcome'}
-                  phone={contactInfoRedux ? contactInfoRedux.Phone : 'Данные отсуствуют!!!'}
-                  email={contactInfoRedux ? contactInfoRedux.email : 'Данные отсуствуют!!!'}
-                  about={contactInfoRedux ? contactInfoRedux.about : 'Данные отсуствуют!!!'}
+              userId={userId}
+              chatName={contactInfoRedux ? contactInfoRedux.contact : "Welcome"}
+              phone={
+                contactInfoRedux
+                  ? contactInfoRedux.Phone
+                  : "Данные отсуствуют!!!"
+              }
+              email={
+                contactInfoRedux
+                  ? contactInfoRedux.email
+                  : "Данные отсуствуют!!!"
+              }
+              about={
+                contactInfoRedux
+                  ? contactInfoRedux.about
+                  : "Данные отсуствуют!!!"
+              }
             />
           </div>
           <div className="d-flex w-100 justify-content-center">
             <ChatList />
-            <Messages chatName={this.props.chatName} />
+            <Messages chatName={chatName} />
           </div>
         </div>
       </StylesProvider>
@@ -78,6 +86,6 @@ const mapStateToProps = ({ chatsReducer, userInfoReducer }) => ({
   contactInfoRedux: chatsReducer.contactInfo,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ loadUserInfo, getContactInfo }, dispatch);
+  bindActionCreators({ loadUserInfo, getContactInfo, addDialog }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

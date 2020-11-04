@@ -21,8 +21,11 @@ server.get('/contacts/:user', chats.loadContacts);
 
 server.get('/userinfo/:user', chats.userInfo);
 
-server.get('/contactuserinfo/:user/:chat', chats.loadContactChatsInfo);
+// server.get('/contactuserinfo/:user/:chat', chats.loadContactChatsInfo);
 
+server.get('/adddialog/:user/:contact', chats.addDialog);
+
+server.get('/deletedialog/:user/:contact', chats.deleteDialog);
 
 
 server.listen(3000, () => {

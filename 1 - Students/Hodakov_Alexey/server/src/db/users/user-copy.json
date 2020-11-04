@@ -1,0 +1,68 @@
+{
+    "_id": "user-1",
+    "name": "Джорж",
+    "phone": "+7 (999) 999 9999",
+    "email": "georg@gorgia.ru",
+    "about": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae dolore repellat officia harum, et obcaecati quis voluptatibus porro?",
+    "password": "testpass",
+    "contacts": [
+        {
+            "id": "",
+            "contact": "Molly",
+            "Phone": "+7 (777) 777 7227",
+            "email": "Molly@larson.com",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        },
+        {
+            "id": "",
+            "contact": "Alexandr",
+            "Phone": "+7 (910) 300 3003",
+            "email": "Molly@larson.com",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        },
+        {
+            "id": "",
+            "contact": "Jarkii",
+            "Phone": "+7 (009) 000 0001",
+            "email": "Molly@larson.com",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        },
+        {
+            "id": "",
+            "contact": "Borman",
+            "Phone": "+7 (878) 888 7777",
+            "email": "Molly@larson.com",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        }
+    ],
+    "chats": [
+        {
+            "id": "chat_1",
+            "contact": "Larry",
+            "Phone": "+7 (111) 999 1111",
+            "email": "larry@larson.com",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        },
+        {
+            "id": "chat_2",
+            "contact": "Ваня",
+            "Phone": "+7 (242) 339 0009",
+            "email": "ivan@kirov.ru",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        },
+        {
+            "id": "chat_3",
+            "contact": "Вероника",
+            "Phone": "+7 (999) 999 9999",
+            "email": "veronica@verona.it",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        },
+        {
+            "id": "chat_4",
+            "contact": "Грузин",
+            "Phone": "+7 (329) 233 9119",
+            "email": "gamargoba@gorgia.gg",
+            "about": " Repudiandae necessitatibus aliquid porro consectetur culpa eaque corrupti totam quisquam at unde?"
+        }
+    ]
+}
