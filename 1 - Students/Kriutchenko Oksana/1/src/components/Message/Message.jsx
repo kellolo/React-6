@@ -7,9 +7,9 @@ export default props => {
     return (
        
       <div
-            className="msg" style={  { alignSelf: sender === 'Me' ? 'flex-start' : 'flex-end',
-            textAlign: sender === 'Me' ? 'left' : 'right' } }>
-           
+            className="msg d-flex flex-column" style={ { alignSelf: sender === 'Me' ? 'flex-end' : 'flex-start',
+            textAlign: sender === 'Me' ? 'left' : 'right',backgroundColor: sender === 'Me' ? '#fa81f3' : '#FF69B4' } }>
+        
             <strong className="msg_name">{ sender }</strong>
           
             <p className="msg_text">{ text }</p>
