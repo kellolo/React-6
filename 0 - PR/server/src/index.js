@@ -15,5 +15,6 @@ server.use(express.json());
 // })
 
 server.get('/chats/:user', chats.loadChats); //bind possible
+server.get('/chat/:id', chats.loadChat.bind(chats)); //bind possible
 
 server.listen(4000, () => { console.log('running at 4000') })
