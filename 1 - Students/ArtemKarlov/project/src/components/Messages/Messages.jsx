@@ -25,8 +25,10 @@ class Messages extends React.Component {
 
     componentDidMount() {
         const {currentChat} = this.props; 
-        const chatId = currentChat.id;        
-        if ((chatId == 'chatBot-0') && (currentChat.messages.length == 0)) {
+        const chatId = currentChat.id;  
+        const chatIdSplit = chatId.split('-');
+        const prifixId = chatIdSplit[0];      
+        if ((prifixId == 'chatBot') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
@@ -39,8 +41,10 @@ class Messages extends React.Component {
 
     componentDidUpdate() {     
         const {currentChat} = this.props;  
-        const chatId = currentChat.id;       
-        if ((chatId == 'chatBot-0') && (currentChat.messages.length == 0)) {
+        const chatId = currentChat.id;  
+        const chatIdSplit = chatId.split('-');
+        const prifixId = chatIdSplit[0];     
+        if ((prifixId == 'chatBot') && (currentChat.messages.length == 0)) {
             setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
         }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
@@ -52,8 +56,8 @@ class Messages extends React.Component {
 
     render() {
         const {messages, currentChat, account} = this.props;
-        const chatMessagesId = currentChat.messages;
 
+        const chatMessagesId = currentChat.messages;
         const chatMessages = messages.filter((msg) => chatMessagesId.includes(msg.id));
 
         let messagesArray = chatMessages.map((msg) => {

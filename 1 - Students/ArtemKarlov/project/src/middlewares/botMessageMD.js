@@ -9,7 +9,9 @@ export default (store) => (next) => (action) => {
             const {chatId} = action;
             const botName = "Bot";
             const botMessage = "The Matrix has you…";
-            if ((chatId === 'chatBot-0') && (action.sender !== botName)) {
+            const chatIdSplit = chatId.split('-');
+            const prifixId = chatIdSplit[0];
+            if ((prifixId === 'chatBot') && (action.sender !== botName)) {
                 const idArr = action.id.split('-');
                 idArr[1] = Number(idArr[1]);
                 idArr[1]++;

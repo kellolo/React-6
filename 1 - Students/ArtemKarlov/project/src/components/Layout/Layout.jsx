@@ -49,7 +49,7 @@ class Layout extends React.Component {
     }
     
     componentDidMount() {
-        const accountID = "user-0";
+        const accountID = "user-6";
         this.props.loadAccount('api/'+ accountID);
         this.props.loadContacts('api/contacts/'+ accountID);
     }
