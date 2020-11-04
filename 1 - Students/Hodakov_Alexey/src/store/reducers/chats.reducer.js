@@ -12,17 +12,9 @@ const storeChats = {
 export default (store = storeChats, action) => {
   switch (action.type) {
     case SUCCESSS_CHATS_ADD_DIALOG: {
-      return update(store, {
-        chats: { $set: action.payload.chats}
-      })
-      // let { contact } = action;
-      // let chekToAdd = store.chats.some((elem) => contact === elem.contact);
-      // if (!chekToAdd) {
-      //   let id = "chat_".concat(String(store.chats.length + 1));
-      //   let newChat = { id, contact };
-      //   return update(store, { chats: { $push: [newChat] } });
-      // }
-      // break
+      // return update(store, {
+      //   chats: { $set: action.payload.chats}
+      // })
     }
     case SUCCESSS_CHATS_DELETE_DIALOG: {
       return update(store, {

@@ -45,7 +45,7 @@ function SimpleDialog(props) {
   const { onClose, selectedValue, open, contacts } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
   };
 
   const handleListItemClick = (value) => {
@@ -114,8 +114,11 @@ function SimpleDialogDemo(props) {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
-    console.log(value);
-    props.addDialog("/api/adddialog/" + userId + "/" + value);
+    let check = contactsList.find((el) => el == value);
+    if (value != undefined) {
+     props.addDialog("/api/adddialog/" + userId + "/" + value);
+    }
+    check = '0';
   };
 
   return (

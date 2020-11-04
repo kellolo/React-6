@@ -15,6 +15,8 @@ import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { deleteDialog } from "../../store/actions/deleteDialog.actions.js";
+// import { Redirect } from 'react-router';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -37,17 +39,15 @@ function AlertDialogSlide(props) {
     setOpen(true);
   };
 
-  const handleCloseDelete = () => {
+  const handleCloseDelete = (value) => {
     setOpen(false);
-    console.log('удалить')
-    console.log(chatName)
     props.deleteDialog('/api/deletedialog/' + userId + "/" + chatName)
   };
 
   const handleClose = () => {
     setOpen(false);
   };
-
+  
   return (
     <div>
         <div className="header__text header__text__green" onClick={handleClickOpen}> { chatName } </div>
@@ -75,7 +75,7 @@ function AlertDialogSlide(props) {
             </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDelete} className = { classes['text-red'] } color="primary">
+          <Button data={chatName} onClick={() => handleCloseDelete(chatName)} className = { classes['text-red'] } color="primary">
             УДАЛИТЬ
           </Button>
           <Button onClick={handleClose} color="primary">

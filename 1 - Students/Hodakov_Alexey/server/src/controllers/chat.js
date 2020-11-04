@@ -45,7 +45,7 @@ let mod = {
         let obj = JSON.parse(data);
         let item = obj.contacts.find((el) => el.contact == req.params.contact);
 
-        item.id = `chat_${obj.chats.length + 1}`;
+        // item.id = `chat_${obj.chats.length + 1}`;
         obj.chats.push(item);
 
         obj.contacts.splice(obj.contacts.indexOf(item), 1);
@@ -61,7 +61,7 @@ let mod = {
         let obj = JSON.parse(data);
         let item = obj.chats.find((el) => el.contact == req.params.contact);
 
-        item.id = '';
+        // item.id = '';
         obj.contacts.push(item);
         console.log(item)
         obj.chats.splice(obj.chats.indexOf(item), 1);
