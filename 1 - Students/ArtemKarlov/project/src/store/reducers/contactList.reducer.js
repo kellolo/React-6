@@ -17,7 +17,7 @@ export default (store = initStore, action) => {
             // console.log(action.payload);
             return update(store, {
                 contactList: {
-                    $set: action.payload.data.contactList
+                    $set: action.payload.data.chatAddContactList
                 }
             });
         }

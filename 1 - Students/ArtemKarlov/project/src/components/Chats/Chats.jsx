@@ -64,7 +64,6 @@ const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactL
     contacts: contactsReducer.contacts,
     account: accountReducer.account,
     contactList: contactListReducer.contactList,
-    isContactListCreated: contactListReducer.isContactListCreated,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, delContactListItem}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

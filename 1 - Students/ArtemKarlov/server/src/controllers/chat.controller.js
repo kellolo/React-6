@@ -30,6 +30,11 @@ let mod = {
             console.log(error);
             return false;  
         } 
+    },
+    async getChatAddList(contactsId, chats) {
+        const chatsContactId = chats.map(chat => chat.contacts);
+        const chatAddList = contactsId.filter(contactId => !chatsContactId.includes(contactId));
+        return chatAddList;
     }
 }
 
