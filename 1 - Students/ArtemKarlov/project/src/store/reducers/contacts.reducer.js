@@ -1,5 +1,6 @@
 import update from 'react-addons-update';
 import {DEL_CONTACT, SUCCESS_CONTACTS_LOADING} from '../actions/contacts.actions.js';
+import {SUCCESS_ACCOUNT_LOADING} from '../actions/account.actions.js';
 
 
 const initStore = {
@@ -71,16 +72,26 @@ const initStore = {
         //     chats: ["chatBot-6"],
         // }
     ],
+    isContactsLoading: false,
 };
 
 export default (store = initStore, action) => {
     switch(action.type) {
 
-        case SUCCESS_CONTACTS_LOADING: {
+        // case SUCCESS_CONTACTS_LOADING: {
+        //     // console.log(action.payload);
+        //     return update(store, {
+        //         contacts: {
+        //             $set: action.payload.contacts
+        //         }
+        //     });
+        // }
+
+        case SUCCESS_ACCOUNT_LOADING: {
             // console.log(action.payload);
             return update(store, {
                 contacts: {
-                    $set: action.payload.contacts
+                    $set: action.payload.data.contacts
                 }
             });
         }

@@ -25,8 +25,7 @@ class Chats extends React.Component {
             // const contacts = [account.id, contactId];
 
             this.props.addChat(chatId, contactId);
-            this.props.delContactListItem(contactId);  
-
+            this.props.delContactListItem(contactId);
     
             // this.setState({
             //     chats: [...chats, chat]
@@ -36,8 +35,10 @@ class Chats extends React.Component {
 
     componentDidMount() {
         const {account} = this.props;
-        this.props.loadChats('api/chats/'+ account.id);
-
+        // this.props.loadChats('api/chats/'+ account.id);
+        if (!this.props.isContactListCreated) { 
+            this.props.createContactList([]); 
+        }
         
     }
 
@@ -51,10 +52,9 @@ class Chats extends React.Component {
     render() {         
         const { chats } = this.props;
         const {contacts, contactList} = this.props;
+        console.log(contacts);
+        console.log(contactList);
         // const contactList = contacts.map((contact) => contact.name);
-        
-        
-        
         return (
             <Fragment>
                 <section className="layout__chats chats">

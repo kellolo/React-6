@@ -27,10 +27,10 @@ export default (store = initStore, action) => {
         }
 
         case SUCCESS_ACCOUNT_LOADING: {
-            // console.log(action.payload);
+            console.log(action.payload);
             return update(store, {
                 account: {
-                    $set: action.payload.account
+                    $set: action.payload.data.account
                 },
                 isAccountLoading: {$set: false}
             });

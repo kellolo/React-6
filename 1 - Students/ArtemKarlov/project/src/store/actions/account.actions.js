@@ -14,7 +14,7 @@ export const loadAccount = (url) => ({
             {
                 type: SUCCESS_ACCOUNT_LOADING,
                 payload: (action, state, res) => getJSON(res)
-                    .then(data => ({ account: data })),
+                    .then(data => ({ data })),
             },
             ERROR_ACCOUNT_LOADING,
         ],

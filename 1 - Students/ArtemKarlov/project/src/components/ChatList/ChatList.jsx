@@ -23,8 +23,8 @@ function ChatList(props) {
          
     const { chats } = props;
     
-    const chatList = chats.map((chatListItem) => 
-        <ChatListItem key={chatListItem.id} selectedIndex={selectedIndex} chat={chatListItem} onClick={handleChatListItemClick}/>
+    const chatList = chats.map((chat) => 
+        <ChatListItem key={chat.id} selectedIndex={selectedIndex} chat={chat} onClick={handleChatListItemClick}/>
     );
     
     return (

@@ -1,9 +1,12 @@
 const db = './src/db';
 const fs = require('fs');
 
+const {getAccount} = require('./account.controller.js');
+
 let mod = {
     async loadChats(req, res) {
-        const userChatsId = JSON.parse(fs.readFileSync(`${db}/users/${req.params.user}.json`, 'utf-8')).chats;
+        const user = req.params.user;
+        const userChatsId = (await getAccount(user)).chats;
         const allChats = JSON.parse(fs.readFileSync(`${db}/chats/chats.json`, 'utf-8'));
         
         const chats = allChats.filter((chat) => userChatsId.includes(chat.id));                            
