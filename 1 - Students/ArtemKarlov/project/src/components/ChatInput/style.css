@@ -5,6 +5,7 @@
 
 .chat-input {
     padding-right: 40px;
+    padding-left: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

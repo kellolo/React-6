@@ -6,11 +6,14 @@ import {connect} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
+import Messages from '../Messages/Messages.jsx';
+import ChatDialogInfo from '../ChatDialogInfo/ChatDialogInfo.jsx';
+
 const useStyles = makeStyles(() => ({
     accountAvatar: {width: '100%', height: '100%'}
 }));
 
-import Messages from '../Messages/Messages.jsx';
+
 
 function ChatDailog(props) {
     const classes = useStyles();
@@ -18,20 +21,13 @@ function ChatDailog(props) {
     const currentChat = chats.find((chat) => chat.id === chatId);
 
     let chatContact = contacts.find((cont) => cont.id === currentChat.contacts);
+    console.log(chatContact);
     chatContact = (chatContact === undefined) ? {name: 'BOT', middleName: '', surname: '', avatarUrl: '', } : chatContact;
-    const chatTitle = `${chatContact.name} ${chatContact.middleName} ${chatContact.surname}`;
+    // const chatTitle = `${chatContact.name} ${chatContact.middleName} ${chatContact.surname}`;
      
     return (
         <Fragment>
-            <div className="chat__header chat-header">
-                <p className="chat-header__label">Chat with</p>
-                <div className="chat-header__details">
-                    <div className="chat-header__img img-container ">
-                        <Avatar alt={chatTitle} src={chatContact.avatarUrl} className={classes.accountAvatar}/>
-                    </div>                    
-                    <h2 className="chat-header__title">{chatTitle}</h2>
-                </div>                    
-            </div>
+            <ChatDialogInfo chatContact={chatContact} /> 
             <Messages currentChat={currentChat} />            
         </Fragment>
     );
