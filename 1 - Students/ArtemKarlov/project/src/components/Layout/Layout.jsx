@@ -61,19 +61,20 @@ class Layout extends React.Component {
     render() {
         const {match} = this.props;
         const {params:{chatId}} = match;  
-        
-        if (this.props.isAccountLoading) {
-            return (<CircularProgress/>); //по идее тут нужно отрисовать лодер
-        }         
+  
         return ( 
             <MuiThemeProvider theme={customTheme}>           
                 <div className="layout">
                     <Controls />
                     {/* <AccountChats account = {account} /> */}
-                    <div className="layout__account-chatlist">
-                        <Account />
-                        <Chats />                
-                    </div>
+                    {
+                        (this.props.isAccountLoading) ? 
+                        <CircularProgress/> :
+                        <div className="layout__account-chatlist">
+                            <Account />
+                            <Chats />                
+                        </div>
+                    }
                     <ChatField chatId={(chatId)? chatId : 'init'} />
                 </div>
             </MuiThemeProvider>

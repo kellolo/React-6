@@ -17,7 +17,7 @@ server.use(express.json());
 // });
 
 server.get('/:user', account.loadAccount.bind(account));
-server.get('/contact-list/:user', contacts.loadContactList.bind(contacts));
+server.get('/contact/:contact', contacts.loadContact);
 // server.get('/chats/:user', chats.loadChats);
 
 server.listen(4000, () => {console.log('running at 4000')});

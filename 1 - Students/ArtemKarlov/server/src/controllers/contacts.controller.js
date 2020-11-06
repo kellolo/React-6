@@ -12,14 +12,13 @@ let mod = {
         res.json(contactList);
     },
     async loadContact(req, res) {
-        const userContactsId = JSON.parse(fs.readFileSync(`${db}/users/${req.params.user}.json`, 'utf-8')).contacts;
-
-        const contactsArray = userContactsId.map((contactId) => {
-            const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
-            return contact;
-        });
+        const contactId = req.params.contact;
+        const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
                          
-        res.json(contactsArray);  
+        res.json(contact);  
+    },
+    async getContact(contactId) {
+        return JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
     },
     async getContacts(chats) {
         try {
@@ -39,7 +38,7 @@ let mod = {
         const contactList = contactsId.map((contactId) => {
             const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
             const name = `${contact.name} ${contact.surname}`;
-            const id = `list-${(contact.id.split('-'))[1]}`;
+            const id = `contlist-${(contact.id.split('-'))[1]}`;
             const contactListItem = {
                 id: id,
                 contact: contact.id,

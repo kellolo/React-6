@@ -18,7 +18,7 @@ function ChatList(props) {
 
     const handleChatListItemClick = (chatId) => {
         setSelectedIndex(chatId);
-        props.push(`/chat/${chatId}`);
+        props.push(`/chat/${chatId}/`);
     };
          
     const { chats } = props;

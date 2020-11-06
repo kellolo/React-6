@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import {DEL_CONTACT, SUCCESS_CONTACTS_LOADING} from '../actions/contacts.actions.js';
+import {DEL_CONTACT, SUCCESS_CONTACT_LOADING} from '../actions/contacts.actions.js';
 import {SUCCESS_ACCOUNT_LOADING} from '../actions/account.actions.js';
 
 
@@ -78,14 +78,14 @@ const initStore = {
 export default (store = initStore, action) => {
     switch(action.type) {
 
-        // case SUCCESS_CONTACTS_LOADING: {
-        //     // console.log(action.payload);
-        //     return update(store, {
-        //         contacts: {
-        //             $set: action.payload.contacts
-        //         }
-        //     });
-        // }
+        case SUCCESS_CONTACT_LOADING: {
+            const newContact = action.payload.data;
+            return update(store, {
+                contacts: {
+                    $push: [newContact]
+                }
+            });
+        }
 
         case SUCCESS_ACCOUNT_LOADING: {
             // console.log(action.payload);

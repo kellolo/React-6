@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles();
-  const { onClose, open, contacts, contactList } = props;
+  const { onClose, open, contacts} = props;
 
   const handleClose = () => {
     onClose(null);
@@ -39,14 +39,15 @@ function SimpleDialog(props) {
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Add chat with...</DialogTitle>
       <List>
-        {contacts.map((contact) => (
-          <ListItem button onClick={() => handleListItemClick(contact.id)} key={contact.id}>
+        {contacts.map((contact) => {
+          return (          
+          <ListItem button onClick={() => handleListItemClick(contact.contact)} key={contact.id}>
             <ListItemAvatar>
               <Avatar className={classes.avatar} alt={contact.name} src={contact.avatarUrl} />
             </ListItemAvatar>
-            <ListItemText primary={`${contact.name} ${contact.middleName} ${contact.surname}`} />
+            <ListItemText primary={`${contact.name}`} />
           </ListItem>
-        ))}
+)})}
       </List>
     </Dialog>
   );
@@ -58,8 +59,8 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-function SimpleDialogDemo(props) {
-  const { contacts, getContactId, contactList } = props;
+export default function SimpleDialogDemo(props) {
+  const { contacts, getContactId} = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(null);
   // console.log(contacts);
@@ -86,9 +87,3 @@ function SimpleDialogDemo(props) {
     </div>
   );
 }
-
-
-const mapStateToProps = ({contactListReducer}) => ({
-  contactList1: contactListReducer.contactList,
-});
-export default connect(mapStateToProps)(SimpleDialogDemo);

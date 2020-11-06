@@ -24,7 +24,7 @@ export default (store = initStore, action) => {
 
         case DEL_CONTACTLIST_ITEM: {
             const {id} = action;
-            const delIndex = store.contactList.findIndex((contact) => contact.id === id);
+            const delIndex = store.contactList.findIndex((contact) => contact.contact === id);
             return update(store, {
                 contactList: {
                     $splice: [[delIndex, 1]]

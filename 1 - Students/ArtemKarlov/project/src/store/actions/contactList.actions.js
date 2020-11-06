@@ -5,10 +5,6 @@ export const SUCCESS_CONTACT_LIST_LOADING = '@@contactList/SUCCESS_CONTACT_LIST_
 export const ERROR_CONTACT_LIST_LOADING = '@@contactList/ERROR_CONTACT_LIST_LOADING';
 
 
-export const createContactList = (contactList) => ({
-    type: CREATE_CONTACT_LIST,
-    contactList,
-});
 
 export const delContactListItem = (id) => ({
     type: DEL_CONTACTLIST_ITEM,

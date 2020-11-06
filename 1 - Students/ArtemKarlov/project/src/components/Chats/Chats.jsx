@@ -21,7 +21,7 @@ class Chats extends React.Component {
         const {chats, account} = this.props;       
 
         if (contactId !== null) {      
-            const chatId = `chat-${chats.length}`;
+            const chatId = `chat-${chats.length+1}`;
             // const contacts = [account.id, contactId];
 
             this.props.addChat(chatId, contactId);

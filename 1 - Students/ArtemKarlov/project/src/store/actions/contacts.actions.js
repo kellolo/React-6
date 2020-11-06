@@ -8,23 +8,23 @@ export const delContact = (id) => ({
 });
 
 
-export const START_CONTACTS_LOADING = '@@contacts/START_CONTACTS_LOADING';
-export const SUCCESS_CONTACTS_LOADING = '@@contacts/SUCCESS_CONTACTS_LOADING';
-export const ERROR_CONTACTS_LOADING = '@@contacts/ERROR_CONTACTS_LOADING';
+export const START_CONTACT_LOADING = '@@contacts/START_CONTACT_LOADING';
+export const SUCCESS_CONTACT_LOADING = '@@contacts/SUCCESS_CONTACT_LOADING';
+export const ERROR_CONTACT_LOADING = '@@contacts/ERROR_CONTACT_LOADING';
 
-export const loadContacts = (url) => ({
+export const loadContact = (url) => ({
     [RSAA]: {
         endpoint: url,
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
         types: [
-            START_CONTACTS_LOADING,
+            START_CONTACT_LOADING,
             {
-                type: SUCCESS_CONTACTS_LOADING,
+                type: SUCCESS_CONTACT_LOADING,
                 payload: (action, state, res) => getJSON(res)
-                    .then(data => ({ contacts: data })),
+                    .then(data => ({ data })),
             },
-            ERROR_CONTACTS_LOADING,
+            ERROR_CONTACT_LOADING,
         ],
     }
 });
