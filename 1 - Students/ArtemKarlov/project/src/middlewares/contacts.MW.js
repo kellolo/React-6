@@ -8,8 +8,7 @@ export default (store) => (next) => (action) => {
             const storeContacts = store.getState().contactsReducer.contacts;
             const findedStoreContact = storeContacts.find(contact => contact.id === contactId);
             if (findedStoreContact === undefined) {
-                console.log(window.location.href);
-                store.dispatch(loadContact(`api/contact/${contactId}`));
+                store.dispatch(loadContact(`/api/contact/${contactId}`));
             }
         } 
     }
