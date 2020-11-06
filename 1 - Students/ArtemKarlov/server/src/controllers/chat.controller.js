@@ -18,6 +18,18 @@ let mod = {
         //         res.json(chats);
         //     }            
         // });     
+    },
+    async getChats(chatsId) {
+        try {
+            const chatsArray = chatsId.map((chatId) => {
+                const chat = JSON.parse(fs.readFileSync(`${db}/chats/${chatId}.json`, 'utf-8'));
+                return chat;
+            });
+            return chatsArray;
+        } catch (error) {
+            console.log(error);
+            return false;  
+        } 
     }
 }
 

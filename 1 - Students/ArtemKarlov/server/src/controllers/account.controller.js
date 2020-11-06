@@ -1,16 +1,19 @@
 const db = './src/db';
 const fs = require('fs');
 
+const {getChats} = require('./chat.controller.js');
+const {getContactList} = require('./contacts.controller.js');
+
 let mod = {
     async loadAccount(req, res) {
         try {
             const userId = req.params.user;
             const account = await this.getAccount(userId);
-            const chats = await this.getChats(account.chats);
-            const contacts = await this.getContacts(chats);
+            const chats = await getChats(account.chats);
+            const contactList = await getContactList(account.contacts);
 
             const result = {
-                account, chats, contacts
+                account, chats, contactList
             };
 
             setTimeout(() => res.json(result), 2000);
@@ -29,34 +32,7 @@ let mod = {
             console.log(error);
             return false;
         }        
-    },
-    async getChats(chatsId) {
-        try {
-            const chatsArray = chatsId.map((chatId) => {
-                const chat = JSON.parse(fs.readFileSync(`${db}/chats/${chatId}.json`, 'utf-8'));
-                return chat;
-            });
-            return chatsArray;
-        } catch (error) {
-            console.log(error);
-            return false;  
-        } 
-    },
-    async getContacts(chats) {
-        try {
-            const contactsArray = chats.map((chat) => {
-                const contactId = chat.contacts;
-                const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
-                return contact;
-            });
-            return contactsArray;            
-            
-        } catch (error) {
-            console.log(error);
-            return false;            
-        }
-    },
-      
+    }
 }
 
 module.exports = mod;

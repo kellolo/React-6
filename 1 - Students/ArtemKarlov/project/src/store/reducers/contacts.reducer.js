@@ -87,14 +87,7 @@ export default (store = initStore, action) => {
         //     });
         // }
 
-        case SUCCESS_ACCOUNT_LOADING: {
-            // console.log(action.payload);
-            return update(store, {
-                contacts: {
-                    $set: action.payload.data.contacts
-                }
-            });
-        }
+        
 
         case DEL_CONTACT: {
             const {id} = action;

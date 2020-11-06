@@ -11,7 +11,7 @@ let mod = {
 
         res.json(contactList);
     },
-    async getContact(req, res) {
+    async loadContact(req, res) {
         const userContactsId = JSON.parse(fs.readFileSync(`${db}/users/${req.params.user}.json`, 'utf-8')).contacts;
 
         const contactsArray = userContactsId.map((contactId) => {
@@ -21,14 +21,30 @@ let mod = {
                          
         res.json(contactsArray);  
     },
+    async getContacts(chats) {
+        try {
+            const contactsArray = chats.map((chat) => {
+                const contactId = chat.contacts;
+                const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
+                return contact;
+            });
+            return contactsArray;            
+            
+        } catch (error) {
+            console.log(error);
+            return false;            
+        }
+    },
     async getContactList(contactsId) {
         const contactList = contactsId.map((contactId) => {
             const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
-            const fullName = `${contact.name} ${contact.middleName} ${contact.surname}`
+            const name = `${contact.name} ${contact.surname}`;
+            const id = `list-${(contact.id.split('-'))[1]}`;
             const contactListItem = {
+                id: id,
                 contact: contact.id,
-                name: fullName,
-                avatar: contact.avatarUrl,
+                name: name,
+                avatarUrl: contact.avatarUrl,
             };
             return contactListItem;
         });
