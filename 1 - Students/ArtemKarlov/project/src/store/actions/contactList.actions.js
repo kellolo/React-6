@@ -1,6 +1,5 @@
 import {RSAA, getJSON} from 'redux-api-middleware';
 export const DEL_CONTACTLIST_ITEM = '@@contactList/DEL_CONTACTLIST_ITEM';
-export const CREATE_CONTACT_LIST = '@@contactList/CREATE_CONTACT_LIST';
 export const START_CONTACT_LIST_LOADING = '@@contactList/START_CONTACT_LIST_LOADING';
 export const SUCCESS_CONTACT_LIST_LOADING = '@@contactList/SUCCESS_CONTACT_LIST_LOADING';
 export const ERROR_CONTACT_LIST_LOADING = '@@contactList/ERROR_CONTACT_LIST_LOADING';

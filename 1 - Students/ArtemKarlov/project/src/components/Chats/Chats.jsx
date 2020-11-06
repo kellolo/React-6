@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addChat, loadChats} from '../../store/actions/chats.actions.js';
-import {createContactList, delContactListItem} from '../../store/actions/contactList.actions.js';
+import {delContactListItem} from '../../store/actions/contactList.actions.js';
 
 
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
@@ -34,26 +34,16 @@ class Chats extends React.Component {
     }
 
     componentDidMount() {
-        const {account} = this.props;
-        // this.props.loadChats('api/chats/'+ account.id);
-        if (!this.props.isContactListCreated) { 
-            this.props.createContactList([]); 
-        }
-        
+       
     }
 
     componentDidUpdate() {
-        if (!this.props.isContactListCreated) { 
-            this.props.createContactList([]); 
-        }
              
     }
 
     render() {         
         const { chats } = this.props;
         const {contacts, contactList} = this.props;
-        console.log(contacts);
-        console.log(contactList);
         // const contactList = contacts.map((contact) => contact.name);
         return (
             <Fragment>
@@ -76,5 +66,5 @@ const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactL
     contactList: contactListReducer.contactList,
     isContactListCreated: contactListReducer.isContactListCreated,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, createContactList, delContactListItem}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, delContactListItem}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

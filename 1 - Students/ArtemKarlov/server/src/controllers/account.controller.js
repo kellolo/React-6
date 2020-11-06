@@ -2,7 +2,7 @@ const db = './src/db';
 const fs = require('fs');
 
 const {getChats} = require('./chat.controller.js');
-const {getContactList} = require('./contacts.controller.js');
+const {getContacts, getContactList} = require('./contacts.controller.js');
 
 let mod = {
     async loadAccount(req, res) {
@@ -10,10 +10,11 @@ let mod = {
             const userId = req.params.user;
             const account = await this.getAccount(userId);
             const chats = await getChats(account.chats);
+            const contacts = await getContacts(chats);
             const contactList = await getContactList(account.contacts);
 
             const result = {
-                account, chats, contactList
+                account, chats, contacts, contactList
             };
 
             setTimeout(() => res.json(result), 2000);

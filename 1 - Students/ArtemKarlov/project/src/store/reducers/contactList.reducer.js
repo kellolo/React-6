@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import {DEL_CONTACTLIST_ITEM, CREATE_CONTACT_LIST} from '../actions/contactList.actions.js';
+import {DEL_CONTACTLIST_ITEM} from '../actions/contactList.actions.js';
 import {SUCCESS_ACCOUNT_LOADING} from '../actions/account.actions.js';
 
 const initStore = {
@@ -19,17 +19,6 @@ export default (store = initStore, action) => {
                 contactList: {
                     $set: action.payload.data.contactList
                 }
-            });
-        }
-
-        case CREATE_CONTACT_LIST: {
-            const {contactList} = action;
-            console.log(action);
-            return update(store, {
-                contactList: {
-                    $set: contactList                    
-                },
-                isContactListCreated: {$set: true}
             });
         }
 
