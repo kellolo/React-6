@@ -21,9 +21,8 @@ function ChatDailog(props) {
     const currentChat = chats.find((chat) => chat.id === chatId);
 
     let chatContact = contacts.find((cont) => cont.id === currentChat.contacts);
-    console.log(chatContact);
     chatContact = (chatContact === undefined) ? {name: 'BOT', middleName: '', surname: '', avatarUrl: '', } : chatContact;
-    // const chatTitle = `${chatContact.name} ${chatContact.middleName} ${chatContact.surname}`;
+ 
      
     return (
         <Fragment>

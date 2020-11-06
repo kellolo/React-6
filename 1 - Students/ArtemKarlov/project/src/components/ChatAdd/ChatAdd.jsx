@@ -63,7 +63,6 @@ export default function SimpleDialogDemo(props) {
   const { contacts, getContactId} = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(null);
-  // console.log(contacts);
 
   const handleClickOpen = () => {
     setOpen(true);    

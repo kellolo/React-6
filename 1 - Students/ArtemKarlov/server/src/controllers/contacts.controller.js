@@ -1,16 +1,7 @@
 const db = './src/db';
 const fs = require('fs');
 
-const {getAccount} = require('./account.controller.js');
-
 let mod = {
-    async loadContactList(req, res) {
-        const userId = req.params.user;
-        const account = await getAccount(userId);
-        const contactList = await this.getContactList(account.contacts);
-
-        res.json(contactList);
-    },
     async loadContact(req, res) {
         const contactId = req.params.contact;
         const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));

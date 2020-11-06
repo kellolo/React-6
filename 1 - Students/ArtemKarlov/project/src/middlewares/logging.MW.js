@@ -9,7 +9,7 @@ export default (store) => (next) => (action) => {
         case SEND_MESSAGE: {
 // console.log(store.getState().contactsReducer.contacts);
 // console.log(store.getState().contactListReducer.contactList);
-// console.log(store.getState().messagesReducer.messages);
+console.log(store.getState().messagesReducer.messages);
 // console.log(store.getState().chatsReducer.chats);
         } 
         case SUCCESS_ACCOUNT_LOADING: {
