@@ -1,0 +1,79 @@
+[
+    {
+        "name": "Саша",
+        "id": "cn_1",
+        "email": "sasha@me.com",
+        "avatar": "sasha.jpg",
+        "password": "123"
+    },
+     {
+        "name": "Ваня",
+        "id": "cn_2",
+        "email": "vanya@me.com",
+        "avatar": "vanya.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Димон",
+        "id": "cn_3",
+        "email": "dimon@me.com",
+        "avatar": "dimon.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Катя",
+        "id": "cn_4",
+        "email": "kate@me.com",
+        "avatar": "kate.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Иван Петрович",
+        "id": "cn_5",
+        "email": "ivanpetrovich@me.com",
+        "avatar": "ivanpetrovich.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Витёк",
+        "id": "cn_6",
+        "email": "vitek@me.com",
+        "avatar": "vitek.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Влад",
+        "id": "cn_7",
+        "email": "vlad@me.com",
+        "avatar": "vlad.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Дашка",
+        "id": "cn_8",
+        "email": "dariya@me.com",
+        "avatar": "dariya.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Люся",
+        "id": "cn_9",
+        "email": "lusia@me.com",
+        "avatar": "lusia.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Виталик",
+        "id": "cn_10",
+        "email": "vetal@me.com",
+        "avatar": "vetal.jpg",
+        "password": "123"
+    },
+    {
+        "name": "Стас",
+        "id": "cn_11",
+        "email": "stas@me.com",
+        "avatar": "stas.jpg",
+        "password": "123"
+    }
+]

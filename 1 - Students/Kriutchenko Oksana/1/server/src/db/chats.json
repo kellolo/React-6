@@ -1,0 +1,22 @@
+[
+{
+        "id": "c-0",
+        "userId": "u-0",
+        "contact": "Саша"
+},
+{
+        "id": "c-1",
+        "userId": "u-1",
+        "contact": "Ваня"
+},
+{
+        "id": "c-2",
+        "userId": "u-2",
+        "contact": "Димон"
+},
+{
+        "id": "c-3",
+        "userId": "u-3",
+        "contact": "Катя"
+}
+]
