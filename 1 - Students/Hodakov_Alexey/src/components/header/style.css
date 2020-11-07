@@ -1,9 +1,28 @@
-h1 {
-    margin: 0;
-    padding: 20px;
+.header__text {
+  height: 100px;
+  font-weight: 700;
+  box-sizing: border-box;
+  margin: 0;
+  transition: border-top 0.4s;
+}
+.header__text:hover {
+  border-top-width: 50px;
+  transition: border-top 0.4s;
+  cursor: pointer;
 }
 .header {
-    margin-right: 500px;
-    border-top: 35px solid #215c5a;
-    color: #215c5a;
+  margin-right: 500px;
+}
+.header__text__green {
+  width: 300px;
+  font-size: 35px;
+  padding: 5px 20px 20px 20px;
+  border-top: 35px solid #215c5a;
+  color: #215c5a;
+}
+.header__text__blue {
+  font-size: 30px;
+  padding: 5px 10px 10px 10px;
+  border-top: 35px solid #00164c;
+  color: #00164c;
 }
