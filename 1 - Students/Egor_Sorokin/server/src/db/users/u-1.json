@@ -1,8 +1,8 @@
 {
     "_id": "u-1",
     "name": "User",
-    "email": "user@icloud.com",
-    "password": "1234",
+    "email": "user@me.com",
+    "password": "password",
     "avatar": "https://via.placeholder.com/70/cccc55",
     "contacts": ["u-5"],
     "chats": [

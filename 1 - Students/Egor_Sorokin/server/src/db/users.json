@@ -2,32 +2,43 @@
     {
         "id": "u-0",
         "name": "Bot",
-        "avatar": "https://via.placeholder.com/70"
+        "avatar": "https://via.placeholder.com/70",
+        "email": "",
+        "password": "password"
     },
     {
         "id": "u-1",
         "name": "User",
-        "avatar": "https://via.placeholder.com/70/cccc55"
+        "avatar": "https://via.placeholder.com/70/cccc55",
+        "email": "user@me.com",
+        "password": "password"
     },
     {
         "id": "u-2",
         "name": "User2",
-        "avatar": "https://via.placeholder.com/70/55cc55"
+        "avatar": "https://via.placeholder.com/70/55cc55",
+        "email": "user2@me.com",
+        "password": "password"
     },
     {
         "id": "u-3",
         "name": "User3",
-        "avatar": "https://via.placeholder.com/70/555555"
+        "avatar": "https://via.placeholder.com/70/555555",
+        "email": "user3@me.com",
+        "password": "password"
     },
     {
         "id": "u-4",
         "name": "User4",
-        "avatar": "https://via.placeholder.com/70/cccccc"
+        "avatar": "https://via.placeholder.com/70/cccccc",
+        "email": "user4@me.com",
+        "password": "password"
     },
     {
         "id": "u-5",
         "name": "Egor",
         "avatar": "https://cdn.pixabay.com/photo/2018/03/09/15/36/wildlife-3211742_960_720.jpg",
-        "email": "john.appleseed@icloud.com"
+        "email": "egor@me.com",
+        "password": "password"
     }
 ]

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { push } from 'connected-react-router'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
@@ -17,7 +17,7 @@ import './style.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { addChat, deleteChat, loadChats } from '../../store/actions/chat.actions.js'
+import { addChat, deleteChat } from '../../store/actions/chat.actions.js'
 import { messagesInit, messagesClear } from '../../store/actions/messages.actions.js'
 
 const useStyles = makeStyles(() => ({
@@ -33,10 +33,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 function ChatList(props) {
-
-    useEffect(() => {
-        props.loadChats('/api/chats/' + props.author);
-    }, [])
 
     let callDeleteChat = (e) => {
         e.stopPropagation();
@@ -79,7 +75,7 @@ function ChatList(props) {
     let userList = []
 
     users.forEach (item => {
-        if ((typeof chats.find(el => el.userId == item.id) == 'undefined') && (item.id != author)) {
+        if ((typeof conversations.find(el => el.userId == item.id) == 'undefined') && (item.id != author)) {
             userList.push(item);
         }
     })
@@ -129,6 +125,6 @@ const mapStateToProps = ({ chatsReducer, usersReducer, messagesReducer }) => ({
     users: usersReducer.users,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ push, addChat, deleteChat, messagesInit, messagesClear, loadChats }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ push, addChat, deleteChat, messagesInit, messagesClear }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

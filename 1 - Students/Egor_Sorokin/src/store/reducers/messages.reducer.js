@@ -91,7 +91,6 @@ export default (store = storeMessages, action) => {
         case MESSAGES_CLEAR: {
             let idToDelete = store.conversations.findIndex(item => item.id == action.id);
             store.conversations.splice(idToDelete, 1)
-            console.log(store.conversations)
             return store;
         }
         default:
