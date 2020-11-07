@@ -15,7 +15,6 @@ export default class Layout extends Component {
     }
 
     selectHandler = (newSelectedElement) => {
-
         this.setState({
             selectedChat: newSelectedElement 
         });

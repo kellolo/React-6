@@ -1,5 +1,5 @@
 
-    import React, { Fragment } from 'react';
+    import React, { Fragment, useEffect } from 'react';
     import './ChatList.css';
     import ChatDialog from '../ChatDialog/ChatDialog'
     import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
@@ -9,15 +9,21 @@
     import { connect } from 'react-redux';
     import { bindActionCreators } from 'redux';
     import { addChat } from '../../store/actions/chats.action';
+    import { loadChats } from '../../store/actions/chats.action';
 
     const useStyles = makeStyles((theme) => ({
         chatIcon: {
             color: '#0c4a48',
         },
-      }));
+    }));
 
     const ChatList = props => {
         const classes = useStyles();
+
+        useEffect(() => {
+            let userId = 'u-1';
+            props.loadChats('/api/chats/' + userId)
+        }, []);
         
         return (
             <Fragment>
@@ -55,6 +61,6 @@
     const mapStateToProps = ({ chatsReducer }) => ({
         chatsFromRedux: chatsReducer.chats
     });
-    const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+    const mapDispatchToProps = dispatch => bindActionCreators({ addChat, loadChats }, dispatch);
     export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
     

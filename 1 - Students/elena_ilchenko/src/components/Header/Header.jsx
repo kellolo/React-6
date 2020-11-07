@@ -10,11 +10,13 @@ export default props => {
         <Fragment>
             <div className="Header">
                 <h1>
-                    {props.chatName 
-                        ? props.chatName 
-                        : props.allChats
-                        ? props.allChats[props.selected-1].chatName 
-                        : 'Profile'}
+                    {
+                        props.chatName 
+                            ? props.chatName 
+                            : props.allChats.length > 0 
+                                ? props.allChats[props.selected-1].chatName 
+                                : 'Profile'
+                    }
                     
                 </h1>
                 <Link className="profile-link" to={`/profile`}>
