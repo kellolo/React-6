@@ -13,6 +13,7 @@ const initStore = {
         //     messages: ["msg-0", "msg-1"]
         // },
     ],
+    allChatsIdList: [],
     isChatsLoading: false,
 }
 
@@ -25,9 +26,12 @@ export default (store = initStore, action) => {
             return update(store, {
                 chats: {
                     $push: [newChat]
+                },
+                allChatsIdList: {
+                    $push: [id]
                 }
             });
-        }
+        }        
 
         case SEND_MESSAGE: {
             const {id, chatId} = action;
@@ -43,30 +47,15 @@ export default (store = initStore, action) => {
             });
         }
 
-        // case SUCCESS_CHATS_LOADING: {
-        //     // console.log(action.payload);
-        //     return update(store, {
-        //         chats: {
-        //             $set: action.payload.chats
-        //         }
-        //     })
-        // }
-
         case SUCCESS_ACCOUNT_LOADING: {
-            // console.log(action.payload);
             return update(store, {
                 chats: {
                     $set: action.payload.data.chats
+                },
+                allChatsIdList: {
+                    $set: action.payload.data.allChatsIdList
                 }
             })
-        }
-
-
-        case START_CHATS_LOADING: {
-        }
-
-        case ERROR_CHATS_LOADING: {
-            // console.log(action);
         }
 
         default:

@@ -18,18 +18,14 @@ class Chats extends React.Component {
     }
 
     addChat = (contactId) => {
-        const {chats, account} = this.props;       
+        const {allChatsIdList, account} = this.props;       
 
         if (contactId !== null) {      
-            const chatId = `chat-${chats.length+1}`;
+            const chatId = `chat-${allChatsIdList.length+1}`; // наверно id лучше генерировать в middleware
             // const contacts = [account.id, contactId];
 
             this.props.addChat(chatId, contactId);
             this.props.delContactListItem(contactId);
-    
-            // this.setState({
-            //     chats: [...chats, chat]
-            // });
         }
     }
 
@@ -61,6 +57,7 @@ class Chats extends React.Component {
 
 const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactListReducer}) => ({
     chats: chatsReducer.chats,
+    allChatsIdList: chatsReducer.allChatsIdList,
     contacts: contactsReducer.contacts,
     account: accountReducer.account,
     contactList: contactListReducer.contactList,

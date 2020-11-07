@@ -14,13 +14,24 @@ let mod = {
             return false;  
         } 
     },
+
     async getChatAddList(contactsId, chats) {
         const chatsContactId = chats.map(chat => chat.contacts);
         const chatAddList = contactsId.filter(contactId => !chatsContactId.includes(contactId));
         return chatAddList;
     },
+
     async getChat(chatId) {
         return JSON.parse(fs.readFileSync(`${db}/chats/${chatId}.json`, 'utf-8'));
+    },
+
+    async getAllChatsIdList() {
+        const chatsFilesList = fs.readdirSync(`${db}/chats`);
+        const chatsIdList = chatsFilesList.map(chatsFile => {
+            const chatId = (chatsFile.split('.'))[0];
+            return chatId;
+        });
+        return chatsIdList;
     }
 }
 
