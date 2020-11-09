@@ -10,6 +10,13 @@ export const sendMessage = (id, sender, text, chatId) => ({
     chatId,
 });
 
+export const GET_MESSAGES = '@@messages/GET_MESSAGES'
+
+export const getMessages = (chatId) => ({
+    type: GET_MESSAGES,
+    chatId,
+});
+
 export const START_MESSAGES_LOADING = '@@contacts/START_MESSAGES_LOADING';
 export const SUCCESS_MESSAGES_LOADING = '@@contacts/SUCCESS_MESSAGES_LOADING';
 export const ERROR_MESSAGES_LOADING = '@@contacts/ERROR_MESSAGES_LOADING';

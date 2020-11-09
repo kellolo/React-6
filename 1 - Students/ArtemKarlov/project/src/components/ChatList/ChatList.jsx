@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 
-import {loadMessages} from '../../store/actions/messages.actions.js';
+import {loadMessages, getMessages} from '../../store/actions/messages.actions.js';
 
 
 import ChatListItem from '../ChatListItem/ChatListItem.jsx';
@@ -20,7 +20,8 @@ function ChatList(props) {
     const handleChatListItemClick = (chatId) => {
         setSelectedIndex(chatId);
         props.push(`/chat/${chatId}`);
-        props.loadMessages(`/api/chat/${chatId}`);
+        // props.loadMessages(`/api/chat/${chatId}`);
+        props.getMessages(chatId);
     };
          
     const { chats } = props;
@@ -42,5 +43,5 @@ function ChatList(props) {
 
 
 const mapStateToProps = ({}) => ({});
-const mapDispatchToProps = dispatch => bindActionCreators({push, loadMessages}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({push, loadMessages, getMessages}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

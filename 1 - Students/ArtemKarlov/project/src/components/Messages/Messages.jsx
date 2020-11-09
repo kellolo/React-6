@@ -15,22 +15,22 @@ class Messages extends React.Component {
     }
 
     addMessage = (message, sender = this.props.account.id) => {
-        const {messages, currentChat} = this.props;
+        const {allMsgsIdList, currentChat} = this.props;
         const chatId = currentChat.id;
         if (message.trim() !== '') {
-            const messageId = `msg-${messages.length}`
+            const messageId = `msg-${allMsgsIdList.length}`;
             this.props.sendMessage(messageId, sender, message, chatId);
         }
     }
 
     componentDidMount() {
-        const {currentChat} = this.props; 
-        const chatId = currentChat.id;  
-        const chatIdSplit = chatId.split('-');
-        const prifixId = chatIdSplit[0];      
-        if ((prifixId == 'chatBot') && (currentChat.messages.length == 0)) {
-            setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
-        }
+        // const {currentChat} = this.props; 
+        // const chatId = currentChat.id;  
+        // const chatIdSplit = chatId.split('-');
+        // const prifixId = chatIdSplit[0];      
+        // if ((prifixId == 'chatBot') && (currentChat.messages.length == 0)) {
+        //     setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
+        // }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
         if (MessageElements.length != 0) {
             const lastMessageElement = MessageElements[MessageElements.length-1];
@@ -40,13 +40,13 @@ class Messages extends React.Component {
     }
 
     componentDidUpdate() {     
-        const {currentChat} = this.props;  
-        const chatId = currentChat.id;  
-        const chatIdSplit = chatId.split('-');
-        const prifixId = chatIdSplit[0];     
-        if ((prifixId == 'chatBot') && (currentChat.messages.length == 0)) {
-            setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
-        }
+        // const {currentChat} = this.props;  
+        // const chatId = currentChat.id;  
+        // const chatIdSplit = chatId.split('-');
+        // const prifixId = chatIdSplit[0];     
+        // if ((prifixId == 'chatBot') && (currentChat.messages.length == 0)) {
+        //     setTimeout(() => {this.addMessage('Wake up, Neo…', 'Bot')}, 1000);            
+        // }
         const MessageElements = document.querySelectorAll(".chat-dialog__message");
         if (MessageElements.length != 0) {
             const lastMessageElement = MessageElements[MessageElements.length-1];
@@ -79,6 +79,7 @@ class Messages extends React.Component {
 
 const mapStateToProps = ({messagesReducer, accountReducer}) => ({
     messages: messagesReducer.messages,
+    allMsgsIdList: messagesReducer.allMsgsIdList,
     account: accountReducer.account,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch);

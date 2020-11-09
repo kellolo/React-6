@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const {getChats, getChatAddList, getAllChatsIdList} = require('./chat.controller.js');
 const {getContacts, getContactList} = require('./contacts.controller.js');
+const {getAllMsgsIdList} = require('./messages.controller.js');
 
 
 let mod = {
@@ -15,9 +16,10 @@ let mod = {
             const chatAddList = await getChatAddList(account.contacts, chats);
             const chatAddContactList = await getContactList(chatAddList);
             const allChatsIdList = await getAllChatsIdList();
+            const allMsgsIdList = await getAllMsgsIdList();
 
             const result = {
-                account, chats, contacts, chatAddContactList, allChatsIdList,
+                account, chats, contacts, chatAddContactList, allChatsIdList, allMsgsIdList,
             };
 
             setTimeout(() => res.json(result), 2000);

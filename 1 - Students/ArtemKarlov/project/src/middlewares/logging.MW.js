@@ -11,7 +11,7 @@ export default (store) => (next) => (action) => {
             // console.log(store.getState().contactListReducer.contactList);
             console.log(store.getState().messagesReducer.messages);
             console.log(store.getState().chatsReducer.chats);
-            console.log(store.getState().chatsReducer.allChatsIdList); 
+            // console.log(store.getState().chatsReducer.allChatsIdList); 
         }
         break;
 
