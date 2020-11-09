@@ -1,5 +1,5 @@
 import './style.css';
-import React from 'react';
+import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loadAccount} from '../../store/actions/account.actions.js';
@@ -7,7 +7,7 @@ import {loadContacts} from '../../store/actions/contacts.actions.js';
 import {addChat, loadChats} from '../../store/actions/chats.actions.js';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { CircularProgress } from '@material-ui/core';
+
 
 import Controls from '../Controls/Controls.jsx';
 // import AccountChats from '../AccountChats/AccountChats.jsx';
@@ -66,15 +66,10 @@ class Layout extends React.Component {
             <MuiThemeProvider theme={customTheme}>           
                 <div className="layout">
                     <Controls />
-                    {/* <AccountChats account = {account} /> */}
-                    {
-                        (this.props.isAccountLoading) ? 
-                        <CircularProgress/> :
-                        <div className="layout__account-chatlist">
-                            <Account />
-                            <Chats />                
-                        </div>
-                    }
+                    <div className="layout__account-chatlist">
+                        <Account />
+                        <Chats /> 
+                    </div>
                     <ChatField chatId={(chatId)? chatId : 'init'} />
                 </div>
             </MuiThemeProvider>

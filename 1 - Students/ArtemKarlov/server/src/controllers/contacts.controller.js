@@ -6,8 +6,10 @@ let mod = {
         const contactId = req.params.contact;
         const contact = JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
                          
-        res.json(contact);  
+        setTimeout(() => res.json(contact), 2000);
+        // res.json(contact);  
     },
+
     async getContact(contactId) {
         return JSON.parse(fs.readFileSync(`${db}/users/${contactId}.json`, 'utf-8'));
     },
