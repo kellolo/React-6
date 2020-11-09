@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpack = require("copy-webpack-plugin");
 
 const path = require('path');
 
@@ -52,8 +53,16 @@ module.exports = {
         })
     ],
     devServer: {
-        port: 3100,
+        port: 3300,
         hot: true,
-        open: false
+        open: false,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:4000',
+                pathRewrite: { '^/api' : '' },
+                secure: false,
+                changeOrigin: true
+            }
+        }
     }
 }

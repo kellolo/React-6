@@ -1,10 +1,17 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import { Toolbar } from "primereact/toolbar";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import UserToolbarItem from "../../User/UserToolbarItem/UserToolbarItem.jsx";
 
-export default class ChatHeader extends React.Component {
+import { getSelectedChat, clearMessages, deleteChat } from "../../../actions";
+
+import UserToolbarItem from "../../User/UserToolbarItem/UserToolbarItem.jsx";
+import { confirm } from "../../ConfirmDialog/ConfirmDialog.jsx";
+
+class ChatHeader extends React.Component {
 
     menuContactItems = [
         {
@@ -15,7 +22,10 @@ export default class ChatHeader extends React.Component {
         {
             label: 'Clear messages',
             icon: 'pi pi-fw pi-times',
-            disabled: true,
+            command: async () => {
+                if (await confirm(`Clear chat with "${this.props.chat.userName}"?`))
+                    this.props.clearMessages();
+            },
         },
         {
             separator: true
@@ -23,7 +33,10 @@ export default class ChatHeader extends React.Component {
         {
             label: 'Delete chat',
             icon: 'pi pi-fw pi-trash',
-            disabled: true,
+            command: async () => {
+                if (await confirm(`Delete chat with "${this.props.chat.userName}"?`))
+                    this.props.deleteChat();
+            },
         }
     ]
 
@@ -64,6 +77,14 @@ export default class ChatHeader extends React.Component {
                 className="p-h-header p-rounded-0 p-border-left-0"
             />
         );
-
     }
 }
+
+const mapStateToProps = (state) => ({
+    chat: getSelectedChat(state),
+})
+
+export default connect(
+    mapStateToProps,
+    { clearMessages, deleteChat }
+)(ChatHeader);

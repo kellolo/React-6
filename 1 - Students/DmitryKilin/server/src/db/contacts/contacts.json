@@ -1,0 +1,8 @@
+[
+  {"name": "Butch", "id": "cn_1", "email": "butch@me.is", "avatar": "butch.jpg", "password": "123"},
+  {"name": "Esmeralda", "id": "cn_2", "email": "esmeralda@me.is", "avatar": "esmeralda.jpg", "password": "123"},
+  {"name": "Jules", "id": "cn_3", "email": "jules@me.is", "avatar": "jules.jpg", "password": "123"},
+  {"name": "Mia", "id": "cn_4", "email": "mia@me.is", "avatar": "mia.jpg", "password": "123"},
+  {"name": "Tarantino", "id": "cn_5", "email": "tarantino@me.is", "avatar": "tarantino.jpg", "password": "123"},
+  {"name": "Vincent", "id": "cn_6", "email": "vincent@me.is", "avatar": "vincent.jpg", "password": "123"}
+]

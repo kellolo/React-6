@@ -3,21 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Router from './components/Router/Router';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
 import { StylesProvider } from '@material-ui/core/styles';
 
 import { Provider } from 'react-redux';
-import initStore from './store';
+import initStore, { history } from './store';
 
+// import { PersistGate } from 'redux-persist/integration/react';
+
+// const { store, persistor } = initStore();
 
 ReactDOM.render(
   <Provider store={ initStore() }>
-    <BrowserRouter>
+    {/* <PersistGate loading={ null } persistor={ persistor }> */}
       <StylesProvider>
-          <Router />
+        <ConnectedRouter history={ history }>
+            <Router />
+        </ConnectedRouter>
       </StylesProvider>
-    </BrowserRouter>
+    {/* </PersistGate> */}
   </Provider>,
   document.getElementById('root')
 );

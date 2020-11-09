@@ -5,6 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "start": "webpack-dev-server",
+    "dev": "webpack --mode development",
     "build": "webpack --mode production"
   },
   "author": "Dmitry Sternyaev <dimastv@yandex.com>",
@@ -13,6 +14,7 @@
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
@@ -20,26 +22,30 @@
     "favicons-webpack-plugin": "^4.2.0",
     "file-loader": "^6.1.1",
     "html-webpack-plugin": "^4.5.0",
-    "json-loader": "^0.5.7",
-    "json5-loader": "^4.0.1",
     "mini-css-extract-plugin": "^1.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.3",
-    "svg-url-loader": "^6.0.0",
-    "url-loader": "^4.1.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "connected-react-router": "^6.8.0",
+    "history": "^4.7.2",
     "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primereact": "^5.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-addons-update": "^15.6.2",
+    "react-confirm": "^0.1.20",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-transition-group": "^4.4.1"
+    "react-redux": "^7.2.1",
+    "react-router": "^5.2.0",
+    "react-transition-group": "^4.4.1",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
   }
 }

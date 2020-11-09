@@ -1,0 +1,27 @@
+[
+    {
+        "id": "chatBot-0",
+        "contact": "bot",
+        "messages": []
+    },
+    {
+        "id": "chatBot-6",
+        "contact": "bot",
+        "messages": []
+    },
+    {
+        "id": "chat-2",
+        "contact": "user-2",
+        "messages": ["msg-0", "msg-1", "msg-3", "msg-5", "msg-7"]
+    },
+    {
+        "id": "chat-210",
+        "contact": "user-4",
+        "messages": []
+    },
+    {
+        "id": "chat-211",
+        "contact": "user-4",
+        "messages": []
+    }
+]

@@ -1,14 +1,14 @@
   .msg-main{
-    width: 80%;
+    width: 90%;
     display:flex; 
     flex-direction:column; 
     align-items:center;
-    background-color: rgb(250, 226, 247);
+    background-color:#fae2f7;
   }
   .msg-wrap {
-    height: 70vh;
+    height: 83vh;
     overflow-y: auto;
     width: 100%;
-    background-color: rgb(250, 226, 247);
+    background-color: #fae2f7;
    
-}
+} 

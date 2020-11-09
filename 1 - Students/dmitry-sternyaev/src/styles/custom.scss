@@ -40,6 +40,9 @@ body {
     height: calc(100% - 3.8125rem);
     padding: 0;
 }
+.p-listbox-list-wrapper {
+    height: calc(100% - 3.8125rem);
+}
 
 //Scroolpanel
 .p-scrollpanel-content {
@@ -56,4 +59,9 @@ body {
 //Card
 .p-card {
     box-shadow: none;
+}
+
+//Inline Message
+.p-inline-message {
+    word-break: break-all;
 }

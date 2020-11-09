@@ -1,11 +1,21 @@
 .msg {
-    background-color: rgb(250, 129, 234);
+    width: 50%;
+    margin: 5px;
     padding: 5px 15px;
+    font-size: 18px;
     border-radius: 20px;
+    /* background-color: #fa81f3; */
+         
+}
+
+.msg_name{
+    color:#808080;
+    font-size: 20px;
+    margin: 5px;
+}
+.msg_text{
+    color:#000;
     font-size: 18px;
     margin: 5px;
-     display: flex;
-    justify-content: flex-start;
-    flex-direction: column; 
-    width: 30%;
+    font-weight: 400;
 }

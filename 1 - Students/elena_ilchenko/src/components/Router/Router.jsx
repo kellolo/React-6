@@ -15,19 +15,21 @@ class Router extends Component {
     }
 
     render() {
-        
         return (
             <Switch>
-               <Route exact path='/' component={ Layout } />               
-               <Route exact path='/profile' component={ Layout } />
+               <Route exact path='/' render={ () => <Layout isProfile={false} allChats={this.props.chatsFromRedux}/> } />               
+               <Route exact path='/profile' render={ () => <Layout isProfile />} />
 
-               { this.props.chatsFromRedux.map((chat, i) => <Route 
-                        exact path={`/chat/${chat.chatId}/`}
-                        render={() => <Layout chatId={chat.chatId} chatName={chat.chatName} />}
-                        key={chat.chatId}
-                        // width 'key' doesnt work setState in selectHandler
-                    />
-                    )
+               { this.props.chatsFromRedux.map((chat, i) => {
+                   return (
+                        <Route 
+                            exact path={`/chat/${chat.chatId}/`}
+                            render={() => <Layout chatId={chat.chatId} chatName={chat.chatName} isProfile={false}/>}
+                            key=''
+                            // width 'key' doesnt work setState in selectHandler
+                        />
+                        )
+                    })
                 }
            </Switch>
 

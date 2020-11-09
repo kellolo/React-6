@@ -1,17 +1,20 @@
-import './style.css'
-import React from 'react'
+import './style.css';
+import React from 'react';
 
 export default props => {
     let { sender, text } = props;
 
     return (
        
-      <div className="msg" style={ { alignSelf: props === 'Me' ?  'flex-start' : 'flex-end' } }>
-            <strong>{ sender }</strong>
-
-            <p>{ text }</p>
+      <div
+            className="msg d-flex flex-column" style={ { alignSelf: sender === 'Me' ? 'flex-end' : 'flex-start',
+            textAlign: sender === 'Me' ? 'left' : 'right',backgroundColor: sender === 'Me' ? '#fa81f3' : '#FF69B4' } }>
+        
+            <strong className="msg_name">{ sender }</strong>
+          
+            <p className="msg_text">{ text }</p>
        
         </div> 
-   
+       
     )
 }
