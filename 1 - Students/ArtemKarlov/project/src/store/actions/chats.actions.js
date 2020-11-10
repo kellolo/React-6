@@ -8,6 +8,11 @@ export const addChat = (id, contacts) => ({
     contacts,
 });
 
+export const ADD_BOT_CHAT = '@@chats/ADD_BOT_CHAT';
+export const addBotChat = () => ({
+    type: ADD_BOT_CHAT,
+});
+
 export const START_CHATS_LOADING = '@@chats/START_CHATS_LOADING';
 export const SUCCESS_CHATS_LOADING = '@@chats/SUCCESS_CHATS_LOADING';
 export const ERROR_CHATS_LOADING = '@@chats/ERROR_CHATS_LOADING';

@@ -48,9 +48,13 @@ function ChatListItem(props) {
     const classes = useStyles();
     const {selectedIndex, chat, onClick, messages, contacts, account} = props;
 
-    let chatContact = contacts.find((cont) => cont.id === chat.contacts);
+    // let chatContact = contacts.find((cont) => cont.id === chat.contacts);
     // chatContact = (chatContact === undefined) ? {name: 'BOT', surname: '', avatarUrl: '', } : chatContact;
     // const chatTitle = `${chatContact.name} ${chatContact.surname}`;
+
+    let chatContact = (chat.id.includes('botChat')) ? 
+        {name: 'BOT', surname: '', avatarUrl: '', } :
+        contacts.find((cont) => cont.id === chat.contacts);
     
     const {messages: messagesId} = chat;
     const lastMessage = messages.find((msg) => msg.id === messagesId[messagesId.length-1]);
@@ -83,21 +87,6 @@ function ChatListItem(props) {
                         </Fragment> 
                     }
             </ListItem>
-
-            {/* <ListItem  
-                button 
-                alignItems="flex-start"
-                selected={selectedIndex === chat.id}
-                onClick={() => handleListItemClick(chat.id)}
-            >
-                <ListItemAvatar>
-                    <Avatar alt={chatTitle} src={chatContact.avatarUrl} />
-                </ListItemAvatar>
-                <ListItemText className={classes.listItemText}
-                    primary={chatTitle}
-                    secondary={showedMessage}
-                />
-            </ListItem> */}
         </Fragment>
     );
 }

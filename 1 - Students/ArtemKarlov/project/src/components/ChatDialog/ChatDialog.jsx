@@ -9,20 +9,17 @@ import Avatar from '@material-ui/core/Avatar';
 import Messages from '../Messages/Messages.jsx';
 import ChatDialogInfo from '../ChatDialogInfo/ChatDialogInfo.jsx';
 
-const useStyles = makeStyles(() => ({
-    accountAvatar: {width: '100%', height: '100%'}
-}));
-
-
 
 function ChatDailog(props) {
-    const classes = useStyles();
     const {chatId, chats, contacts} = props;
     const currentChat = chats.find((chat) => chat.id === chatId);
 
-    let chatContact = contacts.find((cont) => cont.id === currentChat.contacts);
-    chatContact = (chatContact === undefined) ? {name: 'BOT', middleName: '', surname: '', avatarUrl: '', } : chatContact;
+    // let chatContact = contacts.find((cont) => cont.id === currentChat.contacts);
+    // chatContact = (chatContact === undefined) ? {name: 'UNKNOWN', middleName: '', surname: '', avatarUrl: '', } : chatContact;
  
+    let chatContact = (currentChat.contacts.includes('bot')) ?
+    {name: 'BOT', middleName: '', surname: '', avatarUrl: '', } :    
+    contacts.find((cont) => cont.id === currentChat.contacts);
      
     return (
         <Fragment>

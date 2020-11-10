@@ -15,6 +15,15 @@ export default (store) => (next) => (action) => {
         }
         break;
 
+        case SEND_MESSAGE: {
+            // console.log(store.getState().contactsReducer.contacts);
+            // console.log(store.getState().contactListReducer.contactList);
+            console.log(store.getState().messagesReducer.messages);
+            console.log(store.getState().chatsReducer.chats);
+            // console.log(store.getState().chatsReducer.allChatsIdList); 
+        }
+        break;
+
         case SUCCESS_ACCOUNT_LOADING: {
             console.log(action.payload);
         }

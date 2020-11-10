@@ -2,7 +2,7 @@ import './style.css';
 import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addChat, loadChats} from '../../store/actions/chats.actions.js';
+import {addChat, loadChats, addBotChat} from '../../store/actions/chats.actions.js';
 import {delContactListItem} from '../../store/actions/contactList.actions.js';
 
 
@@ -29,12 +29,13 @@ class Chats extends React.Component {
         }
     }
 
-    componentDidMount() {
-       
+    componentDidMount() { 
     }
 
     componentDidUpdate() {
-             
+        if (!this.props.isAccountLoading) {
+            this.props.addBotChat();  
+        }
     }
 
     render() {         
@@ -60,7 +61,8 @@ const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactL
     allChatsIdList: chatsReducer.allChatsIdList,
     contacts: contactsReducer.contacts,
     account: accountReducer.account,
+    isAccountLoading: accountReducer.isAccountLoading,
     contactList: contactListReducer.contactList,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, delContactListItem}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, delContactListItem, addBotChat}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);
