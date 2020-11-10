@@ -1,18 +1,20 @@
 import update from 'react-addons-update';
 import {ADD_CHAT, ERROR_CHATS_LOADING, START_CHATS_LOADING} from '../actions/chats.actions.js';
 import {SEND_MESSAGE} from '../actions/messages.actions.js';
+import {SUCCESS_ACCOUNT_LOADING} from '../actions/account.actions.js';
 
 import {SUCCESS_CHATS_LOADING} from '../actions/chats.actions.js';
 
 const initStore = {
     chats: [
         // {
-        //     id: "c-0",
-        //     title: "BOT",
-        //     avatarUrl: 'https://www.flaticon.com/svg/static/icons/svg/149/149071.svg',
-        //     messages: [],
+        //     id: "chat-2",
+        //     contacts: "user-2",
+        //     messages: ["msg-0", "msg-1"]
         // },
-    ]
+    ],
+    allChatsIdList: [],
+    isChatsLoading: false,
 }
 
 export default (store = initStore, action) => {
@@ -24,9 +26,12 @@ export default (store = initStore, action) => {
             return update(store, {
                 chats: {
                     $push: [newChat]
+                },
+                allChatsIdList: {
+                    $push: [id]
                 }
             });
-        }
+        }        
 
         case SEND_MESSAGE: {
             const {id, chatId} = action;
@@ -42,20 +47,15 @@ export default (store = initStore, action) => {
             });
         }
 
-        case SUCCESS_CHATS_LOADING: {
-            // console.log(action.payload);
+        case SUCCESS_ACCOUNT_LOADING: {
             return update(store, {
                 chats: {
-                    $set: action.payload.chats
+                    $set: action.payload.data.chats
+                },
+                allChatsIdList: {
+                    $set: action.payload.data.allChatsIdList
                 }
             })
-        }
-
-        case START_CHATS_LOADING: {
-        }
-
-        case ERROR_CHATS_LOADING: {
-            // console.log(action);
         }
 
         default:

@@ -2,8 +2,8 @@ import './style.css';
 import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addChat, loadChats} from '../../store/actions/chats.actions.js';
-import {createContactList, delContactListItem} from '../../store/actions/contactList.actions.js';
+import {addChat, loadChats, addBotChat} from '../../store/actions/chats.actions.js';
+import {delContactListItem} from '../../store/actions/contactList.actions.js';
 
 
 import ChatAdd from '../ChatAdd/ChatAdd.jsx';
@@ -18,43 +18,30 @@ class Chats extends React.Component {
     }
 
     addChat = (contactId) => {
-        const {chats, account} = this.props;       
+        const {allChatsIdList, account} = this.props;       
 
         if (contactId !== null) {      
-            const chatId = `chat-${chats.length}`;
+            const chatId = `chat-${allChatsIdList.length+1}`; // наверно id лучше генерировать в middleware
             // const contacts = [account.id, contactId];
 
             this.props.addChat(chatId, contactId);
-            this.props.delContactListItem(contactId);  
-
-    
-            // this.setState({
-            //     chats: [...chats, chat]
-            // });
+            this.props.delContactListItem(contactId);
         }
     }
 
-    componentDidMount() {
-        const {account} = this.props;
-        this.props.loadChats('api/chats/'+ account.id);
-
-        
+    componentDidMount() { 
     }
 
     componentDidUpdate() {
-        if (!this.props.isContactListCreated) { 
-            this.props.createContactList([]); 
+        if (!this.props.isAccountLoading) {
+            this.props.addBotChat();  
         }
-             
     }
 
     render() {         
         const { chats } = this.props;
         const {contacts, contactList} = this.props;
         // const contactList = contacts.map((contact) => contact.name);
-        
-        
-        
         return (
             <Fragment>
                 <section className="layout__chats chats">
@@ -71,10 +58,11 @@ class Chats extends React.Component {
 
 const mapStateToProps = ({chatsReducer, contactsReducer, accountReducer,contactListReducer}) => ({
     chats: chatsReducer.chats,
+    allChatsIdList: chatsReducer.allChatsIdList,
     contacts: contactsReducer.contacts,
     account: accountReducer.account,
+    isAccountLoading: accountReducer.isAccountLoading,
     contactList: contactListReducer.contactList,
-    isContactListCreated: contactListReducer.isContactListCreated,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, createContactList, delContactListItem}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat, loadChats, delContactListItem, addBotChat}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Chats);

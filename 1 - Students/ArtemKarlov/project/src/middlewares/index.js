@@ -1,11 +1,16 @@
 import {apiMiddleware} from 'redux-api-middleware';
 import botMessageMD from './botMessageMD.js';
-import createContactListMD from './createContactListMD.js';
-import testMD from './testMD.js';
+import contacts from './contacts.MW.js';
+import messages from './messages.MW.js';
+import logging from './logging.MW.js';
+import chatBot from './chats.MW.js';
+
 
 export default [
     apiMiddleware,
     botMessageMD,
-    createContactListMD,
-    testMD,
+    contacts,
+    messages,
+    chatBot,
+    logging,
 ];
