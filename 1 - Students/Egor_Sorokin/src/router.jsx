@@ -14,7 +14,6 @@ class Router extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: false,
             me: "",
         }
     }
@@ -24,7 +23,7 @@ class Router extends Component {
     }
 
     setMe = (meId) => {
-        this.props.loadChats('/api/chats/' + meId);
+        // this.props.loadChats('/api/chats/' + meId);
         this.setState({ me: meId });
     }
 

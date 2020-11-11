@@ -1,6 +1,7 @@
 export const SEND_MESSAGE = '@@messages/SEND_MESSAGE';
 export const MESSAGES_INIT = '@@messages/MESSAGES_INIT';
 export const MESSAGES_CLEAR = '@@messages/MESSAGES_CLEAR';
+export const MESSAGES_LOAD = '@@messages/MESSAGES_LOAD';
 
 export const sendMessage = (chatId, sender, text) => ({
     type: SEND_MESSAGE,
@@ -19,3 +20,5 @@ export const messagesClear = (id) => ({
     type: MESSAGES_CLEAR,
     id,
 })
+
+export let loadMessages = (messages) => ({messages, type: MESSAGES_LOAD});

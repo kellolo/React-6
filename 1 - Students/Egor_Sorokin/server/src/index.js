@@ -23,5 +23,7 @@ server.get('/users', (req, res) => {
 })
 
 server.get('/chats/:user', chats.loadChats);
+server.get('/chat/:id', chats.loadChat.bind(chats));
+server.post('/chatAdd/:id/', chats.create.bind(chats));
 
 server.listen(4000, () => { console.log('Running at 4000') })

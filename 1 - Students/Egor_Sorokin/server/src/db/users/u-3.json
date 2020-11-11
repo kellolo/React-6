@@ -1,11 +1,18 @@
 {
-    "_id": "u-3",
-    "name": "User3",
-    "email": "user3@me.com",
-    "password": "password",
-    "avatar": "https://via.placeholder.com/70/555555",
-    "contacts": ["u-5"],
-    "chats": [
-        
-    ]
+ "_id": "u-3",
+ "name": "User3",
+ "email": "user3@me.com",
+ "password": "password",
+ "avatar": "https://via.placeholder.com/70/555555",
+ "contacts": [
+  "u-5"
+ ],
+ "chats": [
+  {
+   "id": "c-3",
+   "title": "User3",
+   "avatar": "https://via.placeholder.com/70/555555",
+   "lastMessage": ""
+  }
+ ]
 }

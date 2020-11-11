@@ -1,5 +1,5 @@
 import update from 'react-addons-update'
-import { ADD_CHAT, DELETE_CHAT, SUCCESS_CHATS_LOADING } from "../actions/chat.actions.js";
+import { ADD_CHAT, DELETE_CHAT, SUCCESS_CHATS_LOADING , SUCCESS_CHAT_LOADING} from "../actions/chat.actions.js";
 
 const storeChats = {
     chats: [
@@ -21,11 +21,18 @@ const storeChats = {
         //     name: 'User2',
         //     avatar: 'https://via.placeholder.com/70/55cc55',
         // }
-    ]
+    ],
+    activeChat: {}
+
 }
 
 export default (store = storeChats, action) => {
     switch (action.type) {
+        case SUCCESS_CHAT_LOADING: {
+            return update(store, {
+                activeChat: {$set: action.payload}
+            });
+        }
         case SUCCESS_CHATS_LOADING: {
             return update(store, {
                 chats: {$set: action.payload.chats}
@@ -35,10 +42,15 @@ export default (store = storeChats, action) => {
             return update(store, {
                 chats: 
                         { $push: [{ 
+                            // id: action.id,
+                            // userId: action.userId,
+                            // name: action.name,
+                            // avatar: action.avatar,
+                            // lastMessage: ''
                             id: action.id,
-                            userId: action.userId,
-                            name: action.name,
                             avatar: action.avatar,
+                            title: action.name,
+                            lastMessage: ' ',
                         }]}
             });
         }
