@@ -13,9 +13,9 @@ export default props => {
                     {
                         props.chatName 
                             ? props.chatName 
-                            : props.allChats.length > 0 
-                                ? props.allChats[props.selected-1].chatName 
-                                : 'Profile'
+                                : props.profile 
+                                ? 'Profile'
+                                : 'Welcome'
                     }
                     
                 </h1>
@@ -27,7 +27,9 @@ export default props => {
                             fontSize="large"/>
                     </div>
                 </Link>
-                {/* { props.profile ? <Profile /> : null} */}
+
+                {//?? не плавное появление Profile когда переключаешься с чата, с начального роута плавное 
+                }
                 <Profile isOpen={props.profile}/>
             </div>
                 

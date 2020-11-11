@@ -20,7 +20,6 @@ let Profile = props => {
             <div className={`Profile ${cls.join(' ')}`}>
                 PROFILE<br/>
                 
-                    
                 <button 
                     className="close-profile"
                     onClick={ () => handleClick()}

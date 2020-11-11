@@ -33,6 +33,7 @@ function SimpleDialog(props) {
     const handleListItemClick = (value) => {
       onClose(value);
     };
+
     
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
@@ -54,12 +55,6 @@ function SimpleDialog(props) {
         </Dialog>
       );
     }
-
-SimpleDialog.propTypes = {
-    onClose: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-    selectedValue: PropTypes.string.isRequired,
-};
     
 export default function SimpleDialogDemo(props) {
     const [open, setOpen] = React.useState(false);
@@ -72,9 +67,15 @@ export default function SimpleDialogDemo(props) {
     const handleClose = (value) => { 
         setOpen(false);
         setSelectedValue(value);
-        props.addChat(value);
-        props.select(props.chats.length+1)
-        //to add code for routing
+
+        if (value) {
+          props.addChat(value, props.chats.length+1);
+          props.select(props.chats.length+1)
+
+          //code for routing ???
+          window.location.href = `http://localhost:3000/chat/${props.chats.length+1}/`
+        }
+        
     };
 
     

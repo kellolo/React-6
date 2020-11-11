@@ -4,7 +4,6 @@
     position: absolute;
     background: #eee;
     top: 0;
-    /* right: 0; */
     right: -1000px;
     border-radius: 5px;
     z-index: 99;

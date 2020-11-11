@@ -10,6 +10,7 @@
     import { bindActionCreators } from 'redux';
     import { addChat } from '../../store/actions/chats.action';
     import { loadChats } from '../../store/actions/chats.action';
+    import { loadContacts } from '../../store/actions/chats.action';
 
     const useStyles = makeStyles((theme) => ({
         chatIcon: {
@@ -22,7 +23,8 @@
 
         useEffect(() => {
             let userId = 'u-1';
-            props.loadChats('/api/chats/' + userId)
+            props.loadChats('/api/chats/' + userId);
+            props.loadContacts('/api/contacts/' + userId)
         }, []);
         
         return (
@@ -59,8 +61,9 @@
     }
 
     const mapStateToProps = ({ chatsReducer }) => ({
-        chatsFromRedux: chatsReducer.chats
+        chatsFromRedux: chatsReducer.chats,
+        contacts: chatsReducer.contacts
     });
-    const mapDispatchToProps = dispatch => bindActionCreators({ addChat, loadChats }, dispatch);
+    const mapDispatchToProps = dispatch => bindActionCreators({ addChat, loadChats, loadContacts }, dispatch);
     export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
     
