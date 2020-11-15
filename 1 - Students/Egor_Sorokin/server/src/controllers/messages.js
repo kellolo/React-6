@@ -34,7 +34,6 @@ module.exports = {
                             let newUser = JSON.parse(data);
                             let chatIndex = newUser.chats.findIndex(item => item.id == req.params.id)
                             newUser.chats[chatIndex].lastMessage = req.body.text;
-                            // let newUserUpdated = update(newUser, { chats: { [chatIndex]: { lastMessage: {$ set} } } });
                             fs.writeFile(`${db}/users/${users[0]}.json`, JSON.stringify(newUser, null, ' '), err => {
                                 if (err) {
                                     console.log(err)

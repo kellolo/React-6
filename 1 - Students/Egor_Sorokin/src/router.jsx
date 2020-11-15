@@ -27,6 +27,10 @@ class Router extends Component {
         this.setState({ me: meId });
     }
 
+    logOut = () => {
+        this.setState({ me: "" });
+    }
+
     render() {
         let { conversationsArray, users } = this.props;
         let { me } = this.state;
@@ -43,6 +47,7 @@ class Router extends Component {
                         if (me != "") {
                             return(<MainApp myAvatar = { authorAvatar } chatId = {-1} me = { me } />)
                         } else {
+                            this.props.loadUsers('/api/users');
                             return(<Login setMe = { this.setMe } />)
                         }
                     } 
@@ -57,7 +62,7 @@ class Router extends Component {
                    }
                /> */}
                { chatSwitches }
-               <Route exact path="/profile/" render = { () => <Profile myId = { me } /> } />
+               <Route exact path="/profile/" render = { () => <Profile myId = { me } logOut = { this.logOut } /> } />
             </Switch>
         );
     }
