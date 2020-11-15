@@ -16,6 +16,9 @@ import { loadChat } from '../../store/actions/chat.actions.js'
 class Messages extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            filter: '',
+        }
     }
 
     componentDidUpdate() {
@@ -33,9 +36,12 @@ class Messages extends React.Component {
         this.scrollPointer.scrollIntoView({behavior: 'smooth'})
     }
 
+    getFilter = (text) => {
+        this.setState({ filter: text.toLowerCase() });
+    }
+
     render() {
-        let { author,  messages, activeId, chats, users, activeChat } = this.props;
-        // let messagesArray = conversations.find(item => item.id == activeId).messages;
+        let { author,  messages, users, activeChat } = this.props;
         
         let authorUser = users.find(item => item.id == author);
         let authorName = authorUser.name
@@ -49,7 +55,6 @@ class Messages extends React.Component {
 
         if (messages.length != 0) {
             msgsRender = messages.map((msg, i) => {
-                // let thisMessage = messages.find(item => item._id == msg)
                 let senderName = users.find(item => item.id == msg.sender).name;
                 return (
                     <Message author = { authorName } sender = { senderName } text = { msg.text } key = { i } />
@@ -57,13 +62,14 @@ class Messages extends React.Component {
             }
             )
         }
+
+        if (msgsRender) {
+            msgsRender = msgsRender.filter(item => item.props.text.toLowerCase().search(this.state.filter) != -1);
+        }
         
-
-        let activePosition = chats.findIndex(item => item.id == activeId)
-
         return(
             <div className="messages-container col-sm-8">
-                <MessagesHeader currConversationName={ otherUser.name } avatarAddress={ otherUser.avatar } myAvatar = { authorAvatar }/>
+                <MessagesHeader currConversationName={ otherUser.name } avatarAddress={ otherUser.avatar } myAvatar = { authorAvatar } getFilter = { this.getFilter }/>
                 <div className="messages-inner-container">
                     { msgsRender }
                     <div className="scroll-pointer" ref={ item => this.scrollPointer = item }></div>
