@@ -1,11 +1,11 @@
 {
-    "_id": "u-4",
-    "name": "User4",
-    "email": "user4@me.com",
-    "password": "password",
-    "avatar": "https://via.placeholder.com/70/cccccc",
-    "contacts": ["u-5"],
-    "chats": [
-        
-    ]
+ "_id": "u-4",
+ "name": "User4",
+ "email": "user4@me.com",
+ "password": "password",
+ "avatar": "https://via.placeholder.com/70/cccccc",
+ "contacts": [
+  "u-5"
+ ],
+ "chats": []
 }

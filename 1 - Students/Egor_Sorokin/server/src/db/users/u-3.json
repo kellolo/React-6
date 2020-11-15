@@ -7,12 +7,5 @@
  "contacts": [
   "u-5"
  ],
- "chats": [
-  {
-   "id": "c-3",
-   "title": "User3",
-   "avatar": "https://via.placeholder.com/70/555555",
-   "lastMessage": ""
-  }
- ]
+ "chats": []
 }

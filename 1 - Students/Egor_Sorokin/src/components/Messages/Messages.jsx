@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { sendMessage } from '../../store/actions/messages.actions.js'
+import { loadChat } from '../../store/actions/chat.actions.js'
 
 
 class Messages extends React.Component {
@@ -21,9 +22,10 @@ class Messages extends React.Component {
         this.scrollDown();
     }
 
-    addMessage = (senderId, text) => {
+    addMessage = async (senderId, text) => {
         if (text !='') {
-            this.props.sendMessage(this.props.activeId, senderId, text);
+            await this.props.sendMessage(`/api/sendMessage/${this.props.activeId}`, senderId, text);
+            this.props.loadChat(`/api/chat/${this.props.activeId}`)
         } 
     }
 
@@ -41,8 +43,7 @@ class Messages extends React.Component {
 
         if (Object.keys(activeChat).length != 0) {
 
-        console.log(activeChat)
-        let otherUser = users.find(item => item.id == activeChat.users.find(item => item.id != author))
+        let otherUser = users.find(item => item.id == activeChat.users.find(item => item != author))
 
         let msgsRender;
 
@@ -87,6 +88,6 @@ const mapStateToProps = ({ messagesReducer, chatsReducer, usersReducer }) => ({
     activeChat: chatsReducer.activeChat,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadChat }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages);

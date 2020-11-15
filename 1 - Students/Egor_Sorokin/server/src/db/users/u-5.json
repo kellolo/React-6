@@ -28,12 +28,6 @@
    "title": "User2",
    "avatar": "https://via.placeholder.com/70/55cc55",
    "lastMessage": "Hello!"
-  },
-  {
-   "id": "c-3",
-   "title": "User3",
-   "avatar": "https://via.placeholder.com/70/555555",
-   "lastMessage": ""
   }
  ]
 }

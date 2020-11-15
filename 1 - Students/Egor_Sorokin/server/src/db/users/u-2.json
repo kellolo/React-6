@@ -1,14 +1,17 @@
 {
-    "_id": "u-2",
-    "name": "User2",
-    "email": "user2@me.com",
-    "password": "password",
-    "avatar": "https://via.placeholder.com/70/55cc55",
-    "contacts": ["u-5"],
-    "chats": [
-        {
-            "id": "c-2",
-            "title": "Egor"
-        }
-    ]
+ "_id": "u-2",
+ "name": "User2",
+ "email": "user2@me.com",
+ "password": "password",
+ "avatar": "https://via.placeholder.com/70/55cc55",
+ "contacts": [
+  "u-5"
+ ],
+ "chats": [
+  {
+   "id": "c-2",
+   "title": "Egor",
+   "lastMessage": "dafasdf"
+  }
+ ]
 }

@@ -17,7 +17,7 @@ import './style.css'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { addChat, deleteChat, loadChat, loadChats } from '../../store/actions/chat.actions.js'
-import { messagesInit, messagesClear, loadMessages } from '../../store/actions/messages.actions.js'
+import {  loadMessages } from '../../store/actions/messages.actions.js'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -48,17 +48,18 @@ export default function ChatList(props) {
         if (activeIndex != -1 && Object.keys(activeChat).length !=0) {
             dispatch(loadMessages(activeChat.messages));
         }
-    }, [activeChat])
+    }, [activeChat.messages])
 
-    let callDeleteChat = (e) => {
+    let callDeleteChat = async (e) => {
         e.stopPropagation();
         e.preventDefault();
         let chatIdToDelete = e.nativeEvent.path.find(item => item.className == "chat-link").dataset.chatItemId
-        dispatch(deleteChat(chatIdToDelete));
-        dispatch(messagesClear(chatIdToDelete));
+        await dispatch(deleteChat('/api/chatDelete/' + chatIdToDelete));
+        // dispatch(messagesClear(chatIdToDelete));
         if (props.activeIndex == chatIdToDelete) {
             dispatch(push('/'));
         }
+        dispatch(loadChats('/api/chats/' + author));
     }
 
     const classes = useStyles();
@@ -81,19 +82,17 @@ export default function ChatList(props) {
 
     let isActive;
 
-    let addNewConversation = (name) => {
+    let addNewConversation = async (name) => {
         let userToAdd = users.find(item => item.name == name)
-        let idToAdd = userToAdd.id;
         let newChatId = 'c-' + (Number(chats.reduce((res, item) => {
             return (Math.max(res, item.id.slice(2)));
         }, 0)) + 1);
-        dispatch(addChat(`/api/chatAdd/${newChatId}`, author, userToAdd.id, userToAdd.name, userToAdd.avatar)); //addChat(newChatId, userToAdd.name, userToAdd.avatar)
+        await dispatch(addChat(`/api/chatAdd/${newChatId}`, author, userToAdd.id, userToAdd.name, userToAdd.avatar)); //addChat(newChatId, userToAdd.name, userToAdd.avatar)
         dispatch(loadChats('/api/chats/' + author));
-        dispatch(messagesInit(newChatId, idToAdd));
     }
 
     let selectChat = async (e) => {
-        let chatId = e.nativeEvent.path.find(item => item.className == "chat-link").dataset.chatItemId
+        let chatId = e.nativeEvent.path.find(item => item.className == "chat-link").dataset.chatItemId;
         if (chatId) {
             await dispatch(loadChat(`/api/chat/${chatId}`));
             // await props.loadMessages(props.activeChat.messages);
@@ -102,7 +101,6 @@ export default function ChatList(props) {
     
     let userList = []
 
-    console.log(chats)
     users.forEach (item => {
         if ((typeof chats.find(el => el.title == item.name) == 'undefined') && (item.id != author)) {
             userList.push(item);
