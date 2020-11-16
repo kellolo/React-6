@@ -9,6 +9,7 @@ import ChatList from '../ChatList/ChatList.jsx'
 export default props => {
 
     let [chatId, setChatId] = useState(props.chatId)
+    // let { chatId } = props.chatId;
 
     let { me, myAvatar } = props;
 

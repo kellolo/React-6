@@ -14,7 +14,6 @@ class Router extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: false,
             me: "",
         }
     }
@@ -24,8 +23,12 @@ class Router extends Component {
     }
 
     setMe = (meId) => {
-        this.props.loadChats('/api/chats/' + meId);
+        // this.props.loadChats('/api/chats/' + meId);
         this.setState({ me: meId });
+    }
+
+    logOut = () => {
+        this.setState({ me: "" });
     }
 
     render() {
@@ -44,6 +47,7 @@ class Router extends Component {
                         if (me != "") {
                             return(<MainApp myAvatar = { authorAvatar } chatId = {-1} me = { me } />)
                         } else {
+                            this.props.loadUsers('/api/users');
                             return(<Login setMe = { this.setMe } />)
                         }
                     } 
@@ -58,7 +62,7 @@ class Router extends Component {
                    }
                /> */}
                { chatSwitches }
-               <Route exact path="/profile/" render = { () => <Profile myId = { me } /> } />
+               <Route exact path="/profile/" render = { () => <Profile myId = { me } logOut = { this.logOut } /> } />
             </Switch>
         );
     }

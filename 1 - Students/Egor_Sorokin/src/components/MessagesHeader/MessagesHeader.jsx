@@ -1,6 +1,6 @@
 import './style.css'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +10,13 @@ import { Avatar } from '@material-ui/core'
 
 export default props => {
     let { currConversationName, avatarAddress, myAvatar } = props;
+
+    let [searchedValue, setSearchedValue] = useState('');
+
+    let setSearchedText = (e) => {
+        setSearchedValue(e.target.value);
+        props.getFilter(e.target.value);
+    } 
 
     if ( avatarAddress == '') {
         return(
@@ -29,7 +36,7 @@ export default props => {
             <div className="messages-header-main d-flex justify-content-between col-11">
                 <div className="search-block d-flex">
                     <p className="seacrh-icon"><FontAwesomeIcon icon={faSearch} /></p>
-                    <input type="text" id="search-input" />
+                    <input type="text" id="search-input" onChange={ setSearchedText } />
                 </div>
                 <h3 className="curr-conversation-name">{ currConversationName }</h3>
                 <img className="curr-avatar rounded" src= { avatarAddress } alt="avatar"></img>

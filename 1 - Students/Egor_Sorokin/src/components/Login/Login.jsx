@@ -9,8 +9,8 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: '',
-            password: '',
+            login: 'egor@me.com',
+            password: 'password',
             correctLogin: true,
             correctPassword: true,
         }
@@ -33,6 +33,14 @@ class Login extends Component {
         }
 
         
+    }
+
+    sendOnKeyboard = (e) => {
+        let keyCode = e.which || e.keyCode;
+        if (keyCode === 13) {
+            e.preventDefault()
+            this.loginUser()
+        }
     }
 
     setMe = (me) => {
@@ -64,9 +72,9 @@ class Login extends Component {
                         { correctPassword ? null : <h3 className="error-message">Wrong password!</h3> }
                     </div>
                     <form id="login-form" action="">
-                        <input type="email" id="input-login" placeholder="email" title="egor@me.com, можно и другие, но пока нет правильного получания чатов (user, user2, user3, user4@me.com" value = { login } onChange = { this.changeLogin }></input>
-                        <input type="password" id="input-password" placeholder="password" title="всегда password" value = { password } onChange = { this.changePassword }></input>
-                        <input type="button" id="submit" value="Log in" onClick={ this.loginUser }></input>
+                        <input type="email" id="input-login" placeholder="email" value = { login } onChange = { this.changeLogin } onKeyPress = { this.sendOnKeyboard }></input>
+                        <input type="password" id="input-password" placeholder="password" value = { password } onChange = { this.changePassword } onKeyPress = { this.sendOnKeyboard }></input>
+                        <input type="button" id="submit" value="Log in" onClick={ this.loginUser } onKeyPress = { this.sendOnKeyboard }></input>
                     </form>
                 </div>
             </Fragment>
